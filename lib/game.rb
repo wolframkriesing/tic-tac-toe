@@ -46,7 +46,7 @@ class Game
     end
   end
   
-  def is_occupied(spot)
+  def is_available(spot)
     spot != @human_character && spot != @computer_character
   end
 
@@ -54,7 +54,7 @@ class Game
     spot = nil
     until spot
       spot = gets.chomp.to_i
-      if is_occupied(board[spot])
+      if is_available(board[spot])
         board[spot] = @human_character
       else
         spot = nil
@@ -70,7 +70,7 @@ class Game
         board[spot] = @computer_character
       else
         spot = get_best_move(board)
-        if is_occupied(board[spot])
+        if is_available(board[spot])
           board[spot] = @computer_character
         else
           spot = nil
@@ -83,7 +83,7 @@ class Game
     available_spaces = []
     best_move = nil
     board.each do |s|
-      if is_occupied(s)
+      if is_available(s)
         available_spaces << s
       end
     end
