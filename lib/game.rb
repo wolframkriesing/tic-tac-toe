@@ -62,7 +62,7 @@ class Game
         spot = 4
         board[spot] = @computer_character
       else
-        spot = get_best_move(board, @computer_character)
+        spot = get_best_move(board)
         if board[spot] != "X" && board[spot] != "O"
           board[spot] = @computer_character
         else
@@ -72,7 +72,7 @@ class Game
     end
   end
 
-  def get_best_move(board, next_player, depth = 0, best_score = {})
+  def get_best_move(board)
     available_spaces = []
     best_move = nil
     board.each do |s|
