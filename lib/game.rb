@@ -6,6 +6,7 @@ class Game
   end
 
   def start_game
+    system("clear")
     puts "Welcome to my Tic Tac Toe game"
     print_board(@board)
     puts "Please select your spot."
@@ -39,6 +40,8 @@ class Game
       if !game_is_over(board) && !tie(board)
         eval_board(board)
       end
+      system("clear")
+      puts
       print_board(board)
     end
   end
