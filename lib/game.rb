@@ -83,7 +83,7 @@ class Game
     available_spaces = []
     best_move = nil
     board.each do |s|
-      if s != "X" && s != "O"
+      if is_occupied(s)
         available_spaces << s
       end
     end
