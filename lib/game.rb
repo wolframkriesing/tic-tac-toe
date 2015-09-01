@@ -103,7 +103,6 @@ class Game
 
   def get_best_move(board)
     available_cells = all_available_cells(board)
-    best_move = nil
     available_cells.each do |available_cell|
       cell_number = available_cell.to_i
       if would_computer_win(board, cell_number)
@@ -117,12 +116,8 @@ class Game
       board[cell_number] = available_cell
     end
     
-    if best_move
-      return best_move
-    else
-      n = rand(0..available_cells.count)
-      return available_cells[n].to_i
-    end
+    n = rand(0..available_cells.count)
+    available_cells[n].to_i
   end
 
   def is_game_over(board)
