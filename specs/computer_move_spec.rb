@@ -3,14 +3,14 @@ require "minitest/autorun"
 
 class ComputerMove < MiniTest::Unit::TestCase
 	
- 	def test_can_only_oocupy_available_spot
+ 	def test_can_only_occupy_available_spot
 		board_with_one_available_spot = "XXXX4XXXX".split("");
 		Game.new.computer_move(board_with_one_available_spot)
 		
 		assert_equal board_with_one_available_spot, "XXXXXXXXX".split("")
 	end
 	
- 	def test_can_only_oocupy_available_spot1
+ 	def test_can_only_occupy_available_spot1
 		board_with_one_available_spot = "0XXXXXXXX".split("");
 		Game.new.computer_move(board_with_one_available_spot)
 		
