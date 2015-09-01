@@ -87,8 +87,6 @@ class Game
   def would_win(board, cell_indexes, character)
     previous_cell_value = board[cell_indexes]
     board[cell_indexes] = character
-    # possible_board = [] << board[0..cell_indexes-1] << [character] << board[cell_indexes+1..board.length-1]
-    # return is_game_over(possible_board)
     would_win = is_game_over(board)
     board[cell_indexes] = previous_cell_value
     would_win
