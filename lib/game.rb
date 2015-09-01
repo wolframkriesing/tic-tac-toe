@@ -22,9 +22,21 @@ class Board < Array
 
 end
 
+class Cell < String
+  
+  def initialize(content)
+    @content = content
+  end
+  
+end
+
 class Game
   def initialize
-    @board = Board.new(["0", "1", "2", "3", "4", "5", "6", "7", "8"])
+    @board = Board.new([
+      Cell.new("0"), Cell.new("1"), Cell.new("2"), 
+      Cell.new("3"), Cell.new("4"), Cell.new("5"), 
+      Cell.new("6"), Cell.new("7"), Cell.new("8")
+    ])
     @computer_character = "X"
     @human_character = "O"
   end
