@@ -79,36 +79,42 @@ class Game
     end
   end
 
-  def get_best_move(board)
-    available_spaces = []
-    best_move = nil
-    board.each do |s|
-      if is_available(s)
-        available_spaces << s
+  def all_available_cells(board)
+    available_cells = []
+    board.each do |cell|
+      if is_available(cell)
+        available_cells << cell
       end
     end
-    available_spaces.each do |as|
-      board[as.to_i] = @computer_character
+    available_cells
+  end
+
+  def get_best_move(board)
+    available_cells = all_available_cells(board)
+    best_move = nil
+    available_cells.each do |available_cell|
+      cell_number = available_cell.to_i
+      board[cell_number] = @computer_character
       if game_is_over(board)
-        best_move = as.to_i
-        board[as.to_i] = as
+        best_move = cell_number
+        board[cell_number] = available_cell
         return best_move
       else
-        board[as.to_i] = @human_character
+        board[cell_number] = @human_character
         if game_is_over(board)
-          best_move = as.to_i
-          board[as.to_i] = as
+          best_move = cell_number
+          board[cell_number] = available_cell
           return best_move
         else
-          board[as.to_i] = as
+          board[cell_number] = available_cell
         end
       end
     end
     if best_move
       return best_move
     else
-      n = rand(0..available_spaces.count)
-      return available_spaces[n].to_i
+      n = rand(0..available_cells.count)
+      return available_cells[n].to_i
     end
   end
 
@@ -124,7 +130,7 @@ class Game
   end
 
   def tie(board)
-    board.all? { |s| s == "X" || s == "O" }
+    board.all? { |cell| cell == "X" || cell == "O" }
   end
 
 end
