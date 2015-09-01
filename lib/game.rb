@@ -21,7 +21,7 @@ class Game
     until game_is_over(board) || tie(board)
       get_human_spot
       if !game_is_over(board) && !tie(board)
-        eval_board
+        eval_board(board)
       end
       print_board(board)
     end
@@ -39,16 +39,16 @@ class Game
     end
   end
 
-  def eval_board
+  def eval_board(board)
     spot = nil
     until spot
-      if @board[4] == "4"
+      if board[4] == "4"
         spot = 4
-        @board[spot] = @com
+        board[spot] = @com
       else
-        spot = get_best_move(@board, @com)
-        if @board[spot] != "X" && @board[spot] != "O"
-          @board[spot] = @com
+        spot = get_best_move(board, @com)
+        if board[spot] != "X" && board[spot] != "O"
+          board[spot] = @com
         else
           spot = nil
         end
