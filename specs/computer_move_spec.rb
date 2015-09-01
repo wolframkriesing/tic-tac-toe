@@ -17,6 +17,13 @@ class ComputerMove < MiniTest::Unit::TestCase
 		assert_equal board_with_one_available_spot, "XXXXXXXXX".split("")
 	end
 	
+ 	def test_place_on_cell_4_if_available
+		board_with_one_available_spot = "012345678".split("");
+		Game.new.computer_move(board_with_one_available_spot)
+		
+		assert_equal board_with_one_available_spot, "0123X5678".split("")
+	end	
+	
 end
 
 class BestMoveToWin < MiniTest::Unit::TestCase
