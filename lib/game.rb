@@ -20,6 +20,13 @@ class Board < Array
     puts "+---+---+---+"
   end
 
+  def has_completed_row()
+    board = self
+    [board[0], board[1], board[2]].uniq.length == 1 ||
+    [board[3], board[4], board[5]].uniq.length == 1 ||
+    [board[6], board[7], board[8]].uniq.length == 1
+  end
+
 end
 
 class Game
@@ -89,7 +96,7 @@ class Game
   end
   
   def would_win(board, cell_index, character)
-    possible_board = [].concat(board)
+    possible_board = Board.new.concat(board)
     possible_board[cell_index] = character
     is_game_over(possible_board)
   end
@@ -134,7 +141,7 @@ def tie(board)
 end
 
 def is_game_over(board)
-  any_complete_row(board) || any_complete_column(board) || any_diagonal_complete(board)
+  board.has_completed_row || any_complete_column(board) || any_diagonal_complete(board)
 end
 
 def any_complete_row(board)
