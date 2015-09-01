@@ -82,17 +82,22 @@ class Game
   def all_available_cells(board)
     available_cells = board.select { |cell| is_available(cell) }
   end
+  
+  def would_computer_win(board, cell_number)
+    previous_cell_value = board[cell_number]
+    board[cell_number] = @computer_character
+    would_win = game_is_over(board)
+    board[cell_number] = previous_cell_value
+    would_win
+  end
 
   def get_best_move(board)
     available_cells = all_available_cells(board)
     best_move = nil
     available_cells.each do |available_cell|
       cell_number = available_cell.to_i
-      board[cell_number] = @computer_character
-      if game_is_over(board)
-        best_move = cell_number
-        board[cell_number] = available_cell
-        return best_move
+      if would_computer_win(board, cell_number)
+        return cell_number
       else
         board[cell_number] = @human_character
         if game_is_over(board)
