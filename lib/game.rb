@@ -83,20 +83,20 @@ class Game
     available_cells = board.select { |cell| is_available(cell) }
   end
   
-  def would_computer_win(board, cell_number)
+  def would_win(board, cell_number, character)
     previous_cell_value = board[cell_number]
-    board[cell_number] = @computer_character
+    board[cell_number] = character
     would_win = is_game_over(board)
     board[cell_number] = previous_cell_value
     would_win
   end
+  
+  def would_computer_win(board, cell_number)
+    would_win(board, cell_number, @computer_character)
+  end
 
   def would_human_win(board, cell_number)
-    previous_cell_value = board[cell_number]
-    board[cell_number] = @human_character
-    would_win = is_game_over(board)
-    board[cell_number] = previous_cell_value
-    would_win
+    would_win(board, cell_number, @human_character)
   end
 
   def get_best_move(board)
