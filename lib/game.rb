@@ -35,9 +35,9 @@ class Game
   end
 
   def game_play_loop(board)
-    until game_is_over(board) || tie(board)
+    until is_game_over(board) || tie(board)
       get_human_spot(board)
-      if !game_is_over(board) && !tie(board)
+      if !is_game_over(board) && !tie(board)
         computer_move(board)
       end
       system("clear")
@@ -86,7 +86,7 @@ class Game
   def would_computer_win(board, cell_number)
     previous_cell_value = board[cell_number]
     board[cell_number] = @computer_character
-    would_win = game_is_over(board)
+    would_win = is_game_over(board)
     board[cell_number] = previous_cell_value
     would_win
   end
@@ -100,7 +100,7 @@ class Game
         return cell_number
       else
         board[cell_number] = @human_character
-        if game_is_over(board)
+        if is_game_over(board)
           best_move = cell_number
           board[cell_number] = available_cell
           return best_move
@@ -117,7 +117,7 @@ class Game
     end
   end
 
-  def game_is_over(board)
+  def is_game_over(board)
     [board[0], board[1], board[2]].uniq.length == 1 ||
     [board[3], board[4], board[5]].uniq.length == 1 ||
     [board[6], board[7], board[8]].uniq.length == 1 ||
