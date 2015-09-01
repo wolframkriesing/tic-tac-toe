@@ -36,3 +36,22 @@ class BestMoveToWin < MiniTest::Unit::TestCase
 	end
 	
 end
+
+
+class BlockHumansBestMoveToWin < MiniTest::Unit::TestCase
+	
+ 	def test_block_human_from_winning_with_simple_complete_row
+		board_with_one_available_spot = "OO23X5678".split("");
+		Game.new.computer_move(board_with_one_available_spot)
+		
+		assert_equal board_with_one_available_spot, "OOX3X5678".split("")
+	end
+	
+ 	def test_block_human_from_winning_with_diagonal
+		board_with_one_available_spot = "O12XO5678".split("");
+		Game.new.computer_move(board_with_one_available_spot)
+		
+		assert_equal board_with_one_available_spot, "O12XO567X".split("")
+	end
+		
+end
