@@ -79,43 +79,43 @@ class Game
     end
   end
 
-  def all_available_cells_numbers(board)
-    available_cells = board.select { |cell| is_available(cell) }
-    available_cells.map { |cell| cell.to_i }
+  def all_available_cells_indexes(board)
+    available_cells_indexes = board.select { |cell| is_available(cell) }
+    available_cells_indexes.map { |cell| cell.to_i }
   end
   
-  def would_win(board, cell_number, character)
-    previous_cell_value = board[cell_number]
-    board[cell_number] = character
-    # possible_board = [] << board[0..cell_number-1] << [character] << board[cell_number+1..board.length-1]
+  def would_win(board, cell_indexes, character)
+    previous_cell_value = board[cell_indexes]
+    board[cell_indexes] = character
+    # possible_board = [] << board[0..cell_indexes-1] << [character] << board[cell_indexes+1..board.length-1]
     # return is_game_over(possible_board)
     would_win = is_game_over(board)
-    board[cell_number] = previous_cell_value
+    board[cell_indexes] = previous_cell_value
     would_win
   end
   
-  def would_computer_win(board, cell_number)
-    would_win(board, cell_number, @computer_character)
+  def would_computer_win(board, cell_indexes)
+    would_win(board, cell_indexes, @computer_character)
   end
 
-  def would_human_win(board, cell_number)
-    would_win(board, cell_number, @human_character)
+  def would_human_win(board, cell_indexes)
+    would_win(board, cell_indexes, @human_character)
   end
 
-  def is_best_move(board, cell_number)
-    would_computer_win(board, cell_number) or would_human_win(board, cell_number)
+  def is_best_move(board, cell_indexes)
+    would_computer_win(board, cell_indexes) or would_human_win(board, cell_indexes)
   end
 
   def get_best_move(board)
-    available_cells = all_available_cells_numbers(board)
-    available_cells.each do |cell_number|
-      if is_best_move(board, cell_number)
-        return cell_number
+    available_cells_indexes = all_available_cells_indexes(board)
+    available_cells_indexes.each do |cell_indexes|
+      if is_best_move(board, cell_indexes)
+        return cell_indexes
       end  
     end
     
-    n = rand(0..available_cells.count)
-    available_cells[n].to_i
+    n = rand(0..available_cells_indexes.count)
+    available_cells_indexes[n].to_i
   end
 
   def is_game_over(board)
