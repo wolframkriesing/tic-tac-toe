@@ -5,6 +5,14 @@ class Game
     @hum = "O"
   end
 
+  def start_game
+    puts "Welcome to my Tic Tac Toe game"
+    print_board(@board)
+    puts "Please select your spot."
+    game_play_loop
+    puts "Game over"
+  end
+
   def print_board(board)
     puts "|_#{@board[0]}_|_#{@board[1]}_|_#{@board[2]}_|\n|_#{@board[3]}_|_#{@board[4]}_|_#{@board[5]}_|\n|_#{@board[6]}_|_#{@board[7]}_|_#{@board[8]}_|\n"
   end
@@ -17,14 +25,6 @@ class Game
       end
       print_board(@board)
     end
-  end
-
-  def start_game
-    puts "Welcome to my Tic Tac Toe game"
-    print_board(@board)
-    puts "Please select your spot."
-    game_play_loop
-    puts "Game over"
   end
 
   def get_human_spot
