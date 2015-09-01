@@ -84,27 +84,27 @@ class Game
     available_cells_indexes.map { |cell| cell.to_i }
   end
   
-  def would_win(board, cell_indexes, character)
+  def would_win(board, cell_index, character)
     possible_board = [].concat(board)
-    possible_board[cell_indexes] = character
+    possible_board[cell_index] = character
     is_game_over(possible_board)
   end
   
-  def would_computer_win(board, cell_indexes)
-    would_win(board, cell_indexes, @computer_character)
+  def would_computer_win(board, cell_index)
+    would_win(board, cell_index, @computer_character)
   end
 
-  def would_human_win(board, cell_indexes)
-    would_win(board, cell_indexes, @human_character)
+  def would_human_win(board, cell_index)
+    would_win(board, cell_index, @human_character)
   end
 
-  def is_winning_move(board, cell_indexes)
-    would_computer_win(board, cell_indexes) or would_human_win(board, cell_indexes)
+  def is_winning_move(board, cell_index)
+    would_computer_win(board, cell_index) or would_human_win(board, cell_index)
   end
 
   def winning_move(board, available_cells_indexes)
-    cells_that_would_make_a_win = available_cells_indexes.select { |cell_indexes| 
-      is_winning_move(board, cell_indexes) 
+    cells_that_would_make_a_win = available_cells_indexes.select { |cell_index| 
+      is_winning_move(board, cell_index) 
     }
     cells_that_would_make_a_win.first
   end
