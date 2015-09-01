@@ -107,11 +107,10 @@ class Game
   end
 
   def winning_move(board, available_cells_indexes)
-    available_cells_indexes.each do |cell_indexes|
-      if is_winning_move(board, cell_indexes)
-        return cell_indexes
-      end  
-    end
+    cells_that_would_make_a_win = available_cells_indexes.select { |cell_indexes| 
+      is_winning_move(board, cell_indexes) 
+    }
+    cells_that_would_make_a_win.first
   end
   
   def get_best_move(board)
