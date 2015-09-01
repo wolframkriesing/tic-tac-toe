@@ -1,0 +1,38 @@
+require_relative "../lib/game.rb"
+require "minitest/autorun"
+
+class ComputerMove < MiniTest::Unit::TestCase
+	
+ 	def test_can_only_oocupy_available_spot
+		board_with_one_available_spot = "XXXX4XXXX".split("");
+		Game.new.computer_move(board_with_one_available_spot)
+		
+		assert_equal board_with_one_available_spot, "XXXXXXXXX".split("")
+	end
+	
+ 	def test_can_only_oocupy_available_spot1
+		board_with_one_available_spot = "0XXXXXXXX".split("");
+		Game.new.computer_move(board_with_one_available_spot)
+		
+		assert_equal board_with_one_available_spot, "XXXXXXXXX".split("")
+	end
+	
+end
+
+class BestMoveToWin < MiniTest::Unit::TestCase
+	
+ 	def test_for_two_in_a_row_get_third
+		board_with_one_available_spot = "XX23O5678".split("");
+		Game.new.computer_move(board_with_one_available_spot)
+		
+		assert_equal board_with_one_available_spot, "XXX3O5678".split("")
+	end
+	
+ 	def test_for_two_in_a_row_with_a_gap
+		board_with_one_available_spot = "X123O5X78".split("");
+		Game.new.computer_move(board_with_one_available_spot)
+		
+		assert_equal board_with_one_available_spot, "X12XO5X78".split("")
+	end
+	
+end
