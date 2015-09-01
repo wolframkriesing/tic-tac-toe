@@ -38,7 +38,7 @@ class Game
     until game_is_over(board) || tie(board)
       get_human_spot(board)
       if !game_is_over(board) && !tie(board)
-        eval_board(board)
+        computer_move(board)
       end
       system("clear")
       puts
@@ -62,7 +62,7 @@ class Game
     end
   end
 
-  def eval_board(board)
+  def computer_move(board)
     spot = nil
     until spot
       if board[4] == "4"
