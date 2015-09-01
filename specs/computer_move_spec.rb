@@ -2,7 +2,7 @@ require_relative "../lib/game.rb"
 require "minitest/autorun"
 
 def to_board(chars)
-	Board.new(chars.split("").each { |cell| Cell.new(cell) })
+	Board.new(chars.split("").map { |cell| Cell.new(cell) })
 end
 
 class ComputerMove < MiniTest::Unit::TestCase

@@ -25,7 +25,7 @@ end
 class Cell < String
   
   def initialize(content)
-    @content = content
+    self[0] = content[0]
   end
   
 end
