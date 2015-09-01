@@ -80,13 +80,7 @@ class Game
   end
 
   def all_available_cells(board)
-    available_cells = []
-    board.each do |cell|
-      if is_available(cell)
-        available_cells << cell
-      end
-    end
-    available_cells
+    available_cells = board.select { |cell| is_available(cell) }
   end
 
   def get_best_move(board)
