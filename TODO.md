@@ -1,4 +1,4 @@
-[] improve board readability, maybe removing all "useless" chars
+[x] improve board readability, maybe removing all "useless" chars
 [] warn user about bad input
 [] dont skip step on bad user input
 [] show basic instructions on start of the game
