@@ -9,10 +9,7 @@ class Game
     puts "|_#{@board[0]}_|_#{@board[1]}_|_#{@board[2]}_|\n|_#{@board[3]}_|_#{@board[4]}_|_#{@board[5]}_|\n|_#{@board[6]}_|_#{@board[7]}_|_#{@board[8]}_|\n"
   end
 
-  def start_game
-    puts "Welcome to my Tic Tac Toe game"
-    print_board(@board)
-    puts "Please select your spot."
+  def game_play_loop
     until game_is_over(@board) || tie(@board)
       get_human_spot
       if !game_is_over(@board) && !tie(@board)
@@ -20,6 +17,13 @@ class Game
       end
       print_board(@board)
     end
+  end
+
+  def start_game
+    puts "Welcome to my Tic Tac Toe game"
+    print_board(@board)
+    puts "Please select your spot."
+    game_play_loop
     puts "Game over"
   end
 
