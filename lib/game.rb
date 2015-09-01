@@ -25,6 +25,15 @@ end
 class Cell < String
   
   def initialize(content)
+    @initial_content = content
+    self[0] = content[0]
+  end
+  
+  def is_available
+    self == @initial_content
+  end
+  
+  def set_to(content)
     self[0] = content[0]
   end
   
@@ -83,11 +92,11 @@ class Game
     until cell
       if board[4] == "4"
         cell = 4
-        board[cell] = @computer_character
+        board[cell].set_to(@computer_character)
       else
         cell = get_best_move(board)
-        if is_available(board[cell])
-          board[cell] = @computer_character
+        if board[cell].is_available
+          board[cell].set_to(@computer_character)
         else
           cell = nil
         end
@@ -96,7 +105,7 @@ class Game
   end
 
   def all_available_cells_indexes(board)
-    available_cells_indexes = board.select { |cell| is_available(cell) }
+    available_cells_indexes = board.select { |cell| cell.is_available }
     available_cells_indexes.map { |cell| cell.to_i }
   end
   
