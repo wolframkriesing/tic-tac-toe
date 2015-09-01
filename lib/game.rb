@@ -19,7 +19,7 @@ class Game
 
   def game_play_loop(board)
     until game_is_over(board) || tie(board)
-      get_human_spot
+      get_human_spot(board)
       if !game_is_over(board) && !tie(board)
         eval_board(board)
       end
@@ -27,12 +27,12 @@ class Game
     end
   end
 
-  def get_human_spot
+  def get_human_spot(board)
     spot = nil
     until spot
       spot = gets.chomp.to_i
-      if @board[spot] != "X" && @board[spot] != "O"
-        @board[spot] = @human_character
+      if board[spot] != "X" && board[spot] != "O"
+        board[spot] = @human_character
       else
         spot = nil
       end
