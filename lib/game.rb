@@ -1,28 +1,7 @@
-class Game
-  def initialize
-    @board = ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
-    @computer_character = "X"
-    @human_character = "O"
-  end
-
-  def start_game
-    system("clear")
-    puts "Welcome to my Tic Tac Toe game"
-    print_board(@board)
-    puts "Please select your cell."
-    game_play_loop(@board)
-    puts "Game over"
-  end
-
-  def print_board_line(board)
-    puts "| #{board[0]} | #{board[1]} | #{board[2]} |"
-  end
+class Board < Array 
   
-  def print_board_border
-    puts "+---+---+---+"
-  end
-
-  def print_board(board)
+  def print()
+    board = self
     puts
     print_board_border
     print_board_line(board[0..2])
@@ -33,6 +12,32 @@ class Game
     print_board_border
     puts
   end
+  
+  def print_board_line(board)
+    puts "| #{board[0]} | #{board[1]} | #{board[2]} |"
+  end
+  
+  def print_board_border
+    puts "+---+---+---+"
+  end
+
+end
+
+class Game
+  def initialize
+    @board = Board.new(["0", "1", "2", "3", "4", "5", "6", "7", "8"])
+    @computer_character = "X"
+    @human_character = "O"
+  end
+
+  def start_game
+    system("clear")
+    puts "Welcome to my Tic Tac Toe game"
+    @board.print()
+    puts "Please select your cell."
+    game_play_loop(@board)
+    puts "Game over"
+  end
 
   def game_play_loop(board)
     until is_game_over(board) || tie(board)
@@ -42,7 +47,7 @@ class Game
       end
       system("clear")
       puts
-      print_board(board)
+      board.print()
     end
   end
   
