@@ -101,19 +101,17 @@ class Game
     would_win(board, cell_number, @human_character)
   end
 
+  def is_best_move(board, cell_number)
+    would_computer_win(board, cell_number) or would_human_win(board, cell_number)
+  end
+
   def get_best_move(board)
     available_cells = all_available_cells(board)
     available_cells.each do |available_cell|
       cell_number = available_cell.to_i
-      if would_computer_win(board, cell_number)
+      if is_best_move(board, cell_number)
         return cell_number
       end  
-      
-      if would_human_win(board, cell_number)
-        return cell_number
-      end
-      
-      board[cell_number] = available_cell
     end
     
     n = rand(0..available_cells.count)
