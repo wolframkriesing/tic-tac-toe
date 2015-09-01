@@ -79,8 +79,9 @@ class Game
     end
   end
 
-  def all_available_cells(board)
+  def all_available_cells_numbers(board)
     available_cells = board.select { |cell| is_available(cell) }
+    available_cells.map { |cell| cell.to_i }
   end
   
   def would_win(board, cell_number, character)
@@ -106,9 +107,8 @@ class Game
   end
 
   def get_best_move(board)
-    available_cells = all_available_cells(board)
-    available_cells.each do |available_cell|
-      cell_number = available_cell.to_i
+    available_cells = all_available_cells_numbers(board)
+    available_cells.each do |cell_number|
       if is_best_move(board, cell_number)
         return cell_number
       end  
