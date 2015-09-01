@@ -106,14 +106,15 @@ class Game
       cell_number = available_cell.to_i
       if would_computer_win(board, cell_number)
         return cell_number
-      else
-        if would_human_win(board, cell_number)
-          return cell_number
-        else
-          board[cell_number] = available_cell
-        end
+      end  
+      
+      if would_human_win(board, cell_number)
+        return cell_number
       end
+      
+      board[cell_number] = available_cell
     end
+    
     if best_move
       return best_move
     else
