@@ -85,11 +85,9 @@ class Game
   end
   
   def would_win(board, cell_indexes, character)
-    previous_cell_value = board[cell_indexes]
-    board[cell_indexes] = character
-    would_win = is_game_over(board)
-    board[cell_indexes] = previous_cell_value
-    would_win
+    possible_board = [].concat(board)
+    possible_board[cell_indexes] = character
+    is_game_over(possible_board)
   end
   
   def would_computer_win(board, cell_indexes)
