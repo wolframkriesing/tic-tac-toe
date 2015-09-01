@@ -14,13 +14,23 @@ class Game
   end
 
   def print_board_line(board)
-    puts "|_#{board[0]}_|_#{board[1]}_|_#{board[2]}_|\n"
+    puts "| #{board[0]} | #{board[1]} | #{board[2]} |"
+  end
+  
+  def print_board_border
+    puts "+---+---+---+"
   end
 
   def print_board(board)
+    puts
+    print_board_border
     print_board_line(board[0..2])
+    print_board_border
     print_board_line(board[3..5])
+    print_board_border
     print_board_line(board[6..8])
+    print_board_border
+    puts
   end
 
   def game_play_loop(board)
