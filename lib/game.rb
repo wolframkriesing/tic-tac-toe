@@ -45,12 +45,16 @@ class Game
       print_board(board)
     end
   end
+  
+  def is_occupied(spot)
+    spot != @human_character && spot != @computer_character
+  end
 
   def get_human_spot(board)
     spot = nil
     until spot
       spot = gets.chomp.to_i
-      if board[spot] != "X" && board[spot] != "O"
+      if is_occupied(board[spot])
         board[spot] = @human_character
       else
         spot = nil
@@ -66,7 +70,7 @@ class Game
         board[spot] = @computer_character
       else
         spot = get_best_move(board)
-        if board[spot] != "X" && board[spot] != "O"
+        if is_occupied(board[spot])
           board[spot] = @computer_character
         else
           spot = nil
