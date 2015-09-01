@@ -9,7 +9,7 @@ class Game
     system("clear")
     puts "Welcome to my Tic Tac Toe game"
     print_board(@board)
-    puts "Please select your spot."
+    puts "Please select your cell."
     game_play_loop(@board)
     puts "Game over"
   end
@@ -46,34 +46,34 @@ class Game
     end
   end
   
-  def is_available(spot)
-    spot != @human_character && spot != @computer_character
+  def is_available(cell)
+    cell != @human_character && cell != @computer_character
   end
 
   def get_human_spot(board)
-    spot = nil
-    until spot
-      spot = gets.chomp.to_i
-      if is_available(board[spot])
-        board[spot] = @human_character
+    cell = nil
+    until cell
+      cell = gets.chomp.to_i
+      if is_available(board[cell])
+        board[cell] = @human_character
       else
-        spot = nil
+        cell = nil
       end
     end
   end
 
   def computer_move(board)
-    spot = nil
-    until spot
+    cell = nil
+    until cell
       if board[4] == "4"
-        spot = 4
-        board[spot] = @computer_character
+        cell = 4
+        board[cell] = @computer_character
       else
-        spot = get_best_move(board)
-        if is_available(board[spot])
-          board[spot] = @computer_character
+        cell = get_best_move(board)
+        if is_available(board[cell])
+          board[cell] = @computer_character
         else
-          spot = nil
+          cell = nil
         end
       end
     end
