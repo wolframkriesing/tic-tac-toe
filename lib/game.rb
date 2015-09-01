@@ -102,22 +102,32 @@ class Game
     would_win(board, cell_indexes, @human_character)
   end
 
-  def is_best_move(board, cell_indexes)
+  def is_winning_move(board, cell_indexes)
     would_computer_win(board, cell_indexes) or would_human_win(board, cell_indexes)
   end
 
-  def get_best_move(board)
-    available_cells_indexes = all_available_cells_indexes(board)
+  def winning_move(board, available_cells_indexes)
     available_cells_indexes.each do |cell_indexes|
-      if is_best_move(board, cell_indexes)
+      if is_winning_move(board, cell_indexes)
         return cell_indexes
       end  
     end
-    
-    n = rand(0..available_cells_indexes.count)
-    available_cells_indexes[n].to_i
   end
   
+  def get_best_move(board)
+    available_cells_indexes = all_available_cells_indexes(board)
+    cell_for_winning_move = winning_move(board, available_cells_indexes)
+    if cell_for_winning_move
+      return cell_for_winning_move
+    end
+    random_move(available_cells_indexes)    
+  end
+  
+end
+
+def random_move(available_cells_indexes) 
+  n = rand(0..available_cells_indexes.count)
+  available_cells_indexes[n].to_i
 end
 
 def tie(board)
