@@ -91,6 +91,14 @@ class Game
     would_win
   end
 
+  def would_human_win(board, cell_number)
+    previous_cell_value = board[cell_number]
+    board[cell_number] = @human_character
+    would_win = is_game_over(board)
+    board[cell_number] = previous_cell_value
+    would_win
+  end
+
   def get_best_move(board)
     available_cells = all_available_cells(board)
     best_move = nil
@@ -99,11 +107,8 @@ class Game
       if would_computer_win(board, cell_number)
         return cell_number
       else
-        board[cell_number] = @human_character
-        if is_game_over(board)
-          best_move = cell_number
-          board[cell_number] = available_cell
-          return best_move
+        if would_human_win(board, cell_number)
+          return cell_number
         else
           board[cell_number] = available_cell
         end
