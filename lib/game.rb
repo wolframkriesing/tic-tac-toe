@@ -20,13 +20,25 @@ class Board < Array
     puts "+---+---+---+"
   end
 
-  def has_completed_row()
+  def has_completed_row
     board = self
     [board[0], board[1], board[2]].uniq.length == 1 ||
     [board[3], board[4], board[5]].uniq.length == 1 ||
     [board[6], board[7], board[8]].uniq.length == 1
   end
 
+  def has_completed_column
+    board = self
+    [board[0], board[3], board[6]].uniq.length == 1 ||
+    [board[1], board[4], board[7]].uniq.length == 1 ||
+    [board[2], board[5], board[8]].uniq.length == 1
+  end
+  
+  def has_completed_diagonal
+    board = self
+    [board[0], board[4], board[8]].uniq.length == 1 ||
+    [board[2], board[4], board[6]].uniq.length == 1
+  end
 end
 
 class Game
@@ -141,22 +153,5 @@ def tie(board)
 end
 
 def is_game_over(board)
-  board.has_completed_row || any_complete_column(board) || any_diagonal_complete(board)
-end
-
-def any_complete_row(board)
-  [board[0], board[1], board[2]].uniq.length == 1 ||
-  [board[3], board[4], board[5]].uniq.length == 1 ||
-  [board[6], board[7], board[8]].uniq.length == 1
-end
-
-def any_complete_column(board)
-  [board[0], board[3], board[6]].uniq.length == 1 ||
-  [board[1], board[4], board[7]].uniq.length == 1 ||
-  [board[2], board[5], board[8]].uniq.length == 1
-end
-
-def any_diagonal_complete(board)
-  [board[0], board[4], board[8]].uniq.length == 1 ||
-  [board[2], board[4], board[6]].uniq.length == 1
+  board.has_completed_row || board.has_completed_column || board.has_completed_diagonal
 end
