@@ -1,43 +1,6 @@
-class Board < Array 
-  
-  def print()
-    puts
-    print_board_border
-    print_board_line(self[0..2])
-    print_board_border
-    print_board_line(self[3..5])
-    print_board_border
-    print_board_line(self[6..8])
-    print_board_border
-    puts
-  end
-  
-  def print_board_line(board)
-    puts "| #{board[0]} | #{board[1]} | #{board[2]} |"
-  end
-  
-  def print_board_border
-    puts "+---+---+---+"
-  end
-
-end
-
-class Cell < String
-  
-  def initialize(content)
-    @initial_content = content
-    self[0] = content[0]
-  end
-  
-  def is_available
-    self == @initial_content
-  end
-  
-  def set_to(content)
-    self[0] = content[0]
-  end
-  
-end
+require_relative "./game_rules"
+require_relative "./board"
+require_relative "./cell"
 
 class Game
   def initialize
@@ -95,7 +58,7 @@ class Game
         board[cell].set_to(@computer_character)
       else
         cell = get_best_move(board)
-        if board[cell].is_available
+        if board[cell].is_available?
           board[cell].set_to(@computer_character)
         else
           cell = nil
@@ -105,7 +68,7 @@ class Game
   end
 
   def all_available_cells_indexes(board)
-    available_cells_indexes = board.select { |cell| cell.is_available }
+    available_cells_indexes = board.select { |cell| cell.is_available? }
     available_cells_indexes.map { |cell| cell.to_i }
   end
   
@@ -156,36 +119,4 @@ end
 
 def is_game_over(board)
   GameRules.new(board).is_game_over  
-end
-
-class GameRules
-  
-  def initialize(board)
-    @board = board
-  end
-  
-  def is_game_over
-    has_completed_row || has_completed_column || has_completed_diagonal
-  end
-  
-  def has_completed_row
-    board = @board
-    [board[0], board[1], board[2]].uniq.length == 1 ||
-    [board[3], board[4], board[5]].uniq.length == 1 ||
-    [board[6], board[7], board[8]].uniq.length == 1
-  end
-
-  def has_completed_column
-    board = @board
-    [board[0], board[3], board[6]].uniq.length == 1 ||
-    [board[1], board[4], board[7]].uniq.length == 1 ||
-    [board[2], board[5], board[8]].uniq.length == 1
-  end
-  
-  def has_completed_diagonal
-    board = @board
-    [board[0], board[4], board[8]].uniq.length == 1 ||
-    [board[2], board[4], board[6]].uniq.length == 1
-  end
-
 end
