@@ -1,9 +1,9 @@
 require_relative "./game_rules"
-require_relative "./board_output"
 require_relative "./cell"
 
 class Game
-  def initialize
+  def initialize(boardOutput)
+    @boardOutput = boardOutput
     @board = [
       Cell.new("0"), Cell.new("1"), Cell.new("2"), 
       Cell.new("3"), Cell.new("4"), Cell.new("5"), 
@@ -13,10 +13,14 @@ class Game
     @human_character = "O"
   end
 
+  def print_board(board)
+    @boardOutput.print(board)
+  end 
+
   def start_game
     system("clear")
     puts "Welcome to my Tic Tac Toe game"
-    BoardOutput.print(@board)
+    print_board(@board)
     puts "Please select your cell."
     game_play_loop(@board)
     puts "Game over"
@@ -30,7 +34,7 @@ class Game
       end
       system("clear")
       puts
-      BoardOutput.print(@board)
+      print_board(@board)
     end
   end
   
@@ -43,7 +47,7 @@ class Game
     until cell
       cell = gets.chomp.to_i
       if is_available(board[cell])
-        board[cell] = @human_character
+        board[cell].set_to(@human_character)
       else
         cell = nil
       end
