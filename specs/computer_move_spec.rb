@@ -23,17 +23,24 @@ end
 class ComputerMove < MiniTest::Unit::TestCase
 	
  	def test_can_only_occupy_available_spot
-		board_with_one_available_spot = to_board("XXXX4XXXX");
-		create_game().computer_move(board_with_one_available_spot)
+		board = to_board("XXXX4XXXX");
+		create_game().computer_move(board)
 		
-		assert_equal board_with_one_available_spot, to_board("XXXXXXXXX")
+		assert_equal board, to_board("XXXXXXXXX")
 	end
 	
  	def test_can_only_occupy_available_spot1
-		board_with_one_available_spot = to_board("0XXXXXXXX");
-		create_game().computer_move(board_with_one_available_spot)
+		board = to_board("0XXXXXXXX")
+		create_game().computer_move(board)
 		
-		assert_equal board_with_one_available_spot, to_board("XXXXXXXXX")
+		assert_equal board, to_board("XXXXXXXXX")
+	end
+	
+ 	def test_can_only_occupy_available_spot12
+		board = to_board("0XXXXXXXX");
+		cell = create_game().get_best_move(board)
+		
+		assert_equal cell, 0
 	end
 	
  	def test_place_on_cell_4_if_available
@@ -49,16 +56,16 @@ class BestMoveToWin < MiniTest::Unit::TestCase
 	
  	def test_for_two_in_a_row_get_third
 		board_with_one_available_spot = to_board("XX23O5678");
-		create_game().computer_move(board_with_one_available_spot)
+		cell = create_game().get_best_move(board_with_one_available_spot)
 		
-		assert_equal board_with_one_available_spot, to_board("XXX3O5678")
+		assert_equal cell, 2
 	end
 	
  	def test_for_two_in_a_row_with_a_gap
 		board_with_one_available_spot = to_board("X123O5X78");
-		create_game().computer_move(board_with_one_available_spot)
+		cell = create_game().get_best_move(board_with_one_available_spot)
 		
-		assert_equal board_with_one_available_spot, to_board("X12XO5X78")
+		assert_equal cell, 3
 	end
 	
 end
@@ -67,17 +74,17 @@ end
 class BlockHumansBestMoveToWin < MiniTest::Unit::TestCase
 	
  	def test_block_human_from_winning_with_simple_complete_row
-		board_with_one_available_spot = to_board("OO23X5678");
-		create_game().computer_move(board_with_one_available_spot)
+		board = to_board("OO23X5678");
+		cell = create_game().get_best_move(board)
 		
-		assert_equal board_with_one_available_spot, to_board("OOX3X5678")
+		assert_equal cell, 2
 	end
 	
  	def test_block_human_from_winning_with_diagonal
-		board_with_one_available_spot = to_board("O12XO5678");
-		create_game().computer_move(board_with_one_available_spot)
+		board = to_board("O12XO5678");
+		cell = create_game().get_best_move(board)
 		
-		assert_equal board_with_one_available_spot, to_board("O12XO567X")
+		assert_equal cell, 8
 	end
 		
 end

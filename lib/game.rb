@@ -53,7 +53,7 @@ class Game
   def computer_move(board)
     cell = nil
     until cell
-      if board[4] == "4"
+      if board[4].is_available?
         cell = 4
         board[cell].set_to(@computer_character)
       else
