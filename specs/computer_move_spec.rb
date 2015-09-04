@@ -2,7 +2,14 @@ require_relative "../lib/game.rb"
 require "minitest/autorun"
 
 def to_board(chars)
-	chars.split("").map { |cell| Cell.new(cell) }
+	chars.split("").map do |char|
+		index = chars.index(char).to_s
+		cell = Cell.new(index) 
+		unless char.to_i.to_s == char
+			cell.set_to(char)
+		end 
+		cell
+	end
 end
 
 class BoardOutput
