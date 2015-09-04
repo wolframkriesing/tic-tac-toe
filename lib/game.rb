@@ -38,15 +38,11 @@ class Game
     end
   end
   
-  def is_available(cell)
-    cell != @human_character && cell != @computer_character
-  end
-
   def get_human_spot(board)
     cell = nil
     until cell
       cell = gets.chomp.to_i
-      if is_available(board[cell])
+      if board[cell].is_available?
         board[cell].set_to(@human_character)
       else
         cell = nil
