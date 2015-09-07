@@ -2,25 +2,6 @@ require_relative "../lib/computer_move.rb"
 require_relative "./boards.rb"
 require "minitest/autorun"
 
-def to_board(chars)
-	chars.split("").map do |char|
-		index = chars.index(char).to_s
-		cell = Cell.new(index) 
-		unless char.to_i.to_s == char
-			cell.set_to(char)
-		end 
-		cell
-	end
-end
-
-class BoardOutput
-	def self.print
-	end
-end
-def create_game
-	Game.new(BoardOutput)
-end
-
 class MyBoards
   def self.full_board_but_one_cell(cell_index)
 	board = Boards.tie_board
