@@ -5,7 +5,7 @@ require "minitest/autorun"
 class MyBoards
   def self.full_board_but_one_cell(cell_index)
 	board = Boards.tie_board
-	board[cell_index] = Cell.new(cell_index.to_s)
+	board[cell_index] = Cell.new
 	board
   end
   def self.to_board(s)
@@ -14,7 +14,7 @@ class MyBoards
 	  "H" => Boards.player2
 	}
 	board = s.split("").map {|char|
-		cell = Cell.new(char) 
+		cell = Cell.new 
 		if map[char] != nil
 		  cell.set_to(map[char]) 
 		end

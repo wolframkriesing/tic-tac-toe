@@ -31,11 +31,11 @@ class Boards
   end
   
   def self.empty_board
-	[
-		Cell.new("0"), Cell.new("1"), Cell.new("2"),
-		Cell.new("3"), Cell.new("4"), Cell.new("5"), 
-		Cell.new("6"), Cell.new("7"), Cell.new("8"), 
-	]
+    [
+      Cell.new, Cell.new, Cell.new,
+      Cell.new, Cell.new, Cell.new,
+      Cell.new, Cell.new, Cell.new
+    ]
   end
   
   def self.tie_board
@@ -49,60 +49,60 @@ class Boards
   def self.top_row_won_by(player)
     [
       occupied_cell_by("0", player), occupied_cell_by("1", player), occupied_cell_by("2", player),
-      Cell.new("3"), Cell.new("4"), Cell.new("5"), 
-      Cell.new("6"), Cell.new("7"), Cell.new("8")
+      Cell.new, Cell.new, Cell.new,
+      Cell.new, Cell.new, Cell.new
     ]
   end
   
   def self.bottom_row_won_by(player)
     [
-      Cell.new("0"), Cell.new("1"), Cell.new("2"), 
-      Cell.new("3"), Cell.new("4"), Cell.new("5"), 
+      Cell.new, Cell.new, Cell.new,
+      Cell.new, Cell.new, Cell.new,
       occupied_cell_by("6", player), occupied_cell_by("7", player), occupied_cell_by("8", player),
     ]
   end
   
   def self.diagonal_from_left_top_won_by(player)
     [
-      occupied_cell_by("0", player), Cell.new("1"), Cell.new("2"),
-      Cell.new("3"), occupied_cell_by("4", player), Cell.new("5"), 
-      Cell.new("6"), Cell.new("7"), occupied_cell_by("8", player), 
+      occupied_cell_by("0", player), Cell.new, Cell.new,
+      Cell.new, occupied_cell_by("4", player), Cell.new, 
+      Cell.new, Cell.new, occupied_cell_by("8", player), 
     ]
   end
   
   def self.diagonal_from_right_top_won_by(player)
     [
-      Cell.new("0"), Cell.new("1"), occupied_cell_by("2", player),
-      Cell.new("3"), occupied_cell_by("4", player), Cell.new("5"), 
-      occupied_cell_by("6", player), Cell.new("7"), Cell.new("8") 
+      Cell.new, Cell.new, occupied_cell_by("2", player),
+      Cell.new, occupied_cell_by("4", player), Cell.new, 
+      occupied_cell_by("6", player), Cell.new, Cell.new 
     ]
   end
   
   def self.fill_cell_0_to_win(player)
     [
-      Cell.new("0"), occupied_cell_by("1", player), occupied_cell_by("2", player),
-      Cell.new("3"), Cell.new("4"), Cell.new("5"), 
-      Cell.new("6"), Cell.new("7"), Cell.new("8"), 
+      Cell.new, occupied_cell_by("1", player), occupied_cell_by("2", player),
+      Cell.new, Cell.new, Cell.new,  
+      Cell.new, Cell.new, Cell.new,  
     ]
   end
   
   def self.one_cell_empty(cell_index)
 	  board = Boards.tie_board
-	  board[cell_index] = Cell.new(cell_index.to_s)
+	  board[cell_index] = Cell.new
 	  board
   end
   
   def self.two_cells_empty(cell_index, cell_index1)
 	  board = Boards.tie_board
-	  board[cell_index] = Cell.new(cell_index.to_s)
-	  board[cell_index1] = Cell.new(cell_index1.to_s)
+	  board[cell_index] = Cell.new
+	  board[cell_index1] = Cell.new
 	  board
   end
     
   private
   
   def self.occupied_cell_by(cell_char, player)
-    cell = Cell.new(cell_char)
+    cell = Cell.new
     cell.set_to(player)
     cell
   end

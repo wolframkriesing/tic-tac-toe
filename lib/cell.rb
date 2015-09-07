@@ -2,7 +2,7 @@ class Cell
 	
   attr_reader :player
   
-  def initialize(_)
+  def initialize
     @player = nil
   end
 

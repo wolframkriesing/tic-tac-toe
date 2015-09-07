@@ -8,9 +8,9 @@ class Game
   def initialize(boardOutput)
     @boardOutput = boardOutput
     @board = [
-      Cell.new("0"), Cell.new("1"), Cell.new("2"), 
-      Cell.new("3"), Cell.new("4"), Cell.new("5"), 
-      Cell.new("6"), Cell.new("7"), Cell.new("8")
+      Cell.new, Cell.new, Cell.new,
+      Cell.new, Cell.new, Cell.new,
+      Cell.new, Cell.new, Cell.new
     ]
     @computer_character = Player.new("X")
     @human_character = Player.new("O")
