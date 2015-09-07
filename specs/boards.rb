@@ -1,3 +1,5 @@
+require_relative "../lib/cell"
+
 class Boards
   def self.empty_board
 	[

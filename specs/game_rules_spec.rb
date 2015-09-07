@@ -1,3 +1,4 @@
+require_relative "../lib/game_rules"
 require_relative "./boards"
 require "minitest/autorun"
 
