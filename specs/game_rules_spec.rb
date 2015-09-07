@@ -53,12 +53,12 @@ end
 class GameNotWon < MiniTest::Unit::TestCase
 	
   def test_no_cell_occupied_game_is_not_won
-	game_won = GameRules.new(Boards.empty_board).is_game_won
+	game_won = GameRules.new(Boards.empty_board).is_won
 	assert_equal game_won, false  
   end
 	
   def test_tie_game_is_not_won
-	game_won = GameRules.new(Boards.tie_board).is_game_won
+	game_won = GameRules.new(Boards.tie_board).is_won
 	assert_equal game_won, false  
   end
 
@@ -67,17 +67,17 @@ end
 class GameWon < MiniTest::Unit::TestCase
 	
   def test_top_row_occupied_by_player_is_won
-	game_won = GameRules.new(Boards.top_row_won_by("X")).is_game_won
+	game_won = GameRules.new(Boards.top_row_won_by("X")).is_won
 	assert_equal game_won, true  
   end
 
   def test_diagonal_from_left_top_occupied_by_player_is_won
-	game_won = GameRules.new(Boards.diagonal_from_left_top_won_by("X")).is_game_won
+	game_won = GameRules.new(Boards.diagonal_from_left_top_won_by("X")).is_won
 	assert_equal game_won, true  
   end
 
   def test_diagonal_from_right_top_occupied_by_player_is_won
-	game_won = GameRules.new(Boards.diagonal_from_right_top_won_by("O")).is_game_won
+	game_won = GameRules.new(Boards.diagonal_from_right_top_won_by("O")).is_won
 	assert_equal game_won, true  
   end
 

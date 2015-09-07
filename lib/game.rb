@@ -27,9 +27,9 @@ class Game
   end
 
   def game_play_loop(board)
-    until is_game_won(board) || tie(board)
+    until is_won(board) || tie(board)
       get_human_spot(board)
-      if !is_game_won(board) && !tie(board)
+      if !is_won(board) && !tie(board)
         computer_move(board)
       end
       system("clear")
@@ -75,7 +75,7 @@ class Game
   def would_win(board, cell_index, character)
     possible_board = [].concat(board)
     possible_board[cell_index] = character
-    is_game_won(possible_board)
+    is_won(possible_board)
   end
   
   def would_computer_win(board, cell_index)
@@ -117,6 +117,6 @@ def tie(board)
   board.all? { |cell| cell == "X" || cell == "O" }
 end
 
-def is_game_won(board)
-  GameRules.new(board).is_game_won  
+def is_won(board)
+  GameRules.new(board).is_won  
 end

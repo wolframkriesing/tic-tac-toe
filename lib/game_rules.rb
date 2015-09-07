@@ -4,7 +4,7 @@ class GameRules
     @board = board
   end
 
-  def is_game_won
+  def is_won
     has_completed_row || has_completed_column || has_completed_diagonal
   end
   
