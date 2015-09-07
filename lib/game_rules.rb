@@ -9,6 +9,7 @@ class GameRules
   end
   
   def is_game_over
+    is_won or is_tie
   end
   
   def is_tie

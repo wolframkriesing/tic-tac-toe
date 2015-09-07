@@ -96,3 +96,18 @@ class Tie < MiniTest::Unit::TestCase
   end
 
 end
+
+class GameOver < MiniTest::Unit::TestCase
+
+  def test_no_cell_occupied_game_is_not_over
+	is_over = GameRules.new(Boards.empty_board).is_game_over
+	assert_equal is_over, false  
+  end
+
+  def test_tie_board_is_game_over
+	is_over = GameRules.new(Boards.tie_board).is_game_over
+	assert_equal is_over, true
+  end
+
+end
+
