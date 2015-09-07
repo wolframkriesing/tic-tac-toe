@@ -74,7 +74,7 @@ class Game
   end
 
   def get_best_move(board)
-    best_move_cell = WinningMove.new.calculate_cell(board, @computer_character, @human_character)
+    best_move_cell = WinningMove.new(board).calculate_cell(@computer_character, @human_character)
     if !best_move_cell.nil?
       return best_move_cell
     end

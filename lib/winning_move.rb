@@ -2,8 +2,11 @@ require_relative "./game_rules"
 
 class WinningMove
   
-  def calculate_cell(board, computer_character, human_character)
+  def initialize(board)
     @board = board
+  end
+  
+  def calculate_cell(computer_character, human_character)
     @computer_character = computer_character
     @human_character = human_character
     return player_would_win(computer_character) ||

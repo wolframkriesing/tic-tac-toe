@@ -26,7 +26,7 @@ class SafteyNetTest < MiniTest::Unit::TestCase
   def test_dont_modify_given_board
     # for lack of ruby skills, i was trapped by this :)
     board = Boards.empty_board
-	  cell = WinningMove.new.calculate_cell(board, "X", "O")
+	  cell = WinningMove.new(board).calculate_cell("X", "O")
     assert_equal board, Boards.empty_board
   end
   
@@ -35,17 +35,17 @@ end
 class WinningMoveTest < MiniTest::Unit::TestCase
 	
   def test_for_an_empty_board_there_is_none
-	  cell = WinningMove.new.calculate_cell(Boards.empty_board, "X", "O")
+	  cell = WinningMove.new(Boards.empty_board).calculate_cell("X", "O")
 	  assert_equal cell, nil
   end
   
   def test_fill_cell_0_to_win_for_player_1
-	  cell = WinningMove.new.calculate_cell(MyBoards.fill_cell_0_to_win("X"), "X", "O")
+	  cell = WinningMove.new(MyBoards.fill_cell_0_to_win("X")).calculate_cell("X", "O")
 	  assert_equal cell, 0
   end
   
   def test_fill_cell_0_to_win_for_player_2
-	  cell = WinningMove.new.calculate_cell(MyBoards.fill_cell_0_to_win("O"), "X", "O")
+	  cell = WinningMove.new(MyBoards.fill_cell_0_to_win("O")).calculate_cell("X", "O")
 	  assert_equal cell, 0
   end
   
