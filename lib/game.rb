@@ -67,11 +67,6 @@ class Game
     end
   end
 
-  def all_available_cells_indexes(board)
-    available_cells_indexes = board.select { |cell| cell.is_available? }
-    available_cells_indexes.map { |cell| cell.to_i }
-  end
-  
   def would_win(board, cell_index, character)
     possible_board = [].concat(board)
     possible_board[cell_index] = character
@@ -98,14 +93,34 @@ class Game
   end
   
   def get_best_move(board)
-    available_cells_indexes = all_available_cells_indexes(board)
-    cell_for_winning_move = winning_move(board, available_cells_indexes)
-    if cell_for_winning_move
-      return cell_for_winning_move
+    best_move = BestMove.new
+    best_move_cell = best_move.calculate_cell(self, board)
+    if !best_move_cell.nil?
+      return best_move_cell
     end
     random_move(available_cells_indexes)    
   end
   
+end
+
+class BestMove
+  def calculate_cell(game, board)
+    available_cells_indexes = all_available_cells_indexes(board)
+    cell_for_winning_move = game.winning_move(board, available_cells_indexes)
+    if cell_for_winning_move
+      return cell_for_winning_move
+    end
+    return nil
+  end
+  
+  private 
+  
+  def all_available_cells_indexes(board)
+    available_cells_indexes = board.select { |cell| cell.is_available? }
+    available_cells_indexes.map { |cell| cell.to_i }
+  end
+  
+
 end
 
 def random_move(available_cells_indexes) 
