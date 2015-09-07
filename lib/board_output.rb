@@ -20,7 +20,7 @@ end
 
 def print_cell(board, index)
   cell = board[index]
-  cell.is_available? ? index.to_s : cell.player.name
+  cell.is_available? ? index.to_s : cell.player
 end
 
 def print_board_border
