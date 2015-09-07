@@ -17,7 +17,8 @@ class Cell
   end
   
   def owned_by_same_player?(cell)
-    !is_available? && cell.player == @player
+    !is_available? && !cell.is_available? && 
+    cell.player.is?(@player)
   end
 	
 end
