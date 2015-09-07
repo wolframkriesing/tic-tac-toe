@@ -22,6 +22,11 @@ class GameWon < MiniTest::Unit::TestCase
 	game_won = GameRules.new(Boards.top_row_won_by_player1).won?
 	assert_equal game_won, true  
   end
+	
+  def test_bottom_row_occupied_by_player_is_won
+	game_won = GameRules.new(Boards.bottom_row_won_by_player1).won?
+	assert_equal game_won, true  
+  end
 
   def test_diagonal_from_left_top_occupied_by_player_is_won
 	game_won = GameRules.new(Boards.diagonal_from_left_top_won_by_player1).won?
@@ -72,4 +77,3 @@ class GameOver < MiniTest::Unit::TestCase
   end
 
 end
-
