@@ -19,23 +19,24 @@ class GameRules
   private
   
   def has_completed_row
-    board = @board
-    [board[0], board[1], board[2]].uniq.length == 1 ||
-    [board[3], board[4], board[5]].uniq.length == 1 ||
-    [board[6], board[7], board[8]].uniq.length == 1
+    cells_equal?(0, 1, 2) ||
+    cells_equal?(3, 4, 5) ||
+    cells_equal?(6, 7, 8)
   end
 
   def has_completed_column
-    board = @board
-    [board[0], board[3], board[6]].uniq.length == 1 ||
-    [board[1], board[4], board[7]].uniq.length == 1 ||
-    [board[2], board[5], board[8]].uniq.length == 1
+    cells_equal?(0, 3, 6) ||
+    cells_equal?(1, 4, 7) ||
+    cells_equal?(2, 5, 8)
   end
   
   def has_completed_diagonal
-    board = @board
-    [board[0], board[4], board[8]].uniq.length == 1 ||
-    [board[2], board[4], board[6]].uniq.length == 1
+    cells_equal?(0, 4, 8) ||
+    cells_equal?(2, 4, 6)
+  end
+  
+  def cells_equal?(cell1, cell2, cell3)
+    @board[cell1] == @board[cell2] && @board[cell2] == @board[cell3]
   end
 
 end
