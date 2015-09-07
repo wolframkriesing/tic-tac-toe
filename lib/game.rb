@@ -1,4 +1,5 @@
 require_relative "./game_rules"
+require_relative "./winning_move"
 require_relative "./cell"
 
 class Game
@@ -68,58 +69,13 @@ class Game
   end
 
   def get_best_move(board)
-    best_move_cell = BestMove.new.calculate_cell(board, @computer_character, @human_character)
+    best_move_cell = WinningMove.new.calculate_cell(board, @computer_character, @human_character)
     if !best_move_cell.nil?
       return best_move_cell
     end
     random_move(available_cells_indexes)    
   end
   
-end
-
-class BestMove
-  def calculate_cell(board, computer_character, human_character)
-    @computer_character = computer_character
-    @human_character = human_character
-    available_cells_indexes = all_available_cells_indexes(board)
-    cell_for_winning_move = winning_move(board, available_cells_indexes)
-    if cell_for_winning_move
-      return cell_for_winning_move
-    end
-    return nil
-  end
-  
-  private 
-  
-  def all_available_cells_indexes(board)
-    available_cells_indexes = board.select { |cell| cell.is_available? }
-    available_cells_indexes.map { |cell| cell.to_i }
-  end
-  
-  def winning_move(board, available_cells_indexes)
-    cells_that_would_make_a_win = available_cells_indexes.select { |cell_index| 
-      is_winning_move(board, cell_index) 
-    }
-    cells_that_would_make_a_win.first
-  end
-  
-  def would_win(board, cell_index, character)
-    possible_board = [].concat(board)
-    possible_board[cell_index] = character
-    won?(possible_board)
-  end
-  
-  def would_computer_win(board, cell_index)
-    would_win(board, cell_index, @computer_character)
-  end
-
-  def would_human_win(board, cell_index)
-    would_win(board, cell_index, @human_character)
-  end
-
-  def is_winning_move(board, cell_index)
-    would_computer_win(board, cell_index) or would_human_win(board, cell_index)
-  end
 end
 
 def random_move(available_cells_indexes) 
