@@ -21,7 +21,7 @@ class MyBoards < Boards
 	 
 end
 
-class WinningMoveTest < MiniTest::Unit::TestCase
+class SafteyNetTest < MiniTest::Unit::TestCase
 	
   def test_dont_modify_given_board
     # for lack of ruby skills, i was trapped by this :)
@@ -30,6 +30,10 @@ class WinningMoveTest < MiniTest::Unit::TestCase
     assert_equal board, Boards.empty_board
   end
   
+end 
+  
+class WinningMoveTest < MiniTest::Unit::TestCase
+	
   def test_for_an_empty_board_there_is_none
 	  cell = WinningMove.new.calculate_cell(Boards.empty_board, "X", "O")
 	  assert_equal cell, nil
