@@ -53,23 +53,15 @@ class Game
   end
 
   def computer_move(board)
-    cell = nil
-    until cell
-      if board[4].is_available?
-        cell = 4
-        board[cell].set_to(@computer_character)
-      else
-        cell = get_best_move(board)
-        if board[cell].is_available?
-          board[cell].set_to(@computer_character)
-        else
-          cell = nil
-        end
-      end
-    end
+    cell_index = get_best_move(board)
+    board[cell_index].set_to(@computer_character)
   end
   
   def get_best_move(board)
+    if board[4].is_available?
+      return 4
+    end
+    
     winning_move = WinningMove.new(board)
     
     winning_move.calculate_cell_for_win(@computer_character) ||
