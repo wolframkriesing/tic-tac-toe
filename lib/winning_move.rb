@@ -1,3 +1,5 @@
+require_relative "./game_rules"
+
 class WinningMove
   def calculate_cell(board, computer_character, human_character)
     @computer_character = computer_character
@@ -25,9 +27,9 @@ class WinningMove
   end
   
   def would_win(board, cell_index, character)
-    won?(possible_board)
     possible_board = board.map { |cell| cell.clone }
     possible_board[cell_index].set_to(character)
+    GameRules.new(possible_board).won?
   end
   
   def would_computer_win(board, cell_index)
