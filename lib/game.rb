@@ -1,5 +1,6 @@
 require_relative "./game_rules"
 require_relative "./winning_move"
+require_relative "./random_move"
 require_relative "./cell"
 
 class Game
@@ -78,14 +79,9 @@ class Game
     
     winning_move.calculate_cell_for_win(@computer_character) ||
     winning_move.calculate_cell_for_win(@human_character) ||
-    random_move(all_available_cells_indexes(board))
+    RandomMove.new(board).pick_cell
   end
   
-end
-
-def random_move(available_cells_indexes) 
-  n = rand(0..available_cells_indexes.count)
-  available_cells_indexes[n].to_i
 end
 
 def tie?(board)

@@ -57,6 +57,13 @@ class ComputerMove < MiniTest::Unit::TestCase
 		assert_equal board, to_board("OO2XXX678")
 	end	
 	
+ 	def test_random_move_when_4_is_occupied
+		board = to_board("0123O5678");
+		cell = create_game().get_best_move(board)
+		
+		assert_equal cell != 4, true
+	end	
+	
 end
 
 class BestMoveToWin < MiniTest::Unit::TestCase
