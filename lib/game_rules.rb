@@ -3,6 +3,10 @@ class GameRules
   def initialize(board)
     @board = board
   end
+
+  def is_game_won
+    is_game_over
+  end
   
   def is_game_over
     has_completed_row || has_completed_column || has_completed_diagonal

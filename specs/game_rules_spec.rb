@@ -26,11 +26,11 @@ class Boards
 
 end
 
-class GameNotOver < MiniTest::Unit::TestCase
+class GameNotWon < MiniTest::Unit::TestCase
 	
-  def test_no_cell_occupied_game_is_not_over
-	game_over = GameRules.new(Boards.empty_board).is_game_over
-	assert_equal game_over, false  
+  def test_no_cell_occupied_game_is_not_won
+	game_won = GameRules.new(Boards.empty_board).is_game_won
+	assert_equal game_won, false  
   end
 
 end
