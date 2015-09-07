@@ -25,9 +25,9 @@ class WinningMove
   end
   
   def would_win(board, cell_index, character)
-    possible_board = [].concat(board)
-    possible_board[cell_index] = character
     won?(possible_board)
+    possible_board = board.map { |cell| cell.clone }
+    possible_board[cell_index].set_to(character)
   end
   
   def would_computer_win(board, cell_index)
