@@ -8,7 +8,7 @@ class GameRules
     has_completed_row || has_completed_column || has_completed_diagonal
   end
   
-  def is_game_over
+  def game_over?
     is_won or is_tie
   end
   
