@@ -3,6 +3,7 @@ class Cell < String
   def initialize(content)
     @initial_content = content
     self[0] = content[0]
+    super(content)
   end
   
   def is_available?
