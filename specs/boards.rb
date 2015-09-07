@@ -1,6 +1,27 @@
 require_relative "../lib/cell"
 
 class Boards
+	
+  def self.player1
+	"X"
+  end
+  
+  def self.player2 
+	"O"
+  end
+  
+  def self.diagonal_from_left_top_won_by_player1
+    diagonal_from_left_top_won_by(player1)
+  end
+  
+  def self.diagonal_from_right_top_won_by_player2
+    diagonal_from_right_top_won_by(player2)
+  end
+  
+  def self.top_row_won_by_player1
+    top_row_won_by(player1)
+  end
+  
   def self.empty_board
 	[
 		Cell.new("0"), Cell.new("1"), Cell.new("2"),

@@ -19,17 +19,17 @@ end
 class GameWon < MiniTest::Unit::TestCase
 	
   def test_top_row_occupied_by_player_is_won
-	game_won = GameRules.new(Boards.top_row_won_by("X")).won?
+	game_won = GameRules.new(Boards.top_row_won_by(Boards.player1)).won?
 	assert_equal game_won, true  
   end
 
   def test_diagonal_from_left_top_occupied_by_player_is_won
-	game_won = GameRules.new(Boards.diagonal_from_left_top_won_by("X")).won?
+	game_won = GameRules.new(Boards.diagonal_from_left_top_won_by_player1).won?
 	assert_equal game_won, true  
   end
 
   def test_diagonal_from_right_top_occupied_by_player_is_won
-	game_won = GameRules.new(Boards.diagonal_from_right_top_won_by("O")).won?
+	game_won = GameRules.new(Boards.diagonal_from_right_top_won_by_player2).won?
 	assert_equal game_won, true  
   end
 
@@ -49,9 +49,9 @@ class Tie < MiniTest::Unit::TestCase
 
   def test_won_game_with_full_board_is_not_a_tie
 	board = Boards.tie_board
-	board[0].set_to("X")
-	board[1].set_to("X")
-	board[2].set_to("X")
+	board[0].set_to(Boards.player1)
+	board[1].set_to(Boards.player1)
+	board[2].set_to(Boards.player1)
 	is_tie = GameRules.new(board).tie?
 	assert_equal is_tie, false
   end
