@@ -74,11 +74,10 @@ class Game
   end
 
   def get_best_move(board)
-    best_move_cell = WinningMove.new(board).calculate_cell(@computer_character, @human_character)
-    if !best_move_cell.nil?
-      return best_move_cell
-    end
-    random_move(all_available_cells_indexes(board))    
+    winning_move = WinningMove.new(board)
+    winning_move.would_player_win?(@computer_character) ||
+    winning_move.would_player_win?(@human_character) ||
+    random_move(all_available_cells_indexes(board))
   end
   
 end
