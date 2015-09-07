@@ -1,39 +1,5 @@
-#require_relative "../lib/cell"
-
-class Cell
-	
-  attr_reader :player
-  
-  def initialize(_)
-    @player = nil
-  end
-
-  def is_available?
-	  @player == nil
-  end
-
-  def set_to(player)
-	  @player = player
-  end
-  
-  def owned_by_same_player?(cell)
-    !is_available? && !cell.is_available? && 
-    cell.player.is?(@player)
-  end
-  
-end
-
-class Player
-  def initialize(name)
-    @name = name
-  end
-  def is?(other_player)
-    other_player == self
-  end
-  def to_s
-    return @name
-  end
-end
+require_relative "../lib/cell"
+require_relative "../lib/player"
 
 $player_1 = Player.new("player 1")
 $player_2 = Player.new("player 2")

@@ -1,17 +1,22 @@
-class Cell < String
+class Cell
+	
+  attr_reader :player
   
-  def initialize(content)
-    @initial_content = content
-    self[0] = content[0]
-    super(content)
+  def initialize(_)
+    @player = nil
   end
-  
+
   def is_available?
-    self == @initial_content
+	  @player == nil
+  end
+
+  def set_to(player)
+	  @player = player
   end
   
-  def set_to(content)
-    self[0] = content[0]
+  def owned_by_same_player?(cell)
+    !is_available? && !cell.is_available? && 
+    cell.player.is?(@player)
   end
   
 end
