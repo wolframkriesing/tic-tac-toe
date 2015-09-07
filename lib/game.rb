@@ -2,8 +2,10 @@ require_relative "./game_rules"
 require_relative "./winning_move"
 require_relative "./random_move"
 require_relative "./cell"
+require_relative "./player"
 
 class Game
+  
   def initialize(boardOutput)
     @boardOutput = boardOutput
     @board = [
@@ -53,20 +55,9 @@ class Game
   end
 
   def computer_move(board)
-    cell_index = get_best_move(board)
+    move = ComputerMove.new(board, @computer_character, @human_character)
+    cell_index = move.pick_cell
     board[cell_index].set_to(@computer_character)
-  end
-  
-  def get_best_move(board)
-    if board[4].is_available?
-      return 4
-    end
-    
-    winning_move = WinningMove.new(board)
-    
-    winning_move.calculate_cell_for_win(@computer_character) ||
-    winning_move.calculate_cell_for_win(@human_character) ||
-    RandomMove.new(board).pick_cell
   end
   
 end
