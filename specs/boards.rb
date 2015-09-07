@@ -13,14 +13,14 @@ class Cell
   end
 
   def set_to(player)
-	@player = player
+	  @player = player
   end
   
   def owned_by_same_player?(cell)
     !is_available? && !cell.is_available? && 
     cell.player.is?(@player)
   end
-	
+  
 end
 
 class Player
@@ -60,6 +60,10 @@ class Boards
     top_row_won_by(player1)
   end
   
+  def self.bottom_row_won_by_player1
+    bottom_row_won_by(player1)
+  end
+  
   def self.empty_board
 	[
 		Cell.new("0"), Cell.new("1"), Cell.new("2"),
@@ -69,44 +73,72 @@ class Boards
   end
   
   def self.tie_board
-	[
-		occupied_cell_by("0", "X"), occupied_cell_by("1", "O"), occupied_cell_by("2", "O"), 
-		occupied_cell_by("3", "O"), occupied_cell_by("4", "X"), occupied_cell_by("5", "X"), 
-		occupied_cell_by("6", "O"), occupied_cell_by("7", "X"), occupied_cell_by("8", "O"), 
-	]
+    [
+      occupied_cell_by("0", player1), occupied_cell_by("1", player2), occupied_cell_by("2", player2), 
+      occupied_cell_by("3", player2), occupied_cell_by("4", player1), occupied_cell_by("5", player1), 
+      occupied_cell_by("6", player2), occupied_cell_by("7", player1), occupied_cell_by("8", player2), 
+    ]
   end
   
   def self.top_row_won_by(player)
-	[
-		occupied_cell_by("0", player), occupied_cell_by("1", player), occupied_cell_by("2", player),
-		Cell.new("3"), Cell.new("4"), Cell.new("5"), 
-		Cell.new("6"), Cell.new("7"), Cell.new("8"), 
-	]
+    [
+      occupied_cell_by("0", player), occupied_cell_by("1", player), occupied_cell_by("2", player),
+      Cell.new("3"), Cell.new("4"), Cell.new("5"), 
+      Cell.new("6"), Cell.new("7"), Cell.new("8")
+    ]
+  end
+  
+  def self.bottom_row_won_by(player)
+    [
+      Cell.new("0"), Cell.new("1"), Cell.new("2"), 
+      Cell.new("3"), Cell.new("4"), Cell.new("5"), 
+      occupied_cell_by("6", player), occupied_cell_by("7", player), occupied_cell_by("8", player),
+    ]
   end
   
   def self.diagonal_from_left_top_won_by(player)
-	[
-		occupied_cell_by("0", player), Cell.new("1"), Cell.new("2"),
-		Cell.new("3"), occupied_cell_by("4", player), Cell.new("5"), 
-		Cell.new("6"), Cell.new("7"), occupied_cell_by("8", player), 
-	]
+    [
+      occupied_cell_by("0", player), Cell.new("1"), Cell.new("2"),
+      Cell.new("3"), occupied_cell_by("4", player), Cell.new("5"), 
+      Cell.new("6"), Cell.new("7"), occupied_cell_by("8", player), 
+    ]
   end
   
   def self.diagonal_from_right_top_won_by(player)
-	[
-		Cell.new("0"), Cell.new("1"), occupied_cell_by("2", player),
-		Cell.new("3"), occupied_cell_by("4", player), Cell.new("5"), 
-		occupied_cell_by("6", player), Cell.new("7"), Cell.new("8") 
-	]
+    [
+      Cell.new("0"), Cell.new("1"), occupied_cell_by("2", player),
+      Cell.new("3"), occupied_cell_by("4", player), Cell.new("5"), 
+      occupied_cell_by("6", player), Cell.new("7"), Cell.new("8") 
+    ]
   end
   
   private
   
   def self.occupied_cell_by(cell_char, player)
-	cell = Cell.new(cell_char)
-	cell.set_to(player)
-	cell
+    cell = Cell.new(cell_char)
+    cell.set_to(player)
+    cell
   end
 
 end
 
+
+
+require "minitest/autorun"
+class BoardsTest < MiniTest::Unit::TestCase
+  # just for my ruby (in)sanity
+  
+  def test_player1_is_always_same
+    assert_equal Boards.player1, Boards.player1
+  end
+  
+  def test_player2_is_different
+    assert_equal Boards.player2 != Boards.player1, true
+  end
+  
+  def test_diagonal_from_left_top_won_by_player1
+    board = Boards.diagonal_from_left_top_won_by_player1
+    assert_equal board[0].owned_by_same_player?(board[4]), true
+  end
+  
+end
