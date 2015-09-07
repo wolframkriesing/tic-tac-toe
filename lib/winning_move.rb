@@ -17,8 +17,10 @@ class WinningMove
   private 
   
   def all_available_cells_indexes
-    available_cells_indexes = @board.select { |cell| cell.is_available? }
-    available_cells_indexes.map { |cell| cell.to_i }
+    indexes = @board.map.with_index { |cell, index| 
+      cell.is_available? ? index : nil
+    }
+    indexes.select {|index| index != nil}
   end
 
   def would_win(cell_index, player)
