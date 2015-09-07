@@ -112,6 +112,27 @@ class Boards
     ]
   end
   
+  def self.fill_cell_0_to_win(player)
+    [
+      Cell.new("0"), occupied_cell_by("1", player), occupied_cell_by("2", player),
+      Cell.new("3"), Cell.new("4"), Cell.new("5"), 
+      Cell.new("6"), Cell.new("7"), Cell.new("8"), 
+    ]
+  end
+  
+  def self.one_cell_empty(cell_index)
+	  board = Boards.tie_board
+	  board[cell_index] = Cell.new(cell_index.to_s)
+	  board
+  end
+  
+  def self.two_cells_empty(cell_index, cell_index1)
+	  board = Boards.tie_board
+	  board[cell_index] = Cell.new(cell_index.to_s)
+	  board[cell_index1] = Cell.new(cell_index1.to_s)
+	  board
+  end
+    
   private
   
   def self.occupied_cell_by(cell_char, player)
