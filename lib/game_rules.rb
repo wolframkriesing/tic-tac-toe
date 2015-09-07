@@ -8,6 +8,12 @@ class GameRules
     has_completed_row || has_completed_column || has_completed_diagonal
   end
   
+  def is_tie
+      @board.all? { |cell| cell == "X" || cell == "O" }
+  end
+  
+  private
+  
   def has_completed_row
     board = @board
     [board[0], board[1], board[2]].uniq.length == 1 ||
