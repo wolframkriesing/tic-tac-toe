@@ -5,11 +5,10 @@ class GameRules
   end
 
   def is_game_won
-    is_game_over
+    has_completed_row || has_completed_column || has_completed_diagonal
   end
   
   def is_game_over
-    has_completed_row || has_completed_column || has_completed_diagonal
   end
   
   def is_tie
