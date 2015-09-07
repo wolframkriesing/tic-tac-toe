@@ -1,4 +1,5 @@
 require_relative "../lib/game_rules.rb"
+require_relative "../lib/cell.rb"
 require "minitest/autorun"
 
 class Boards
