@@ -4,6 +4,10 @@ class GameRules
     @board = board
   end
 
+  def won?
+    is_won
+  end
+
   def is_won
     has_completed_row || has_completed_column || has_completed_diagonal
   end
