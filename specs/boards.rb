@@ -35,17 +35,17 @@ class Player
   end
 end
 
-player_1 = Player.new
-player_2 = Player.new
+$player_1 = Player.new("player 1")
+$player_2 = Player.new("player 2")
 
 class Boards
     
   def self.player1
-    player_1
+    $player_1
   end
 	
   def self.player2
-    player_2
+    $player_2
   end
 	
   def self.diagonal_from_left_top_won_by_player1
