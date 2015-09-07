@@ -69,11 +69,6 @@ class Game
     end
   end
   
-  def all_available_cells_indexes(board)
-    available_cells_indexes = board.select { |cell| cell.is_available? }
-    available_cells_indexes.map { |cell| cell.to_i }
-  end
-
   def get_best_move(board)
     winning_move = WinningMove.new(board)
     
