@@ -5,7 +5,7 @@ class GameRules
   end
 
   def won?
-    has_completed_row || has_completed_column || has_completed_diagonal
+    completed_diagonal? or completed_row? or completed_column?
   end
   
   def game_over?
@@ -18,19 +18,19 @@ class GameRules
   
   private
   
-  def has_completed_row
-    cells_equal?(0, 1, 2) ||
+  def completed_row?
+    cells_equal?(0, 1, 2) || 
     cells_equal?(3, 4, 5) ||
     cells_equal?(6, 7, 8)
   end
 
-  def has_completed_column
+  def completed_column?
     cells_equal?(0, 3, 6) ||
     cells_equal?(1, 4, 7) ||
     cells_equal?(2, 5, 8)
   end
   
-  def has_completed_diagonal
+  def completed_diagonal?
     cells_equal?(0, 4, 8) ||
     cells_equal?(2, 4, 6)
   end
@@ -38,7 +38,6 @@ class GameRules
   def cells_equal?(cell1, cell2, cell3)
     @board[cell1].owned_by_same_player?(@board[cell2]) && 
     @board[cell2].owned_by_same_player?(@board[cell3])
-    # @board[cell1] == @board[cell2] && @board[cell2] == @board[cell3]
   end
 
 end
