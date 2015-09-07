@@ -45,7 +45,9 @@ class Boards
   private
   
   def self.occupied_cell_by(cell_char, player)
-	Cell.new(cell_char).set_to(player)
+	cell = Cell.new(cell_char)
+	cell.set_to(player)
+	cell
   end
 
 end
