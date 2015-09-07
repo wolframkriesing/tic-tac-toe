@@ -1,15 +1,43 @@
-require_relative "../lib/cell"
+#require_relative "../lib/cell"
+
+class Cell
+	
+  attr_reader :player
+  
+  def initialize(_)
+    @player = nil
+  end
+
+  def is_available?
+	  @player == nil
+  end
+
+  def set_to(player)
+	@player = player
+  end
+  
+  def owned_by_same_player?(cell)
+    !is_available? && cell.player == @player
+  end
+	
+end
+
+class Player
+end
+
+player_1 = Player.new
+player_2 = Player.new
 
 class Boards
-	
+    
   def self.player1
-	"X"
+    player_1
   end
-  
-  def self.player2 
-	"O"
+	
+  def self.player2
+    player_2
   end
-  
+	
   def self.diagonal_from_left_top_won_by_player1
     diagonal_from_left_top_won_by(player1)
   end

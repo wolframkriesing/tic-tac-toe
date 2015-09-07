@@ -36,7 +36,9 @@ class GameRules
   end
   
   def cells_equal?(cell1, cell2, cell3)
-    @board[cell1] == @board[cell2] && @board[cell2] == @board[cell3]
+    @board[cell1].owned_by_same_player?(@board[cell2]) && 
+    @board[cell2].owned_by_same_player?(@board[cell3])
+    # @board[cell1] == @board[cell2] && @board[cell2] == @board[cell3]
   end
 
 end
