@@ -1,6 +1,5 @@
 require_relative "./game_rules"
-require_relative "./winning_move"
-require_relative "./random_move"
+require_relative "./computer_move"
 require_relative "./cell"
 require_relative "./player"
 
@@ -13,8 +12,8 @@ class Game
       Cell.new("3"), Cell.new("4"), Cell.new("5"), 
       Cell.new("6"), Cell.new("7"), Cell.new("8")
     ]
-    @computer_character = "X"
-    @human_character = "O"
+    @computer_character = Player.new("X")
+    @human_character = Player.new("O")
   end
 
   def print_board(board)
