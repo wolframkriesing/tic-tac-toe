@@ -86,12 +86,12 @@ end
 class Tie < MiniTest::Unit::TestCase
 
   def test_no_cell_occupied_game_is_not_tie
-	is_tie = GameRules.new(Boards.empty_board).is_tie
+	is_tie = GameRules.new(Boards.empty_board).tie?
 	assert_equal is_tie, false  
   end
 
   def test_all_cells_occupied_is_tie
-	is_tie = GameRules.new(Boards.tie_board).is_tie
+	is_tie = GameRules.new(Boards.tie_board).tie?
 	assert_equal is_tie, true
   end
 

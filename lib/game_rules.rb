@@ -9,10 +9,10 @@ class GameRules
   end
   
   def game_over?
-    is_won or is_tie
+    is_won or tie?
   end
   
-  def is_tie
+  def tie?
       @board.all? { |cell| cell == "X" || cell == "O" }
   end
   
