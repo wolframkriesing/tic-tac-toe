@@ -44,10 +44,17 @@ class ComputerMove < MiniTest::Unit::TestCase
 	end
 	
  	def test_place_on_cell_4_if_available
-		board_with_one_available_spot = to_board("012345678");
-		create_game().computer_move(board_with_one_available_spot)
+		board = to_board("012345678");
+		create_game().computer_move(board)
 		
-		assert_equal board_with_one_available_spot, to_board("0123X5678")
+		assert_equal board, to_board("0123X5678")
+	end	
+	
+ 	def test_make_computer_win_first
+		board = to_board("OO2XX5678");
+		create_game().computer_move(board)
+		
+		assert_equal board, to_board("OO2XXX678")
 	end	
 	
 end
@@ -55,15 +62,15 @@ end
 class BestMoveToWin < MiniTest::Unit::TestCase
 	
  	def test_for_two_in_a_row_get_third
-		board_with_one_available_spot = to_board("XX23O5678");
-		cell = create_game().get_best_move(board_with_one_available_spot)
+		board = to_board("XX23O5678");
+		cell = create_game().get_best_move(board)
 		
 		assert_equal cell, 2
 	end
 	
  	def test_for_two_in_a_row_with_a_gap
-		board_with_one_available_spot = to_board("X123O5X78");
-		cell = create_game().get_best_move(board_with_one_available_spot)
+		board = to_board("X123O5X78");
+		cell = create_game().get_best_move(board)
 		
 		assert_equal cell, 3
 	end
