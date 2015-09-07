@@ -13,7 +13,7 @@ class GameRules
   end
   
   def tie?
-      @board.all? { |cell| !cell.is_available? }
+      !won? && @board.all? { |cell| !cell.is_available? }
   end
   
   private

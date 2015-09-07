@@ -47,6 +47,15 @@ class Tie < MiniTest::Unit::TestCase
 	assert_equal is_tie, true
   end
 
+  def test_won_game_with_full_board_is_not_a_tie
+	board = Boards.tie_board
+	board[0].set_to("X")
+	board[1].set_to("X")
+	board[2].set_to("X")
+	is_tie = GameRules.new(board).tie?
+	assert_equal is_tie, false
+  end
+
 end
 
 class GameOver < MiniTest::Unit::TestCase
