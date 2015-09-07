@@ -75,8 +75,9 @@ class Game
 
   def get_best_move(board)
     winning_move = WinningMove.new(board)
-    winning_move.would_player_win?(@computer_character) ||
-    winning_move.would_player_win?(@human_character) ||
+    
+    winning_move.calculate_cell_for_win(@computer_character) ||
+    winning_move.calculate_cell_for_win(@human_character) ||
     random_move(all_available_cells_indexes(board))
   end
   

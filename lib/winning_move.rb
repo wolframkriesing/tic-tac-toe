@@ -6,15 +6,7 @@ class WinningMove
     @board = board
   end
   
-  def calculate_cell(computer_character, human_character)
-    @computer_character = computer_character
-    @human_character = human_character
-    return would_player_win?(computer_character) ||
-      would_player_win?(human_character) ||
-      nil
-  end
-  
-  def would_player_win?(player)
+  def calculate_cell_for_win(player)
     available_cells_indexes = all_available_cells_indexes
     cells_that_would_make_a_win = available_cells_indexes.select { |cell_index| 
       would_win(cell_index, player) 
