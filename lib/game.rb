@@ -67,13 +67,18 @@ class Game
       end
     end
   end
+  
+  def all_available_cells_indexes(board)
+    available_cells_indexes = board.select { |cell| cell.is_available? }
+    available_cells_indexes.map { |cell| cell.to_i }
+  end
 
   def get_best_move(board)
     best_move_cell = WinningMove.new.calculate_cell(board, @computer_character, @human_character)
     if !best_move_cell.nil?
       return best_move_cell
     end
-    random_move(available_cells_indexes)    
+    random_move(all_available_cells_indexes(board))    
   end
   
 end
