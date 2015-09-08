@@ -5,16 +5,24 @@ require_relative "./player"
 require_relative "./string"
 require_relative "./game_screens"
 
+class Board < Array
+	
+  def initialize
+    self.concat([
+      Cell.new, Cell.new, Cell.new,
+      Cell.new, Cell.new, Cell.new,
+      Cell.new, Cell.new, Cell.new
+    ])
+  end
+	
+end
+
 class Game
   
   def initialize(boardOutput)
     @boardOutput = boardOutput
     @game_screens = GameScreens.new(boardOutput)
-    @board = [
-      Cell.new, Cell.new, Cell.new,
-      Cell.new, Cell.new, Cell.new,
-      Cell.new, Cell.new, Cell.new
-    ]
+    @board = Board.new
     @computer_character = Player.new("X".red)
     @human_character = Player.new("O".green)
   end
