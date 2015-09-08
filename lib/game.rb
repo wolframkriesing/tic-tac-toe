@@ -86,9 +86,9 @@ class Game
   end
 
   def computer_move(board)
-    move = ComputerMove.new(board, @computer_character, @human_character)
-    cell_index = move.pick_cell
-    board[cell_index].occupy_by(@computer_character)
+    computer_move = ComputerMove.new(board, @computer_character, @human_character)
+    cell = board[computer_move.pick_cell]
+    cell.occupy_by(@computer_character)
   end
   
 end
