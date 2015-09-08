@@ -4,10 +4,50 @@ require_relative "./cell"
 require_relative "./player"
 require_relative "./string"
 
+class GameScreens
+  
+  def initialize(board_output)
+    @board_output = board_output
+  end
+  
+  def clear_screen
+    system("clear")
+  end
+  
+  def start_screen(board)
+    clear_screen
+    puts "Welcome to my Tic Tac Toe game"
+    print_board(board)
+    puts "Please select your cell."
+  end
+
+  def board_screen(board)
+    clear_screen
+    empty_line
+    print_board(board)
+  end
+  
+  def game_over_screen
+    puts "Game over"
+  end
+  
+  private
+  
+  def print_board(board)
+    @board_output.print(board)
+  end 
+  
+  def empty_line
+    puts
+  end
+  
+end
+
 class Game
   
   def initialize(boardOutput)
     @boardOutput = boardOutput
+    @game_screens = GameScreens.new(boardOutput)
     @board = [
       Cell.new, Cell.new, Cell.new,
       Cell.new, Cell.new, Cell.new,
@@ -17,17 +57,10 @@ class Game
     @human_character = Player.new("O".green)
   end
 
-  def print_board(board)
-    @boardOutput.print(board)
-  end 
-
   def start_game
-    system("clear")
-    puts "Welcome to my Tic Tac Toe game"
-    print_board(@board)
-    puts "Please select your cell."
+    @game_screens.start_screen(@board)
     game_play_loop(@board)
-    puts "Game over"
+    @game_screens.game_over_screen
   end
 
   def game_play_loop(board)
@@ -36,9 +69,7 @@ class Game
       if !won?(board) && !tie?(board)
         computer_move(board)
       end
-      system("clear")
-      puts
-      print_board(@board)
+      @game_screens.board_screen(board)
     end
   end
   
