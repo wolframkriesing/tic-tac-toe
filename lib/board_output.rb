@@ -1,5 +1,7 @@
 class BoardOutput 
   
+  LEFT_MARGIN = "   "
+  
   def self.print(board)
     puts
     print_board_border
@@ -15,7 +17,7 @@ class BoardOutput
   private
   
   def self.print_board_line(board, cell1, cell2, cell3)
-    puts "| #{print_cell(board, cell1)} | #{print_cell(board, cell2)} | #{print_cell(board, cell3)} |"
+    print_line "| #{print_cell(board, cell1)} | #{print_cell(board, cell2)} | #{print_cell(board, cell3)} |"
   end
   
   def self.print_cell(board, index)
@@ -24,7 +26,11 @@ class BoardOutput
   end
   
   def self.print_board_border
-    puts "+---+---+---+"
+    print_line "+---+---+---+"
+  end
+  
+  def self.print_line(line)
+    puts LEFT_MARGIN + line
   end
 end
 
