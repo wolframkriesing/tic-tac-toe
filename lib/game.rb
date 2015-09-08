@@ -31,21 +31,29 @@ class Game
   def start_game
     board = Board.empty
     @game_screens.game_start(board)
+    @move_count = 0
     game_play_loop(board)
     @game_screens.game_over
   end
 
   def game_play_loop(board)
-    until won?(board) || tie?(board)
-      get_human_spot(board)
-      if !won?(board) && !tie?(board)
-        computer_move(board)
-      end
-      @game_screens.board_screen(board)
+    while game_on?(board) 
+      next_move(board)
     end
   end
   
-  def get_human_spot(board)
+  def next_move(board)
+    whos_turn = @move_count % 2
+    if whos_turn == 0
+      human_move(board)
+    else
+      computer_move(board)
+    end
+    @game_screens.board_screen(board)
+    @move_count += 1
+  end
+
+  def human_move(board)
     cell = nil
     until cell
       cell = gets.chomp.to_i
@@ -71,4 +79,8 @@ end
 
 def won?(board)
   GameRules.new(board).won?  
+end
+
+def game_on?(board)
+  !GameRules.new(board).game_over?  
 end
