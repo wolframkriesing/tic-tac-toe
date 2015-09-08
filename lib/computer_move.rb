@@ -13,8 +13,14 @@ class ComputerMove
     if @board[4].is_available?
       return 4
     end
-    winning_move = WinningMove.new(@board)
     
+    winning_or_random_move
+  end
+  
+  private
+  
+  def winning_or_random_move
+    winning_move = WinningMove.new(@board)    
     winning_move.calculate_cell_for_win(@computer_player) ||
     winning_move.calculate_cell_for_win(@human_player) ||
     RandomMove.new(@board).pick_cell
