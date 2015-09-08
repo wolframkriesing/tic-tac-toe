@@ -11,4 +11,4 @@ New Features
 [] Allow the user to select the level of difficulty (“easy” means the computer can easily be beaten, “medium” means it can be beaten but only with a series of intelligent moves, and “hard” means the computer is unbeatable).
 [] Allow users to choose game type (human v. human, computer v. computer, human v. computer).
 [] Allow user to choose which player goes first.
-[] Allow the user to decide with what “marker” each player will mark their selections on the board (obviously, traditionally it’s “X” and “O”).
+[x] Allow the user to decide with what “marker” each player will mark their selections on the board (obviously, traditionally it’s “X” and “O”).
