@@ -14,16 +14,16 @@ class BoardOutput
 
   private
   
-  def print_board_line(board, cell1, cell2, cell3)
+  def self.print_board_line(board, cell1, cell2, cell3)
     puts "| #{print_cell(board, cell1)} | #{print_cell(board, cell2)} | #{print_cell(board, cell3)} |"
   end
   
-  def print_cell(board, index)
+  def self.print_cell(board, index)
     cell = board[index]
     cell.is_available? ? index.to_s : cell.player
   end
   
-  def print_board_border
+  def self.print_board_border
     puts "+---+---+---+"
   end
 end
