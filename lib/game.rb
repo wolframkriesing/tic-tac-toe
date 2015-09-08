@@ -31,12 +31,12 @@ class Game
   def start_game
     board = Board.empty
     @game_screens.game_start(board)
-    @move_count = 0
     game_play_loop(board)
     @game_screens.game_over
   end
 
   def game_play_loop(board)
+    @move_count = 0
     while game_on?(board) 
       next_move(board)
     end
