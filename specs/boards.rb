@@ -103,7 +103,7 @@ class Boards
   
   def self.occupied_cell_by(cell_char, player)
     cell = Cell.new
-    cell.set_to(player)
+    cell.occupy_by(player)
     cell
   end
 

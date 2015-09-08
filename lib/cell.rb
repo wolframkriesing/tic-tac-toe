@@ -10,7 +10,7 @@ class Cell
 	  @player == nil
   end
 
-  def set_to(player)
+  def occupy_by(player)
 	  @player = player
   end
   

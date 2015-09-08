@@ -46,7 +46,7 @@ class Game
     until cell
       cell = gets.chomp.to_i
       if board[cell].is_available?
-        board[cell].set_to(@human_character)
+        board[cell].occupy_by(@human_character)
       else
         cell = nil
       end
@@ -56,7 +56,7 @@ class Game
   def computer_move(board)
     move = ComputerMove.new(board, @computer_character, @human_character)
     cell_index = move.pick_cell
-    board[cell_index].set_to(@computer_character)
+    board[cell_index].occupy_by(@computer_character)
   end
   
 end

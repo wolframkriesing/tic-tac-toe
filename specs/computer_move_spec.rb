@@ -18,7 +18,7 @@ class MyBoards
 	board = s.split("").map {|char|
 	  cell = Cell.new 
 	  if map[char] != nil
-		cell.set_to(map[char]) 
+		cell.occupy_by(map[char]) 
 	  end
 	  cell
 	}

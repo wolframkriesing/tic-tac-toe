@@ -25,7 +25,7 @@ class WinningMove
 
   def would_win(cell_index, player)
     possible_board = @board.map { |cell| cell.clone }
-    possible_board[cell_index].set_to(player)
+    possible_board[cell_index].occupy_by(player)
     GameRules.new(possible_board).won?
   end
 
