@@ -59,14 +59,6 @@ class Game
   
 end
 
-def tie?(board)
-  GameRules.new(board).tie?  
-end
-
-def won?(board)
-  GameRules.new(board).won?  
-end
-
 def game_on?(board)
   !GameRules.new(board).game_over?  
 end
