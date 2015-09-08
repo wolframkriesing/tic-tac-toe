@@ -19,13 +19,38 @@ class Board < Array
 	
 end
 
+class HumanPlayer < Player
+  
+  def next_move(board, opponent)
+    cell = nil
+    until cell
+      cell = gets.chomp.to_i
+      if board[cell].is_available?
+        return cell
+      else
+        cell = nil
+      end
+    end
+  end
+  
+end
+
+class ComputerPlayer < Player
+  
+  def next_move(board, opponent)
+    computer_move = ComputerMove.new(board, self, opponent)
+    computer_move.pick_cell
+  end
+  
+end
+
 class Game
   
   def initialize(board_output, player1_character, player2_character)
     @board_output = board_output
     @game_screens = GameScreens.new(board_output)
-    @computer_character = Player.new(player1_character.red)
-    @human_character = Player.new(player2_character.green)
+    @player1 = ComputerPlayer.new(player1_character.red)
+    @player2 = HumanPlayer.new(player2_character.green)
   end
 
   def start_game
@@ -45,30 +70,17 @@ class Game
   def next_move(board)
     whos_turn = @move_count % 2
     if whos_turn == 0
-      human_move(board)
+      play_move(board, @player2, @player1)
     else
-      computer_move(board)
+      play_move(board, @player1, @player2)
     end
+  end
+
+  def play_move(board, me, opponent)
+    cell_index = me.next_move(board, opponent)
+    board[cell_index].occupy_by(me)
     @game_screens.board_screen(board)
     @move_count += 1
-  end
-
-  def human_move(board)
-    cell = nil
-    until cell
-      cell = gets.chomp.to_i
-      if board[cell].is_available?
-        board[cell].occupy_by(@human_character)
-      else
-        cell = nil
-      end
-    end
-  end
-
-  def computer_move(board)
-    computer_move = ComputerMove.new(board, @computer_character, @human_character)
-    cell = board[computer_move.pick_cell]
-    cell.occupy_by(@computer_character)
   end
   
 end
