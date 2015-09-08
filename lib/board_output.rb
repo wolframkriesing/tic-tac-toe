@@ -3,7 +3,7 @@ class BoardOutput
   LEFT_MARGIN = "   "
   
   def self.print(board)
-    puts
+    print_empty_line
     print_board_border
     print_board_line(board, 0, 1, 2)
     print_board_border
@@ -11,7 +11,7 @@ class BoardOutput
     print_board_border
     print_board_line(board, 6, 7, 8)
     print_board_border
-    puts
+    print_empty_line
   end
 
   private
@@ -31,6 +31,10 @@ class BoardOutput
   
   def self.print_line(line)
     puts LEFT_MARGIN + line
+  end
+  
+  def self.print_empty_line
+    puts
   end
 end
 
