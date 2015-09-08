@@ -105,15 +105,17 @@ class Boards
     board
   end
   
+  COMPUTER_PLAYER = "C"
+  HUMAN_PLAYER = "H"
   def self.to_board(s)
     map = {
-      "C" => Boards.player1,
-      "H" => Boards.player2
+      COMPUTER_PLAYER => Boards.player1,
+      HUMAN_PLAYER => Boards.player2
     }
     board = s.split("").map {|char|
       cell = Cell.new 
       if map[char] != nil
-      cell.occupy_by(map[char]) 
+        cell.occupy_by(map[char]) 
       end
       cell
     }
