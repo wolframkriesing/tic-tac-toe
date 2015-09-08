@@ -2,33 +2,8 @@ require_relative "../lib/computer_move.rb"
 require_relative "./boards.rb"
 require "minitest/autorun"
 
-class MyBoards
-	
-  def self.full_board_but_one_cell(cell_index)
-    board = Boards.tie_board
-    board[cell_index] = Cell.new
-    board
-  end
-  
-  def self.to_board(s)
-    map = {
-      "C" => Boards.player1,
-      "H" => Boards.player2
-    }
-    board = s.split("").map {|char|
-      cell = Cell.new 
-      if map[char] != nil
-      cell.occupy_by(map[char]) 
-      end
-      cell
-    }
-    board
-  end
-  
-end
-
 def string_to_board(str)
-  MyBoards.to_board(str)
+  Boards.to_board(str)
 end
 
 def computer_move(board)
@@ -39,12 +14,12 @@ end
 class ComputerMoveCore < MiniTest::Unit::TestCase
 
   def test_can_only_occupy_available_spot
-    board = MyBoards.full_board_but_one_cell(4)
+    board = Boards.full_board_but_one_cell(4)
     assert_equal computer_move(board), 4
   end
 
   def test_can_only_occupy_available_spot1
-    board = MyBoards.full_board_but_one_cell(0)
+    board = Boards.full_board_but_one_cell(0)
     assert_equal computer_move(board), 0
   end
 

@@ -98,6 +98,27 @@ class Boards
 	  board[cell_index1] = Cell.new
 	  board
   end
+  
+  def self.full_board_but_one_cell(cell_index)
+    board = Boards.tie_board
+    board[cell_index] = Cell.new
+    board
+  end
+  
+  def self.to_board(s)
+    map = {
+      "C" => Boards.player1,
+      "H" => Boards.player2
+    }
+    board = s.split("").map {|char|
+      cell = Cell.new 
+      if map[char] != nil
+      cell.occupy_by(map[char]) 
+      end
+      cell
+    }
+    board
+  end
     
   private
   
