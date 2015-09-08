@@ -7,12 +7,14 @@ require_relative "./game_screens"
 
 class Board < Array
 	
-  def initialize
-    self.concat([
+  def self.empty
+    board = Board.new
+    board.concat([
       Cell.new, Cell.new, Cell.new,
       Cell.new, Cell.new, Cell.new,
       Cell.new, Cell.new, Cell.new
     ])
+    board
   end
 	
 end
@@ -27,7 +29,7 @@ class Game
   end
 
   def start_game
-    board = Board.new
+    board = Board.empty
     @game_screens.game_start(board)
     game_play_loop(board)
     @game_screens.game_over
