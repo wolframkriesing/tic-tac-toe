@@ -21,11 +21,11 @@ end
 
 class Game
   
-  def initialize(board_output)
+  def initialize(board_output, player1_character, player2_character)
     @board_output = board_output
     @game_screens = GameScreens.new(board_output)
-    @computer_character = Player.new("X".red)
-    @human_character = Player.new("O".green)
+    @computer_character = Player.new(player1_character.red)
+    @human_character = Player.new(player2_character.green)
   end
 
   def start_game
