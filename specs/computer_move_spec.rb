@@ -14,12 +14,12 @@ end
 class ComputerMoveCore < MiniTest::Unit::TestCase
 
   def test_can_only_occupy_available_spot
-    board = Boards.full_board_but_one_cell(4)
+    board = Boards.one_cell_empty(4)
     assert_equal computer_move(board), 4
   end
 
   def test_can_only_occupy_available_spot1
-    board = Boards.full_board_but_one_cell(0)
+    board = Boards.one_cell_empty(0)
     assert_equal computer_move(board), 0
   end
 
