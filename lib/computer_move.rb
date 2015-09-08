@@ -21,8 +21,8 @@ class ComputerMove
   
   def winning_or_random_move
     winning_move = WinningMove.new(@board)    
-    winning_move.calculate_cell_for_win(@computer_player) ||
-    winning_move.calculate_cell_for_win(@human_player) ||
+    winning_move.pick_cell(@computer_player) ||
+    winning_move.pick_cell(@human_player) ||
     RandomMove.new(@board).pick_cell
   end
   

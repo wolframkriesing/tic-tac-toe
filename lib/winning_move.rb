@@ -6,7 +6,7 @@ class WinningMove
     @board = board
   end
   
-  def calculate_cell_for_win(player)
+  def pick_cell(player)
     available_cells_indexes = all_available_cells_indexes
     cells_that_would_make_a_win = available_cells_indexes.select { |cell_index| 
       would_win(cell_index, player) 
