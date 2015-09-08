@@ -10,11 +10,7 @@ class GameScreens
     @board_output = board_output
   end
   
-  def clear_screen
-    system("clear")
-  end
-  
-  def start_screen(board)
+  def game_start(board)
     clear_screen
     puts "Welcome to my Tic Tac Toe game"
     print_board(board)
@@ -27,11 +23,15 @@ class GameScreens
     print_board(board)
   end
   
-  def game_over_screen
+  def game_over
     puts "Game over"
   end
   
   private
+  
+  def clear_screen
+    system("clear")
+  end
   
   def print_board(board)
     @board_output.print(board)
@@ -58,9 +58,9 @@ class Game
   end
 
   def start_game
-    @game_screens.start_screen(@board)
+    @game_screens.game_start(@board)
     game_play_loop(@board)
-    @game_screens.game_over_screen
+    @game_screens.game_over
   end
 
   def game_play_loop(board)
