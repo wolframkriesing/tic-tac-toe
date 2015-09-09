@@ -51,7 +51,7 @@ class Game
   end
 
   def play_move(board, me, opponent)
-    cell_index = me.next_move(board, opponent)
+    cell_index = me.pick_cell(board, opponent)
     board[cell_index].occupy_by(me)
     @game_screens.board_screen(board)
     @move_count += 1
