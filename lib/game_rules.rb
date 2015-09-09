@@ -1,3 +1,5 @@
+require_relative "./winner"
+
 class GameRules
   
   def initialize(board)
@@ -5,7 +7,7 @@ class GameRules
   end
 
   def won?
-    completed_diagonal? or completed_row? or completed_column?
+    Winner.new(@board).find != nil
   end
   
   def game_over?
@@ -13,31 +15,7 @@ class GameRules
   end
   
   def tie?
-      !won? && @board.all_cells_occupied?
-  end
-  
-  private
-  
-  def completed_row?
-    cells_equal?(0, 1, 2) || 
-    cells_equal?(3, 4, 5) ||
-    cells_equal?(6, 7, 8)
-  end
-
-  def completed_column?
-    cells_equal?(0, 3, 6) ||
-    cells_equal?(1, 4, 7) ||
-    cells_equal?(2, 5, 8)
-  end
-  
-  def completed_diagonal?
-    cells_equal?(0, 4, 8) ||
-    cells_equal?(2, 4, 6)
-  end
-  
-  def cells_equal?(cell1, cell2, cell3)
-    @board[cell1].owned_by_same_player?(@board[cell2]) && 
-    @board[cell2].owned_by_same_player?(@board[cell3])
+    !won? && @board.all_cells_occupied?
   end
 
 end
