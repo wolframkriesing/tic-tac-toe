@@ -1,4 +1,5 @@
 require_relative "./game_rules"
+require_relative "./board_output"
 require_relative "./cell"
 require_relative "./player"
 require_relative "./string"
@@ -7,15 +8,12 @@ require_relative "./game_screens"
 
 class Game
   
-  def initialize(board_output, player1_character, player2_character)
-    @board_output = board_output
-    @game_screens = GameScreens.new(board_output)
-    # computer_vs_human(player1_character.red, player2_character.green)
-    # human_vs_computer(player1_character.red, player2_character.green)
-    # human_vs_human(player1_character.red, player2_character.green)
-    computer_vs_computer(player1_character.red, player2_character.green)
+  def initialize(players)
+    @game_screens = GameScreens.new(BoardOutput)
+    @player1 = players.first
+    @player2 = players[1]
   end
-
+  
   def start_game
     board = Board.empty
     @game_screens.game_start(board)
@@ -25,29 +23,9 @@ class Game
   
   private
   
-  def computer_vs_human(player1_character, player2_character)
-    @player1 = ComputerPlayer.new(player1_character)
-    @player2 = HumanPlayer.new(player2_character)
-  end
-  
-  def human_vs_computer(player1_character, player2_character)
-    @player1 = HumanPlayer.new(player1_character)
-    @player2 = ComputerPlayer.new(player2_character)
-  end
-
-  def human_vs_human(player1_character, player2_character)
-    @player1 = HumanPlayer.new(player1_character)
-    @player2 = HumanPlayer.new(player2_character)
-  end
-
-  def computer_vs_computer(player1_character, player2_character)
-    @player1 = ComputerPlayer.new(player1_character)
-    @player2 = ComputerPlayer.new(player2_character)
-  end
-
   def game_play_loop(board)
     @move_count = 0
-    while game_on?(board) 
+    while keep_playing?(board) 
       next_move(board)
     end
   end
@@ -68,8 +46,8 @@ class Game
     @move_count += 1
   end
   
-end
-
-def game_on?(board)
-  !GameRules.new(board).game_over?  
+  def keep_playing?(board)
+    !GameRules.new(board).game_over?  
+  end
+  
 end

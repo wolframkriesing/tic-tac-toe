@@ -1,10 +1,10 @@
 require 'getoptlong'
 require_relative "./game.rb"
-require_relative "./board_output.rb"
+require_relative "./opponents.rb"
 
 player1_character = "X"
 player2_character = "O"
-game_type = Game::HUMAN_VS_COMPUTER
+game_type = Opponents::HUMAN_VS_COMPUTER
 
 opts = GetoptLong.new(
   [ '--help', '-h', GetoptLong::NO_ARGUMENT ],
@@ -42,14 +42,16 @@ tic tac toe [OPTION] ...
       player2_character = arg
 	  when '--gametype'
       game_types = {
-        0 => Game::HUMAN_VS_COMPUTER,
-        1 => Game::COMPUTER_VS_HUMAN,
-        2 => Game::HUMAN_VS_HUMAN,
-        3 => Game::COMPUTER_VS_COMPUTER
+        0 => Opponents::HUMAN_VS_COMPUTER,
+        1 => Opponents::COMPUTER_VS_HUMAN,
+        2 => Opponents::HUMAN_VS_HUMAN,
+        3 => Opponents::COMPUTER_VS_COMPUTER
       }
       game_type = game_types[arg] || Game::HUMAN_VS_COMPUTER
   end
 end  
 
-game = Game.new(BoardOutput, player1_character, player2_character, game_type)
+opponents = Opponents.new(game_type)
+players = [opponents.player1(player1_character.green), opponents.player2(player2_character.red)]
+game = Game.new(players)
 game.start_game
