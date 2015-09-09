@@ -18,7 +18,15 @@ class Game
     board = Board.empty
     @game_screens.game_start(board)
     game_play_loop(board)
-    @game_screens.game_over(board)
+    if winner
+      @game_screens.game_won(board, winner)
+    else
+      @game_screens.game_over_with_tie(board)
+    end
+  end
+  
+  def winner
+    @player1
   end
   
   private

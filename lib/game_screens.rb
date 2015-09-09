@@ -28,17 +28,22 @@ class GameScreens
     puts "Ooops, the cell #{cell_index.to_s.red} is not valid or available, please choose again."
   end
 
-  def game_over(board)
-    board_screen(board)
-    puts GAME_OVER
-    if board.winner
-      puts "#{board.winner} has won. Congratulations."
-    else
-      puts "Tie, nobody won, but everyone had fun!"
-    end
+  def game_won(board, winner)
+    game_over(board)
+    puts "#{winner} has won. Congratulations."
+  end
+  
+  def game_over_with_tie(board)
+    game_over(board)
+    puts "Tie, nobody won, but everyone had fun!"
   end
   
   private
+  
+  def game_over(board)
+    board_screen(board)
+    puts GAME_OVER
+  end
   
   def board_screen(board)
     clear_screen
