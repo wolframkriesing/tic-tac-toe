@@ -9,5 +9,9 @@ class Board < Array
     ])
     board
   end
+  
+  def all_cells_occupied?
+    self.all? { |cell| !cell.is_available? }
+  end
 	
 end
