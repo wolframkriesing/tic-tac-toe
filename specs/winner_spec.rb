@@ -59,7 +59,6 @@ class Winner
     if cells_equal?(2, 4, 6)
       return @board[2].player
     end
-    nil
   end
   
   def cells_equal?(cell1, cell2, cell3)
