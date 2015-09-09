@@ -47,17 +47,17 @@ class Winner
   end
 	
   def find
-    if cells_equal?(6, 7, 8)
-      return @board[6].player
-    end
-    if cells_equal?(3, 4, 5)
-      return @board[3].player
-    end
-    if cells_equal?(0, 1, 2) or cells_equal?(0, 4, 8) 
-      return @board[0].player
-    end
-    if cells_equal?(2, 4, 6)
-      return @board[2].player
+    player_for_win_combo(6, 7, 8) or
+    player_for_win_combo(3, 4, 5) or
+    player_for_win_combo(0, 1, 2) or
+    player_for_win_combo(0, 4, 8) or
+    player_for_win_combo(2, 4, 6) or
+    nil
+  end
+  
+  def player_for_win_combo(cell1, cell2, cell3)
+    if cells_equal?(cell1, cell2, cell3)
+      return @board[cell1].player
     end
   end
   
