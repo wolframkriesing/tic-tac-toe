@@ -16,6 +16,11 @@ def medium_computer_move(board)
   move.pick_cell
 end
 
+def hard_computer_move(board)
+  move = ComputerMoveHard.new(board, Boards.player1, Boards.player2)
+  move.pick_cell
+end
+
 class ComputerMoveCoreTests < MiniTest::Unit::TestCase
 
   def test_can_only_occupy_available_spot
@@ -62,7 +67,6 @@ class BestMoveToWin < MiniTest::Unit::TestCase
 	
 end
 
-
 class BlockHumansBestMoveToWin < MiniTest::Unit::TestCase
 	
   def test_block_human_from_winning_with_simple_complete_row
@@ -73,6 +77,15 @@ class BlockHumansBestMoveToWin < MiniTest::Unit::TestCase
   def test_block_human_from_winning_with_diagonal
     board = string_to_board("H12CH5678")
     assert_equal medium_computer_move(board), 8
+  end
+		
+end
+
+class UnbeatableComputer < MiniTest::Unit::TestCase
+	
+  def test_occupies_corners_first
+    board = string_to_board("0123H5678")
+    assert_equal hard_computer_move(board), 0
   end
 		
 end

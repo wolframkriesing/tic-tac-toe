@@ -43,3 +43,12 @@ class ComputerMoveMedium < ComputerMoveCore
   end
   
 end
+
+class ComputerMoveHard < ComputerMoveCore
+  
+  def pick_cell
+    0
+  end
+  
+end
+
