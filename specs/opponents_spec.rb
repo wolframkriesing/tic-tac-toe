@@ -6,13 +6,13 @@ PLAYER_1 = "A"
 PLAYER_2 = "B"
 
 def default_game_players
-  opponents = Opponents.new(PLAYER_1, PLAYER_2)
-  opponents.players
+  opponents = Opponents.new
+  [opponents.player1(PLAYER_1), opponents.player2(PLAYER_2)]
 end
 
 def players_for_game_type(game_type)
-  opponents = Opponents.new(PLAYER_1, PLAYER_2, game_type)
-  opponents.players
+  opponents = Opponents.new(game_type)
+  [opponents.player1(PLAYER_1), opponents.player2(PLAYER_2)]
 end
 
 class OpponentsCharacters < MiniTest::Unit::TestCase
