@@ -18,6 +18,10 @@ class Board < Array
     is_valid_cell_index(cell_index) and self[cell_index].is_available?
   end
   
+  def winner
+    self[0].player
+  end
+  
   private
   
   def is_valid_cell_index(cell_index)

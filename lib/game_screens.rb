@@ -31,6 +31,11 @@ class GameScreens
   def game_over(board)
     board_screen(board)
     puts GAME_OVER
+    if board.winner
+      puts "#{board.winner} has won. Congratulations."
+    else
+      puts "Tie, nobody won, but everyone had fun!"
+    end
   end
   
   private
