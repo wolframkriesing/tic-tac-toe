@@ -1,7 +1,7 @@
 [x] improve board readability, maybe removing all "useless" chars
 [x] warn user about bad input
 [x] dont skip step on bad user input
-[] show basic instructions on start of the game
+[x] show basic instructions on start of the game
 [] show won/lost message
 [x] improve hard-to-see-changes, maybe by clearing the screen after every move!?
 [x] somehow indicate which was the last move of the computer (maybe using colors)
