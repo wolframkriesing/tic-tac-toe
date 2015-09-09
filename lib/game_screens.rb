@@ -23,6 +23,10 @@ class GameScreens
     board_screen(board)
     puts PLEASE_SELECT_CELL
   end
+  
+  def invalid_cell(cell_index)
+    puts "Ooops, the cell #{cell_index.to_s.red} is not valid or available, please choose again."
+  end
 
   def game_over(board)
     board_screen(board)

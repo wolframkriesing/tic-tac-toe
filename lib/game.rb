@@ -50,7 +50,7 @@ class Game
     cell_index = nil
     cell_index = player.pick_cell(board, opponent)
     while not is_available_cell(board, cell_index)
-      puts "Ooops, the cell #{cell_index.to_s.red} is not valid or available, please choose again."
+      @game_screens.invalid_cell(cell_index)
       cell_index = player.pick_cell(board, opponent)
     end
     cell_index
