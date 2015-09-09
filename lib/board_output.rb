@@ -1,6 +1,6 @@
 class BoardOutput 
   
-  LEFT_MARGIN = "   "
+  LEFT_MARGIN = "       "
   
   def self.print(board)
     print_empty_line

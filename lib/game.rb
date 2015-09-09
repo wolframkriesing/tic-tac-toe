@@ -18,15 +18,16 @@ class Game
     board = Board.empty
     @game_screens.game_start(board)
     game_play_loop(board)
-    @game_screens.game_over
+    @game_screens.game_over(board)
   end
   
   private
   
   def game_play_loop(board)
     @move_count = 0
-    while keep_playing?(board) 
+    while keep_playing?(board)
       next_move(board)
+      @game_screens.next_move_screen(board)
     end
   end
   
@@ -42,7 +43,6 @@ class Game
   def play_move(board, me, opponent)
     cell_index = pick_valid_cell(board, me, opponent)
     board[cell_index].occupy_by(me)
-    @game_screens.board_screen(board)
     @move_count += 1
   end
   
