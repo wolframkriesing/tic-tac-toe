@@ -36,51 +36,51 @@ class Boards
   end
   
   def self.tie_board
-    [
+    Board.new([
       cell_occupyed_by(player1), cell_occupyed_by(player2), cell_occupyed_by(player2), 
       cell_occupyed_by(player2), cell_occupyed_by(player1), cell_occupyed_by(player1), 
       cell_occupyed_by(player2), cell_occupyed_by(player1), cell_occupyed_by(player2), 
-    ]
+    ])
   end
   
   def self.top_row_won_by(player)
-    [
+    Board.new([
       cell_occupyed_by(player), cell_occupyed_by(player), cell_occupyed_by(player),
       Cell.new, Cell.new, Cell.new,
       Cell.new, Cell.new, Cell.new
-    ]
+    ])
   end
   
   def self.bottom_row_won_by(player)
-    [
+    Board.new([
       Cell.new, Cell.new, Cell.new,
       Cell.new, Cell.new, Cell.new,
       cell_occupyed_by(player), cell_occupyed_by(player), cell_occupyed_by(player),
-    ]
+    ])
   end
   
   def self.diagonal_from_left_top_won_by(player)
-    [
+    Board.new([
       cell_occupyed_by(player), Cell.new, Cell.new,
       Cell.new, cell_occupyed_by(player), Cell.new, 
       Cell.new, Cell.new, cell_occupyed_by(player), 
-    ]
+    ])
   end
   
   def self.diagonal_from_right_top_won_by(player)
-    [
+    Board.new([
       Cell.new, Cell.new, cell_occupyed_by(player),
       Cell.new, cell_occupyed_by(player), Cell.new, 
       cell_occupyed_by(player), Cell.new, Cell.new 
-    ]
+    ])
   end
   
   def self.fill_cell_0_to_win(player)
-    [
+    Board.new([
       Cell.new, cell_occupyed_by(player), cell_occupyed_by(player),
       Cell.new, Cell.new, Cell.new,  
       Cell.new, Cell.new, Cell.new,  
-    ]
+    ])
   end
   
   def self.one_cell_empty(cell_index)
@@ -109,7 +109,7 @@ class Boards
       end
       cell
     }
-    board
+    Board.new(board)
   end
     
   private
