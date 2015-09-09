@@ -10,8 +10,10 @@ class Game
   def initialize(board_output, player1_character, player2_character)
     @board_output = board_output
     @game_screens = GameScreens.new(board_output)
-    @player1 = ComputerPlayer.new(player1_character.red)
-    @player2 = HumanPlayer.new(player2_character.green)
+    # computer_vs_human(player1_character.red, player2_character.green)
+    # human_vs_computer(player1_character.red, player2_character.green)
+    # human_vs_human(player1_character.red, player2_character.green)
+    computer_vs_computer(player1_character.red, player2_character.green)
   end
 
   def start_game
@@ -19,6 +21,28 @@ class Game
     @game_screens.game_start(board)
     game_play_loop(board)
     @game_screens.game_over
+  end
+  
+  private
+  
+  def computer_vs_human(player1_character, player2_character)
+    @player1 = ComputerPlayer.new(player1_character)
+    @player2 = HumanPlayer.new(player2_character)
+  end
+  
+  def human_vs_computer(player1_character, player2_character)
+    @player1 = HumanPlayer.new(player1_character)
+    @player2 = ComputerPlayer.new(player2_character)
+  end
+
+  def human_vs_human(player1_character, player2_character)
+    @player1 = HumanPlayer.new(player1_character)
+    @player2 = HumanPlayer.new(player2_character)
+  end
+
+  def computer_vs_computer(player1_character, player2_character)
+    @player1 = ComputerPlayer.new(player1_character)
+    @player2 = ComputerPlayer.new(player2_character)
   end
 
   def game_play_loop(board)
