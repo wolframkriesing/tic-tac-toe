@@ -40,10 +40,28 @@ class Game
   end
 
   def play_move(board, me, opponent)
-    cell_index = me.pick_cell(board, opponent)
+    cell_index = pick_valid_cell(board, me, opponent)
     board[cell_index].occupy_by(me)
     @game_screens.board_screen(board)
     @move_count += 1
+  end
+  
+  def pick_valid_cell(board, player, opponent)
+    cell_index = nil
+    cell_index = player.pick_cell(board, opponent)
+    while not is_available_cell(board, cell_index)
+      puts "Ooops, the cell #{cell_index.to_s.red} is not valid or available, please choose again."
+      cell_index = player.pick_cell(board, opponent)
+    end
+    cell_index
+  end
+  
+  def is_available_cell(board, cell_index)
+    is_valid_cell_index(board, cell_index) and board[cell_index].is_available?
+  end
+  
+  def is_valid_cell_index(board, cell_index)
+    (0..board.length) === cell_index
   end
   
   def keep_playing?(board)
