@@ -10,9 +10,15 @@ class ComputerMoveCore
   end
   
   def pick_cell
-    RandomMove.new(@board).pick_cell
+    random_move
   end  
   
+  private 
+  
+  def random_move
+    RandomMove.new(@board).pick_cell
+  end
+
 end
 
 class ComputerMoveEasy < ComputerMoveCore
@@ -21,20 +27,19 @@ end
 class ComputerMoveMedium < ComputerMoveCore
   
   def pick_cell
-    if @board[4].is_available?
-      return 4
-    end
-    
-    winning_or_random_move
+    center_cell or winning_move or random_move
   end
   
   private
   
-  def winning_or_random_move
+  def center_cell
+    return 4 if @board[4].is_available?
+  end
+
+  def winning_move
     winning_move = WinningMove.new(@board)    
     winning_move.pick_cell(@computer_player) ||
-    winning_move.pick_cell(@human_player) ||
-    RandomMove.new(@board).pick_cell
+    winning_move.pick_cell(@human_player)
   end
   
 end
