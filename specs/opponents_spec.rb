@@ -33,12 +33,12 @@ class GameTypeDefault < MiniTest::Unit::TestCase
 
   def test_first_player_is_human
     player = default_game_players.first
-    assert_equal player.instance_of?(HumanPlayer), true
+    assert_equal player.is_a?(HumanPlayer), true
   end
 
   def test_second_player_is_computer
     player = default_game_players[1]
-    assert_equal player.instance_of?(ComputerPlayer), true
+    assert_equal player.is_a?(ComputerPlayer), true
   end
 	
 end
@@ -47,12 +47,12 @@ class HumanVsComputer < MiniTest::Unit::TestCase
 
   def test_first_player_is_human
     player = players_for_game_type(Opponents::HUMAN_VS_COMPUTER).first
-    assert_equal player.instance_of?(HumanPlayer), true
+    assert_equal player.is_a?(HumanPlayer), true
   end
 	
   def test_second_player_is_computer
     player = players_for_game_type(Opponents::HUMAN_VS_COMPUTER)[1]
-    assert_equal player.instance_of?(ComputerPlayer), true
+    assert_equal player.is_a?(ComputerPlayer), true
   end
 	
 end
@@ -61,12 +61,12 @@ class ComputerVsHuman < MiniTest::Unit::TestCase
 
   def test_first_player_is_human
     player = players_for_game_type(Opponents::COMPUTER_VS_HUMAN).first
-    assert_equal player.instance_of?(ComputerPlayer), true
+    assert_equal player.is_a?(ComputerPlayer), true
   end
 	
   def test_second_player_is_computer
     player = players_for_game_type(Opponents::COMPUTER_VS_HUMAN)[1]
-    assert_equal player.instance_of?(HumanPlayer), true
+    assert_equal player.is_a?(HumanPlayer), true
   end
 	
 end
@@ -75,12 +75,12 @@ class ComputerVsComputer < MiniTest::Unit::TestCase
 
   def test_first_player_is_human
     player = players_for_game_type(Opponents::COMPUTER_VS_COMPUTER).first
-    assert_equal player.instance_of?(ComputerPlayer), true
+    assert_equal player.is_a?(ComputerPlayer), true
   end
 	
   def test_second_player_is_computer
     player = players_for_game_type(Opponents::COMPUTER_VS_COMPUTER)[1]
-    assert_equal player.instance_of?(ComputerPlayer), true
+    assert_equal player.is_a?(ComputerPlayer), true
   end
 	
 end
@@ -89,12 +89,12 @@ class HumanVsHuman < MiniTest::Unit::TestCase
 
   def test_first_player_is_human
     player = players_for_game_type(Opponents::HUMAN_VS_HUMAN).first
-    assert_equal player.instance_of?(HumanPlayer), true
+    assert_equal player.is_a?(HumanPlayer), true
   end
 	
   def test_second_player_is_computer
     player = players_for_game_type(Opponents::HUMAN_VS_HUMAN)[1]
-    assert_equal player.instance_of?(HumanPlayer), true
+    assert_equal player.is_a?(HumanPlayer), true
   end
 	
 end
