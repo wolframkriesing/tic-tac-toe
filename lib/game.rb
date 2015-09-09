@@ -2,21 +2,8 @@ require_relative "./game_rules"
 require_relative "./cell"
 require_relative "./player"
 require_relative "./string"
+require_relative "./board"
 require_relative "./game_screens"
-
-class Board < Array
-	
-  def self.empty
-    board = Board.new
-    board.concat([
-      Cell.new, Cell.new, Cell.new,
-      Cell.new, Cell.new, Cell.new,
-      Cell.new, Cell.new, Cell.new
-    ])
-    board
-  end
-	
-end
 
 class Game
   
