@@ -49,19 +49,11 @@ class Game
   def pick_valid_cell(board, player, opponent)
     cell_index = nil
     cell_index = player.pick_cell(board, opponent)
-    while not is_available_cell(board, cell_index)
+    while not board.is_available_cell(cell_index)
       @game_screens.invalid_cell(cell_index)
       cell_index = player.pick_cell(board, opponent)
     end
     cell_index
-  end
-  
-  def is_available_cell(board, cell_index)
-    is_valid_cell_index(board, cell_index) and board[cell_index].is_available?
-  end
-  
-  def is_valid_cell_index(board, cell_index)
-    (0..board.length) === cell_index
   end
   
   def keep_playing?(board)
