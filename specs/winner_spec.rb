@@ -16,6 +16,21 @@ class NoWinner < MiniTest::Unit::TestCase
     winner = find_winner_for(Boards.top_row_won_by_player1)
     assert_equal winner, Boards.player1
   end
+  
+  def test_diagonal_from_right_top_won_by_player2
+    winner = find_winner_for(Boards.diagonal_from_right_top_won_by_player2)
+    assert_equal winner, Boards.player2
+  end
+  
+  def test_diagonal_from_left_top_won_by_player1
+    winner = find_winner_for(Boards.diagonal_from_left_top_won_by_player1)
+    assert_equal winner, Boards.player1
+  end
+
+  def test_bottom_row_won_by_player1
+    winner = find_winner_for(Boards.bottom_row_won_by_player1)
+    assert_equal winner, Boards.player1
+  end
 
 end
 
@@ -27,7 +42,22 @@ class Winner
   end
 	
   def find
-    GameRules.new(@board).won? ? @board[0].player : nil
+    if cells_equal?(6, 7, 8)
+      return @board[6].player
+    end
+    if cells_equal?(0, 1, 2) or cells_equal?(0, 4, 8) 
+      return @board[0].player
+    end
+    if cells_equal?(2, 4, 6)
+      return @board[2].player
+    end
+    nil
   end
+  
+  def cells_equal?(cell1, cell2, cell3)
+    @board[cell1].owned_by_same_player?(@board[cell2]) && 
+    @board[cell2].owned_by_same_player?(@board[cell3])
+  end
+
 	
 end
