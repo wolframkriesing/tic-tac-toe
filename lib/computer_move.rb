@@ -1,14 +1,25 @@
 require_relative "./winning_move"
 require_relative "./random_move"
 
-class ComputerMove
+class ComputerMoveCore
   
   def initialize(board, computer_player, human_player)
     @board = board
     @computer_player = computer_player
     @human_player = human_player
   end
+  
+  def pick_cell
+    RandomMove.new(@board).pick_cell
+  end  
+  
+end
 
+class ComputerMoveEasy < ComputerMoveCore
+end
+
+class ComputerMoveMedium < ComputerMoveCore
+  
   def pick_cell
     if @board[4].is_available?
       return 4
