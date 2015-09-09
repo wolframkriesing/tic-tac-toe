@@ -1,3 +1,4 @@
+require_relative "../lib/board"
 require_relative "../lib/cell"
 require_relative "../lib/player"
 
@@ -31,11 +32,7 @@ class Boards
   end
   
   def self.empty_board
-    [
-      Cell.new, Cell.new, Cell.new,
-      Cell.new, Cell.new, Cell.new,
-      Cell.new, Cell.new, Cell.new
-    ]
+    Board.empty
   end
   
   def self.tie_board
