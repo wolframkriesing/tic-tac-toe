@@ -17,15 +17,11 @@ end
 class HumanPlayer < Player
   
   def pick_cell(board, opponent)
-    cell = nil
-    until cell
-      cell = gets.chomp.to_i
-      if board[cell].is_available?
-        return cell
-      else
-        cell = nil
-      end
+    char = gets.chomp
+    if char.to_i.to_s == char
+      return char.to_i
     end
+    char
   end
   
 end
