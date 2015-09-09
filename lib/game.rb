@@ -31,9 +31,9 @@ class Game
   def next_move(board)
     whos_turn = @move_count % 2
     if whos_turn == 0
-      play_move(board, @player2, @player1)
-    else
       play_move(board, @player1, @player2)
+    else
+      play_move(board, @player2, @player1)
     end
   end
 
