@@ -28,10 +28,13 @@ end
 
 require_relative "./computer_move"
 class ComputerPlayer < Player
-  
+
   def pick_cell(board, opponent)
-    computer_move = ComputerMove.new(board, self, opponent)
+    computer_move = ComputerMoveMedium.new(board, self, opponent)
     computer_move.pick_cell
   end
   
+end
+  
+class ComputerPlayerMedium < ComputerPlayer  
 end

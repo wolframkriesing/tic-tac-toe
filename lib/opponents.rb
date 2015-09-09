@@ -1,3 +1,5 @@
+require_relative "./player"
+
 class Opponents
 
   HUMAN_VS_COMPUTER = 0
@@ -11,14 +13,14 @@ class Opponents
 	
   def player1(character)
     if player1_is_a_computer?
-      return ComputerPlayer.new(character)
+      return ComputerPlayerMedium.new(character)
     end
     HumanPlayer.new(character)
   end
   
   def player2(character)
     if player2_is_a_computer?
-      return ComputerPlayer.new(character)
+      return ComputerPlayerMedium.new(character)
     end
     HumanPlayer.new(character)
   end
