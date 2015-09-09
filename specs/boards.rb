@@ -27,6 +27,10 @@ class Boards
     top_row_won_by(player1)
   end
   
+  def self.middle_row_won_by_player1
+    middle_row_won_by(player1)
+  end
+  
   def self.bottom_row_won_by_player1
     bottom_row_won_by(player1)
   end
@@ -51,6 +55,14 @@ class Boards
     ])
   end
   
+  def self.middle_row_won_by(player)
+    Board.new([
+      Cell.new, Cell.new, Cell.new,
+      cell_occupyed_by(player), cell_occupyed_by(player), cell_occupyed_by(player),
+      Cell.new, Cell.new, Cell.new
+    ])
+  end
+    
   def self.bottom_row_won_by(player)
     Board.new([
       Cell.new, Cell.new, Cell.new,

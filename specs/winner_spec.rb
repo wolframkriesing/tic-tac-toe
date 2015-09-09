@@ -16,6 +16,16 @@ class NoWinner < MiniTest::Unit::TestCase
     winner = find_winner_for(Boards.top_row_won_by_player1)
     assert_equal winner, Boards.player1
   end
+
+  def test_middle_row_won_by_player1
+    winner = find_winner_for(Boards.middle_row_won_by_player1)
+    assert_equal winner, Boards.player1
+  end
+
+  def test_bottom_row_won_by_player1
+    winner = find_winner_for(Boards.bottom_row_won_by_player1)
+    assert_equal winner, Boards.player1
+  end
   
   def test_diagonal_from_right_top_won_by_player2
     winner = find_winner_for(Boards.diagonal_from_right_top_won_by_player2)
@@ -24,11 +34,6 @@ class NoWinner < MiniTest::Unit::TestCase
   
   def test_diagonal_from_left_top_won_by_player1
     winner = find_winner_for(Boards.diagonal_from_left_top_won_by_player1)
-    assert_equal winner, Boards.player1
-  end
-
-  def test_bottom_row_won_by_player1
-    winner = find_winner_for(Boards.bottom_row_won_by_player1)
     assert_equal winner, Boards.player1
   end
 
@@ -44,6 +49,9 @@ class Winner
   def find
     if cells_equal?(6, 7, 8)
       return @board[6].player
+    end
+    if cells_equal?(3, 4, 5)
+      return @board[3].player
     end
     if cells_equal?(0, 1, 2) or cells_equal?(0, 4, 8) 
       return @board[0].player
