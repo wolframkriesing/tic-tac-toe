@@ -27,7 +27,7 @@ end
 class ComputerMoveMedium < ComputerMoveCore
   
   def pick_cell
-    center_cell or winning_move or random_move
+    winning_move or center_cell or super
   end
   
   private
@@ -44,10 +44,19 @@ class ComputerMoveMedium < ComputerMoveCore
   
 end
 
-class ComputerMoveHard < ComputerMoveCore
+class ComputerMoveHard < ComputerMoveMedium
   
   def pick_cell
-    0
+    winning_move or center_cell or corner_cell or super
+  end
+  
+  private
+  
+  def corner_cell
+    return 0 if @board[0].is_available?
+    return 2 if @board[2].is_available?
+    return 6 if @board[8].is_available?
+    return 8 if @board[8].is_available?
   end
   
 end

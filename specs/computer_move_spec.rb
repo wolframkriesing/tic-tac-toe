@@ -87,5 +87,10 @@ class UnbeatableComputer < MiniTest::Unit::TestCase
     board = string_to_board("0123H5678")
     assert_equal hard_computer_move(board), 0
   end
+	
+  def test_occupies_corners_first_right
+    board = string_to_board("H123H567C")
+    assert_equal hard_computer_move(board), 2
+  end
 		
 end
