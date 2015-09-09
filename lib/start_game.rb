@@ -42,12 +42,12 @@ tic tac toe [OPTION] ...
       player2_character = arg
 	  when '--gametype'
       game_types = {
-        0 => Opponents::HUMAN_VS_COMPUTER,
-        1 => Opponents::COMPUTER_VS_HUMAN,
-        2 => Opponents::HUMAN_VS_HUMAN,
-        3 => Opponents::COMPUTER_VS_COMPUTER
+        "0" => Opponents::HUMAN_VS_COMPUTER,
+        "1" => Opponents::COMPUTER_VS_HUMAN,
+        "2" => Opponents::HUMAN_VS_HUMAN,
+        "3" => Opponents::COMPUTER_VS_COMPUTER
       }
-      game_type = game_types[arg] || Game::HUMAN_VS_COMPUTER
+      game_type = game_types[arg] || Opponents::HUMAN_VS_COMPUTER
   end
 end  
 
