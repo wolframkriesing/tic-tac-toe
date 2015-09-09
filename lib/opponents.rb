@@ -12,16 +12,31 @@ class Opponents
   end
 	
   def players
-    if @game_type == COMPUTER_VS_HUMAN
-      return [ComputerPlayer.new(@player2_char), HumanPlayer.new(@player1_char)]
-    end 
-    if @game_type == COMPUTER_VS_COMPUTER
-      return [ComputerPlayer.new(@player2_char), ComputerPlayer.new(@player1_char)]
-    end 
-    if @game_type == HUMAN_VS_HUMAN
-      return [HumanPlayer.new(@player2_char), HumanPlayer.new(@player1_char)]
-    end 
-	  [HumanPlayer.new(@player1_char), ComputerPlayer.new(@player2_char)]
+	[player1, player2]
+  end
+  
+  private
+  
+  def player1_is_a_computer?
+	@game_type == COMPUTER_VS_COMPUTER or @game_type == COMPUTER_VS_HUMAN
+  end
+  
+  def player2_is_a_computer?
+	@game_type == COMPUTER_VS_COMPUTER or @game_type == HUMAN_VS_COMPUTER
+  end
+  
+  def player1
+	if player1_is_a_computer?
+	  return ComputerPlayer.new(@player1_char)
+	end
+	HumanPlayer.new(@player1_char)
+  end
+  
+  def player2
+	if player2_is_a_computer?
+	  return ComputerPlayer.new(@player2_char)
+	end
+	HumanPlayer.new(@player2_char)
   end
   
 end
