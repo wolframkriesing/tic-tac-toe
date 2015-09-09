@@ -12,6 +12,8 @@ class Winner
     nil
   end
   
+  private
+  
   def player_for_row_win
     player_for_win_combo(0, 1, 2) or
     player_for_win_combo(3, 4, 5) or
@@ -29,15 +31,14 @@ class Winner
     player_for_win_combo(2, 4, 6)
   end
   
-  def player_for_win_combo(cell1, cell2, cell3)
-    if cells_equal?(cell1, cell2, cell3)
-      return @board[cell1].player
-    end
+  def player_for_win_combo(cell1, cell2, cell3)    
+    first_cell = @board[cell1]
+    first_cell.player if cells_owned_by_same_player?(first_cell, @board[cell2], @board[cell3])
   end
   
-  def cells_equal?(cell1, cell2, cell3)
-    @board[cell1].owned_by_same_player?(@board[cell2]) && 
-    @board[cell2].owned_by_same_player?(@board[cell3])
+  def cells_owned_by_same_player?(cell1, cell2, cell3)
+    cell1.owned_by_same_player?(cell2) and 
+    cell2.owned_by_same_player?(cell3)
   end
 	
 end
