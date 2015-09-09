@@ -5,6 +5,7 @@ require_relative "./player"
 require_relative "./string"
 require_relative "./board"
 require_relative "./game_screens"
+require_relative "./winner"
 
 class Game
   
@@ -18,6 +19,7 @@ class Game
     board = Board.empty
     @game_screens.game_start(board)
     game_play_loop(board)
+    winner = find_winner(board)
     if winner
       @game_screens.game_won(board, winner)
     else
@@ -25,11 +27,11 @@ class Game
     end
   end
   
-  def winner
-    @player1
-  end
-  
   private
+  
+  def find_winner(board)
+    Winner.new(board).find
+  end
   
   def game_play_loop(board)
     @move_count = 0
