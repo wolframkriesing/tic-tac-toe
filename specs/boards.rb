@@ -5,8 +5,7 @@ require_relative "../lib/player"
 $player_1 = Player.new("player 1")
 $player_2 = Player.new("player 2")
 
-class Boards
-    
+class WinningBoards
   def self.player1
     $player_1
   end
@@ -15,14 +14,6 @@ class Boards
     $player_2
   end
 	
-  def self.diagonal_from_left_top_won_by_player1
-    diagonal_from_left_top_won_by(player1)
-  end
-  
-  def self.diagonal_from_right_top_won_by_player2
-    diagonal_from_right_top_won_by(player2)
-  end
-  
   def self.top_row_won_by_player1
     top_row_won_by(player1)
   end
@@ -34,19 +25,7 @@ class Boards
   def self.bottom_row_won_by_player1
     bottom_row_won_by(player1)
   end
-  
-  def self.empty_board
-    Board.empty
-  end
-  
-  def self.tie_board
-    Board.new([
-      cell_occupyed_by(player1), cell_occupyed_by(player2), cell_occupyed_by(player2), 
-      cell_occupyed_by(player2), cell_occupyed_by(player1), cell_occupyed_by(player1), 
-      cell_occupyed_by(player2), cell_occupyed_by(player1), cell_occupyed_by(player2), 
-    ])
-  end
-  
+ 
   def self.top_row_won_by(player)
     Board.new([
       cell_occupyed_by(player), cell_occupyed_by(player), cell_occupyed_by(player),
@@ -71,6 +50,30 @@ class Boards
     ])
   end
   
+  def self.left_column_won_by(player)
+    Board.new([
+      cell_occupyed_by(player), Cell.new, Cell.new,
+      cell_occupyed_by(player), Cell.new, Cell.new,
+      cell_occupyed_by(player), Cell.new, Cell.new,
+    ])
+  end
+  
+  def self.middle_column_won_by(player)
+    Board.new([
+      Cell.new, cell_occupyed_by(player), Cell.new,
+      Cell.new, cell_occupyed_by(player), Cell.new,
+      Cell.new, cell_occupyed_by(player), Cell.new,
+    ])
+  end
+    
+  def self.right_column_won_by(player)
+    Board.new([
+      Cell.new, Cell.new, cell_occupyed_by(player),
+      Cell.new, Cell.new, cell_occupyed_by(player),
+      Cell.new, Cell.new, cell_occupyed_by(player),
+    ])
+  end
+  
   def self.diagonal_from_left_top_won_by(player)
     Board.new([
       cell_occupyed_by(player), Cell.new, Cell.new,
@@ -84,6 +87,31 @@ class Boards
       Cell.new, Cell.new, cell_occupyed_by(player),
       Cell.new, cell_occupyed_by(player), Cell.new, 
       cell_occupyed_by(player), Cell.new, Cell.new 
+    ])
+  end
+  
+  
+end
+
+class Boards < WinningBoards
+    
+  def self.diagonal_from_left_top_won_by_player1
+    diagonal_from_left_top_won_by(player1)
+  end
+  
+  def self.diagonal_from_right_top_won_by_player2
+    diagonal_from_right_top_won_by(player2)
+  end
+  
+  def self.empty_board
+    Board.empty
+  end
+  
+  def self.tie_board
+    Board.new([
+      cell_occupyed_by(player1), cell_occupyed_by(player2), cell_occupyed_by(player2), 
+      cell_occupyed_by(player2), cell_occupyed_by(player1), cell_occupyed_by(player1), 
+      cell_occupyed_by(player2), cell_occupyed_by(player1), cell_occupyed_by(player2), 
     ])
   end
   

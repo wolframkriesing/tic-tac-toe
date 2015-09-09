@@ -6,12 +6,23 @@ class Winner
   end
 	
   def find
-    player_for_win_combo(6, 7, 8) or
-    player_for_win_combo(3, 4, 5) or
-    player_for_win_combo(0, 1, 2) or
+    player_for_row_win or
+    player_for_column_win or
     player_for_win_combo(0, 4, 8) or
     player_for_win_combo(2, 4, 6) or
     nil
+  end
+  
+  def player_for_row_win
+    player_for_win_combo(0, 1, 2) or
+    player_for_win_combo(3, 4, 5) or
+    player_for_win_combo(6, 7, 8)
+  end
+  
+  def player_for_column_win
+    player_for_win_combo(0, 3, 6) or
+    player_for_win_combo(1, 4, 7) or
+    player_for_win_combo(2, 5, 8)
   end
   
   def player_for_win_combo(cell1, cell2, cell3)

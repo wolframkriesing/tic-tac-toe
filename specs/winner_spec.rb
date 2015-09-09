@@ -12,6 +12,8 @@ class NoWinner < MiniTest::Unit::TestCase
     winner = find_winner_for(Boards.empty_board)
     assert_equal winner, nil
   end
+  
+  # rows
 
   def test_top_row_won_by_player1
     winner = find_winner_for(Boards.top_row_won_by_player1)
@@ -27,6 +29,25 @@ class NoWinner < MiniTest::Unit::TestCase
     winner = find_winner_for(Boards.bottom_row_won_by_player1)
     assert_equal winner, Boards.player1
   end
+  
+  # columns
+  
+  def test_left_column_won
+    winner = find_winner_for(Boards.left_column_won_by(Boards.player1))
+    assert_equal winner, Boards.player1
+  end
+  
+  def test_middle_column_won
+    winner = find_winner_for(Boards.middle_column_won_by(Boards.player1))
+    assert_equal winner, Boards.player1
+  end
+  
+  def test_right_column_won
+    winner = find_winner_for(Boards.right_column_won_by(Boards.player1))
+    assert_equal winner, Boards.player1
+  end
+  
+  # diagonals
   
   def test_diagonal_from_right_top_won_by_player2
     winner = find_winner_for(Boards.diagonal_from_right_top_won_by_player2)
