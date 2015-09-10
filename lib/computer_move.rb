@@ -55,7 +55,7 @@ class ComputerMoveHard < ComputerMoveMedium
   def corner_cell
     return 0 if @board[0].is_available?
     return 2 if @board[2].is_available?
-    return 6 if @board[8].is_available?
+    return 6 if @board[6].is_available?
     return 8 if @board[8].is_available?
   end
   
