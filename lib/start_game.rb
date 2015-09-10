@@ -3,10 +3,7 @@ require_relative "./game.rb"
 require_relative "./opponents.rb"
 require_relative "./string"
 
-player1_character = "X"
-player2_character = "O"
-game_type = Opponents::HUMAN_VS_COMPUTER
-difficulty = Opponents::DIFFICULTY_MEDIUM
+player1_character, player2_character, game_type, difficulty = [nil, nil, nil, nil]
 
 opts = GetoptLong.new(
   [ '--help', '-h', GetoptLong::NO_ARGUMENT ],
@@ -46,7 +43,7 @@ tic tac toe [OPTION] ...
       EOF
       exit
     when '--player1'
-      player1_character = arg  
+      player1_character = arg
 	  when '--player2'
       player2_character = arg
 	  when '--gametype'
@@ -56,18 +53,23 @@ tic tac toe [OPTION] ...
         "2" => Opponents::HUMAN_VS_HUMAN,
         "3" => Opponents::COMPUTER_VS_COMPUTER
       }
-      game_type = game_types[arg] || game_type
+      game_type = game_types[arg]
 	  when '--difficulty'
       difficulties = {
         "0" => Opponents::DIFFICULTY_EASY,
         "1" => Opponents::DIFFICULTY_MEDIUM,
         "2" => Opponents::DIFFICULTY_HARD,
       }
-      difficulty = difficulties[arg] || difficulty
+      difficulty = difficulties[arg]
   end
 end  
 
+player1_character = player1_character || "X"
+player2_character = player2_character || "O"
+game_type = game_type || Opponents::HUMAN_VS_COMPUTER
+difficulty = difficulty || Opponents::DIFFICULTY_MEDIUM
+
 opponents = Opponents.new(game_type, difficulty)
-players = [opponents.player1(player1_character.green), opponents.player2(player2_character.red)]
+players = [opponents.player1(player1_character[0].green), opponents.player2(player2_character[0].red)]
 game = Game.new(players)
 game.start_game
