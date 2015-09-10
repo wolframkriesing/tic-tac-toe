@@ -1,3 +1,5 @@
+require_relative "./board_output"
+
 class GameScreens
   
   INSTRUCTIONS = [
@@ -7,10 +9,6 @@ class GameScreens
   ].join("\n")
   PLEASE_SELECT_CELL = "Please select your cell:"
   GAME_OVER = "Game over"
-  
-  def initialize(board_output)
-    @board_output = board_output
-  end
   
   def game_start(board)
     clear_screen
@@ -27,20 +25,28 @@ class GameScreens
   def invalid_cell(cell_index)
     puts "Ooops, the cell #{cell_index.to_s.red} is not valid or available, please choose again."
   end
-
-  def game_won(board, winner)
-    game_over(board)
-    puts "#{winner} has won. Congratulations."
-  end
   
-  def game_over_with_tie(board)
-    game_over(board)
-    puts "Tie, nobody won, but everyone had fun!"
+  def game_over(board, winner)
+    if winner
+      game_won(board, winner)
+    else
+      game_over_with_tie(board)
+    end
   end
   
   private
   
-  def game_over(board)
+  def game_won(board, winner)
+    game_over_screen(board)
+    puts "#{winner} has won. Congratulations."
+  end
+  
+  def game_over_with_tie(board)
+    game_over_screen(board)
+    puts "Tie, nobody won, but everyone had fun!"
+  end
+  
+  def game_over_screen(board)
     board_screen(board)
     puts GAME_OVER
   end
@@ -56,7 +62,7 @@ class GameScreens
   end
   
   def print_board(board)
-    @board_output.print(board)
+    BoardOutput.print(board)
   end 
   
   def empty_line
