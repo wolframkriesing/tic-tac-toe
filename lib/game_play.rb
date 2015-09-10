@@ -23,9 +23,9 @@ class GamePlay
   
   private
   
-  def play_move(board, me, opponent)
-    cell_index = pick_valid_cell(board, me, opponent)
-    board[cell_index].occupy_by(me)
+  def play_move(board, player, opponent)
+    cell_index = pick_valid_cell(board, player, opponent)
+    board[cell_index].occupy_by(player)
     @move_count += 1
   end
   
