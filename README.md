@@ -45,4 +45,10 @@ To either of the above you can pass the following parameters:
       2 = hard - means the computer is unbeatable
 ```
 
+# Run the tests
+
+By calling `ruby specs/all_tests.rb`
+If you want to develop and run the tests continuously you can use the following
+`while sleep 1; do ruby specs/all_tests.rb; done`
+
 Enjoy the game
