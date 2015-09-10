@@ -1,6 +1,7 @@
 require 'getoptlong'
 require_relative "./game.rb"
 require_relative "./opponents.rb"
+require_relative "./string"
 
 player1_character = "X"
 player2_character = "O"
