@@ -21,6 +21,7 @@ Or run `ruby lib/start_game.rb`
 # Options
 
 To either of the above you can pass the following parameters:
+```
   -h, --help:
     show help
 
@@ -42,5 +43,6 @@ To either of the above you can pass the following parameters:
       0 = easy - the computer can easily be beaten
       1 = medium - means it can be beaten but only with a series of intelligent moves
       2 = hard - means the computer is unbeatable
+```
 
 Enjoy the game
