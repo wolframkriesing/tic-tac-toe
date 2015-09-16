@@ -5,7 +5,7 @@ class Board
   attr_reader :cells, :rows_count
   def initialize(cells)
     @cells = cells
-    @rows_count = Math.sqrt(cells.length)
+    @rows_count = Math.sqrt(cells.length).to_i
   end
   
   def self.with_number_of_rows(rows)
