@@ -28,9 +28,9 @@ class WinningBoards
 
   def self.occupy_cells_by(player, cell1, cell2, cell3)
     board = Boards.empty_board
-    board.make_move(cell1, player)
-    board.make_move(cell2, player)
-    board.make_move(cell3, player)
+    board.make_move_to(cell1, player)
+    board.make_move_to(cell2, player)
+    board.make_move_to(cell3, player)
     board
   end
  
@@ -105,8 +105,8 @@ class Boards < WinningBoards
   
   def self.fill_cell_0_to_win(player)
     board = Board.empty
-    board.make_move(1, player)
-    board.make_move(2, player)
+    board.make_move_to(1, player)
+    board.make_move_to(2, player)
     board
   end
   

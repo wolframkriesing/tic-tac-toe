@@ -23,11 +23,10 @@ class GamePlay
   
   def play_move(board, player, opponent)
     cell_index = pick_valid_cell(board, player, opponent)
-    board[cell_index].occupy_by(player)
+    board.make_move_to(cell_index, player)
   end
   
   def pick_valid_cell(board, player, opponent)
-    cell_index = nil
     cell_index = player.pick_cell(board, opponent)
     if not board.is_available_cell(cell_index)
       raise InvalidMoveError.new(cell_index)

@@ -12,7 +12,7 @@ class Board < Array
     board
   end
   
-  def make_move(cell_index, player)
+  def make_move_to(cell_index, player)
     self[cell_index].occupy_by(player)
   end
   
