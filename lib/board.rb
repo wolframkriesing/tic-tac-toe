@@ -3,6 +3,7 @@ require_relative "./cell"
 class Board
 	
   attr_reader :cells, :rows_count
+
   def initialize(rows_count, cells = nil)
     @cells = cells
     if cells.nil?
@@ -12,22 +13,17 @@ class Board
     @rows_count = rows_count
   end
   
-  def self.with_number_of_rows(rows)
-    Board.new(rows)
-  end
-  
   def empty_all_cells
     @cells = @cells.map do |cell| Cell.new; end
   end
   
   def self.empty
-    board = Board.with_number_of_rows(3)
-    board.empty_all_cells
-    board
+    Board.new(3)
   end
   
   def clone
-    Board.new(@rows_count, @cells.map { |cell| cell.clone })
+    cloned_cells = @cells.map { |cell| cell.clone }
+    Board.new(@rows_count, cloned_cells)
   end
   
   def make_move_to(cell_index, player)
@@ -52,8 +48,6 @@ class Board
     }
     indexes.select {|index| index != nil}
   end
-
-
   
   private
   
