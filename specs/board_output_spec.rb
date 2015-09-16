@@ -17,7 +17,7 @@ end
 
 class BoardOutputTests < MiniTest::Unit::TestCase
 
-  def test_prints_empty_board
+  def test_prints_empty_board_with_3_rows
     io = IO.new
     board = Board.empty
 	  BoardOutput.new(io).print(board)
