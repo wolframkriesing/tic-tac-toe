@@ -1,4 +1,5 @@
 require_relative "./board_output"
+require_relative "./colorize"
 
 class GameScreens
   
@@ -23,7 +24,7 @@ class GameScreens
   end
   
   def invalid_cell(cell_index)
-    puts "Ooops, the cell #{cell_index.to_s.red} is not valid or available, please choose again."
+    puts "Ooops, the cell #{Colorize.red(cell_index.to_s)} is not valid or available, please choose again."
   end
   
   def game_over(board, winner)
