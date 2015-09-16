@@ -12,6 +12,10 @@ class Board < Array
     board
   end
   
+  def make_move(cell_index, player)
+    self[cell_index].occupy_by(player)
+  end
+  
   def all_cells_occupied?
     self.all? { |cell| !cell.is_available? }
   end
@@ -25,6 +29,5 @@ class Board < Array
   def is_valid_cell_index(cell_index)
     (0..self.length) === cell_index
   end
-
 	
 end
