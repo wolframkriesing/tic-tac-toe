@@ -22,7 +22,8 @@ class BoardOutput
   
   def print_row(row_index)
     offset = row_index * @board.rows_count
-    print_board_line([offset + 0, offset + 1, offset + 2])
+    indexes = (offset .. (offset + 2))
+    print_board_line(indexes)
     print_board_border
   end
   
