@@ -2,7 +2,11 @@ class BoardOutput
   
   LEFT_MARGIN = "       "
   
-  def self.print(board)
+  def initialize(io)
+    @io = io
+  end
+  
+  def print(board)
     print_empty_line
     print_board_border
     print_board_line(board, 0, 1, 2)
@@ -16,25 +20,25 @@ class BoardOutput
 
   private
   
-  def self.print_board_line(board, cell1, cell2, cell3)
+  def print_board_line(board, cell1, cell2, cell3)
     print_line "| #{print_cell(board, cell1)} | #{print_cell(board, cell2)} | #{print_cell(board, cell3)} |"
   end
   
-  def self.print_cell(board, index)
+  def print_cell(board, index)
     cell = board.cells[index]
     cell.is_available? ? index.to_s : cell.player
   end
   
-  def self.print_board_border
+  def print_board_border
     print_line "+---+---+---+"
   end
   
-  def self.print_line(line)
-    puts LEFT_MARGIN + line
+  def print_line(line)
+    @io.put_string LEFT_MARGIN + line
   end
   
-  def self.print_empty_line
-    puts
+  def print_empty_line
+    @io.put_string
   end
 end
 
