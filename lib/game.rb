@@ -5,9 +5,9 @@ require_relative "./winner"
 
 class Game
   
-  def initialize(players)
-    @player1 = players.first
-    @player2 = players[1]
+  def initialize(player1, player2)
+    @player1 = player1
+    @player2 = player2
   end
   
   def start_game
