@@ -7,12 +7,18 @@ class Board
     @cells = cells
   end
   
+  def self.with_number_of_rows(rows)
+    Board.new(Array.new(rows * rows))
+  end
+  
+  def empty_all_cells
+    @cells = @cells.map do |cell| Cell.new; end
+  end
+  
   def self.empty
-    Board.new([
-      Cell.new, Cell.new, Cell.new,
-      Cell.new, Cell.new, Cell.new,
-      Cell.new, Cell.new, Cell.new
-    ])
+    board = Board.with_number_of_rows(3)
+    board.empty_all_cells
+    board
   end
   
   def clone
