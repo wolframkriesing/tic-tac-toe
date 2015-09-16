@@ -5,10 +5,7 @@ class RandomMove
   end
   
   def pick_cell
-	empty_cell_indexes = @board
-		.map.with_index {|cell, i| cell.is_available? ? i : nil }
-		.select {|index| index != nil}
-		
+	empty_cell_indexes = @board.all_available_cells_indexes		
 	n = rand(0..empty_cell_indexes.count-1)
   	empty_cell_indexes[n]
   end
