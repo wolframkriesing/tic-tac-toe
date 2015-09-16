@@ -80,7 +80,7 @@ class WinningBoards
       end
       cell
     }
-    Board.new(board)
+    Board.new(Math.sqrt(board.length).to_i, board)
   end
       
 end
