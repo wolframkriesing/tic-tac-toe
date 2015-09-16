@@ -1,5 +1,6 @@
 require_relative "./board_output"
 require_relative "./colorize"
+require_relative "./external-deps/io"
 
 class GameScreens
   
@@ -11,20 +12,24 @@ class GameScreens
   PLEASE_SELECT_CELL = "Please select your cell:"
   GAME_OVER = "Game over"
   
+  def initizalize(io=IO.new)
+    @io = io
+  end
+  
   def game_start(board)
     clear_screen
-    puts INSTRUCTIONS
+    @io.print_string INSTRUCTIONS
     print_board(board)
-    puts PLEASE_SELECT_CELL
+    @io.print_string PLEASE_SELECT_CELL
   end
 
   def next_move_screen(board)
     board_screen(board)
-    puts PLEASE_SELECT_CELL
+    @io.print_string PLEASE_SELECT_CELL
   end
   
   def invalid_cell(cell_index)
-    puts "Ooops, the cell #{Colorize.red(cell_index.to_s)} is not valid or available, please choose again."
+    @io.print_string "Ooops, the cell #{Colorize.red(cell_index.to_s)} is not valid or available, please choose again."
   end
   
   def game_over(board, winner)
@@ -39,17 +44,17 @@ class GameScreens
   
   def game_won(board, winner)
     game_over_screen(board)
-    puts "#{winner} has won. Congratulations."
+    @io.print_string "#{winner} has won. Congratulations."
   end
   
   def game_over_with_tie(board)
     game_over_screen(board)
-    puts "Tie, nobody won, but everyone had fun!"
+    @io.print_string "Tie, nobody won, but everyone had fun!"
   end
   
   def game_over_screen(board)
     board_screen(board)
-    puts GAME_OVER
+    @io.print_string GAME_OVER
   end
   
   def board_screen(board)
@@ -59,7 +64,7 @@ class GameScreens
   end
   
   def clear_screen
-    system("clear")
+    @io.clear_screen
   end
   
   def print_board(board)
@@ -69,7 +74,7 @@ class GameScreens
   end 
   
   def empty_line
-    puts
+    @io.print_string
   end
   
   def empty_lines(how_many)
