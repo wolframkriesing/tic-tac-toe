@@ -1,6 +1,6 @@
-class IO
+class Output
 	
-  def print_string(s)
+  def print_string(s = nil)
     puts s
   end
   
