@@ -24,3 +24,4 @@ New Features
 [] pass baord size as param
 [] more generic board
 [] provide menu (in addition to cmd line params)
+[] tests for UI
