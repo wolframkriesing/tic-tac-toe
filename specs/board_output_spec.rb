@@ -24,4 +24,12 @@ class BoardOutputTests < MiniTest::Unit::TestCase
     assert_equal io.output, ["       +---+---+---+", "       | 0 | 1 | 2 |", "       +---+---+---+", "       | 3 | 4 | 5 |", "       +---+---+---+", "       | 6 | 7 | 8 |", "       +---+---+---+"]
   end
   
+  def test_prints_empty_board_with_2_rows
+    io = IO.new
+    board = Board.with_number_of_rows 2
+    board.empty_all_cells
+	  BoardOutput.new(io).print(board)
+    assert_equal io.output, ["       +---+---+", "       | 0 | 1 |", "       +---+---+", "       | 2 | 3 |", "       +---+---+"]
+  end
+  
 end

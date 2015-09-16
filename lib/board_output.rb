@@ -8,11 +8,15 @@ class BoardOutput
   
   def print(board)
     @board = board
-    print_board_border
+    print_top_boarder
     print_rows
   end
 
   private
+  
+  def print_top_boarder
+    print_board_border
+  end
   
   def print_rows
     @board.rows_count.times do |row_index|
@@ -21,8 +25,9 @@ class BoardOutput
   end
   
   def print_row(row_index)
-    offset = row_index * @board.rows_count
-    indexes = (offset .. (offset + 2))
+    rows_count = @board.rows_count
+    offset = row_index * rows_count
+    indexes = (offset .. (offset + rows_count-1))
     print_board_line(indexes)
     print_board_border
   end
