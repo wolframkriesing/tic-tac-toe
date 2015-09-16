@@ -29,11 +29,19 @@ class GamePlay
   def pick_valid_cell(board, player, opponent)
     cell_index = nil
     cell_index = player.pick_cell(board, opponent)
-    while not board.is_available_cell(cell_index)
-      @game_screens.invalid_cell(cell_index)
-      cell_index = player.pick_cell(board, opponent)
+    if not board.is_available_cell(cell_index)
+      raise InvalidMoveError.new(cell_index)
     end
     cell_index
+  end
+  
+end
+
+class InvalidMoveError < RuntimeError
+  
+  attr_reader :picked_cell_index
+  def initialize(cell_index)
+    @picked_cell_index = cell_index
   end
   
 end
