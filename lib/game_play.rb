@@ -3,19 +3,12 @@ require_relative "./game_rules"
 class GamePlay
   
   def initialize(player1, player2)
-    @player1 = player1
-    @player2 = player2
-    @move_count = 0
+    @players = [player1, player2]
   end
   
   def next_move(board)
-    whos_turn = @move_count % 2
-    if whos_turn == 0
-      play_move(board, @player1, @player2)
-    else
-      play_move(board, @player2, @player1)
-    end
-    @move_count += 1
+    play_move(board, @players[0], @players[1])
+    flip_players_array
   end
   
   def keep_playing?(board)
@@ -23,6 +16,10 @@ class GamePlay
   end
   
   private
+  
+  def flip_players_array
+    @players[1], @players[0] = @players[0], @players[1]
+  end
   
   def play_move(board, player, opponent)
     cell_index = pick_valid_cell(board, player, opponent)
