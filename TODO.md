@@ -17,11 +17,11 @@ New Features
 [] write out who's turn it is
 [] show the game type
 [x] dont monkey patch string
-[] decouple from puts
+[x] decouple from puts
 [] decouple from gets
 [] use rows instead of explicit accessing 0,1,2 in the Winner, to make it easy to make a 4x4 board
 [] fix bug, which crashes on wrong input
-[] pass baord size as param
+[x] pass baord size as param
 [] more generic board
 [] provide menu (in addition to cmd line params)
 [] tests for UI
