@@ -21,7 +21,7 @@ class BoardOutput
   end
   
   def self.print_cell(board, index)
-    cell = board[index]
+    cell = board.cells[index]
     cell.is_available? ? index.to_s : cell.player
   end
   
