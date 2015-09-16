@@ -1,11 +1,11 @@
-require_relative "./external-deps/io"
+require_relative "./external-deps/output"
 
 class BoardOutput
   
   LEFT_MARGIN = "       "
   
-  def initialize(io=IO.new)
-    @io = io
+  def initialize(output = Output.new)
+    @output = output
   end
   
   def print(board)
@@ -54,7 +54,7 @@ class BoardOutput
   end
   
   def print_line(line)
-    @io.print_string LEFT_MARGIN + line
+    @output.print_string LEFT_MARGIN + line
   end
   
 end
