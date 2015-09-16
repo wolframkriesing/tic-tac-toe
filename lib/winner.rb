@@ -32,8 +32,8 @@ class Winner
   end
   
   def player_for_win_combo(cell1, cell2, cell3)    
-    first_cell = @board[cell1]
-    first_cell.player if cells_owned_by_same_player?(first_cell, @board[cell2], @board[cell3])
+    first_cell = @board.cells[cell1]
+    first_cell.player if cells_owned_by_same_player?(first_cell, @board.cells[cell2], @board.cells[cell3])
   end
   
   def cells_owned_by_same_player?(cell1, cell2, cell3)

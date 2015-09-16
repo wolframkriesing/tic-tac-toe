@@ -33,7 +33,7 @@ class ComputerMoveMedium < ComputerMoveCore
   private
   
   def center_cell
-    return 4 if @board[4].is_available?
+    return 4 if @board.is_available_cell(4)
   end
 
   def winning_move
@@ -53,10 +53,10 @@ class ComputerMoveHard < ComputerMoveMedium
   private
   
   def corner_cell
-    return 0 if @board[0].is_available?
-    return 2 if @board[2].is_available?
-    return 6 if @board[6].is_available?
-    return 8 if @board[8].is_available?
+    return 0 if @board.is_available_cell(0)
+    return 2 if @board.is_available_cell(2)
+    return 6 if @board.is_available_cell(6)
+    return 8 if @board.is_available_cell(8)
   end
   
 end

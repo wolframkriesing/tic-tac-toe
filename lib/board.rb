@@ -1,33 +1,53 @@
 require_relative "./cell"
 
-class Board < Array
+class Board
 	
+  attr_reader :cells
+  def initialize(cells)
+    @cells = cells
+  end
+  
   def self.empty
-    board = Board.new
-    board.concat([
+    Board.new([
       Cell.new, Cell.new, Cell.new,
       Cell.new, Cell.new, Cell.new,
       Cell.new, Cell.new, Cell.new
     ])
-    board
+  end
+  
+  def clone
+    Board.new(@cells.map { |cell| cell.clone })
   end
   
   def make_move_to(cell_index, player)
-    self[cell_index].occupy_by(player)
+    @cells[cell_index].occupy_by(player)
   end
   
   def all_cells_occupied?
-    self.all? { |cell| !cell.is_available? }
+    @cells.all? { |cell| !cell.is_available? }
   end
       
-  def is_available_cell(cell_index)
-    is_valid_cell_index(cell_index) and self[cell_index].is_available?
+  def is_available_cell?(cell_index)
+    is_available_cell(cell_index)
   end
+  
+  def is_available_cell(cell_index)
+    is_valid_cell_index(cell_index) and @cells[cell_index].is_available?
+  end
+  
+  def all_available_cells_indexes
+    indexes = @cells.map.with_index { |cell, index| 
+      cell.is_available? ? index : nil
+    }
+    indexes.select {|index| index != nil}
+  end
+
+
   
   private
   
   def is_valid_cell_index(cell_index)
-    (0..self.length) === cell_index
+    (0..@cells.length) === cell_index
   end
 	
 end

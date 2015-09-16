@@ -112,13 +112,13 @@ class Boards < WinningBoards
   
   def self.one_cell_empty(cell_index)
 	  board = Boards.tie_board
-	  board[cell_index] = Cell.new
+	  board.cells[cell_index] = Cell.new
 	  board
   end
   
   def self.two_cells_empty(cell_index, cell_index1)
 	  board = one_cell_empty(cell_index)
-	  board[cell_index1] = Cell.new
+	  board.cells[cell_index1] = Cell.new
 	  board
   end
   
@@ -148,7 +148,7 @@ class BoardsTest < MiniTest::Unit::TestCase
   
   def test_diagonal_from_left_top_won_by_player1
     board = Boards.diagonal_from_left_top_won_by_player1
-    assert_equal board[0].owned_by_same_player?(board[4]), true
+    assert_equal board.cells[0].owned_by_same_player?(board.cells[4]), true
   end
   
 end
