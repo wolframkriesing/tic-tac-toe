@@ -16,7 +16,7 @@ New Features
 [] use 1-9 instead of 0-8 for user input
 [] write out who's turn it is
 [] show the game type
-[] dont monkey patch string
+[x] dont monkey patch string
 [] decouple from puts
 [] decouple from gets
 [] use rows instead of explicit accessing 0,1,2 in the Winner, to make it easy to make a 4x4 board
