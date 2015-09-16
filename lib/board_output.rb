@@ -19,12 +19,16 @@ class BoardOutput
   
   def print_row(board, row_index)
     offset = row_index * 3
-    print_board_line(board, offset + 0, offset + 1, offset + 2)
+    print_board_line(board, [offset + 0, offset + 1, offset + 2])
     print_board_border
   end
   
-  def print_board_line(board, cell1, cell2, cell3)
-    print_line "| #{print_cell(board, cell1)} | #{print_cell(board, cell2)} | #{print_cell(board, cell3)} |"
+  def print_board_line(board, cell_indexes)
+    line = "|"
+    cell_indexes.each do |cell_index|
+      line += " #{print_cell(board, cell_index)} |"
+    end
+    print_line line
   end
   
   def print_cell(board, index)
