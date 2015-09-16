@@ -8,10 +8,8 @@ class BoardOutput
   
   def print(board)
     @board = board
-    print_empty_line
     print_board_border
     print_rows
-    print_empty_line
   end
 
   private
@@ -51,8 +49,5 @@ class BoardOutput
     @io.put_string LEFT_MARGIN + line
   end
   
-  def print_empty_line
-    @io.put_string
-  end
 end
 

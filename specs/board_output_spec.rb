@@ -21,7 +21,7 @@ class BoardOutputTests < MiniTest::Unit::TestCase
     io = IO.new
     board = Board.empty
 	  BoardOutput.new(io).print(board)
-    assert_equal io.output, [nil, "       +---+---+---+", "       | 0 | 1 | 2 |", "       +---+---+---+", "       | 3 | 4 | 5 |", "       +---+---+---+", "       | 6 | 7 | 8 |", "       +---+---+---+", nil]
+    assert_equal io.output, ["       +---+---+---+", "       | 0 | 1 | 2 |", "       +---+---+---+", "       | 3 | 4 | 5 |", "       +---+---+---+", "       | 6 | 7 | 8 |", "       +---+---+---+"]
   end
   
 end

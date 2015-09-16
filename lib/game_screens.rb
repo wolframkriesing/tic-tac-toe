@@ -63,7 +63,9 @@ class GameScreens
   end
   
   def print_board(board)
+    empty_line
     BoardOutput.print(board)
+    empty_line
   end 
   
   def empty_line
