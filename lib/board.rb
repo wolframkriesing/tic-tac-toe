@@ -37,10 +37,6 @@ class Board
   end
       
   def is_available_cell?(cell_index)
-    is_available_cell(cell_index)
-  end
-  
-  def is_available_cell(cell_index)
     is_valid_cell_index(cell_index) and @cells[cell_index].is_available?
   end
   

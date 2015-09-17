@@ -22,7 +22,7 @@ class GamePlay
   
   def pick_valid_cell(board, player, opponent)
     cell_index = player.pick_cell(board, opponent)
-    if not board.is_available_cell(cell_index)
+    if not board.is_available_cell?(cell_index)
       raise InvalidMoveError.new(cell_index)
     end
     cell_index
