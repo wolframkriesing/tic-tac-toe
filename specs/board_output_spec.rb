@@ -38,4 +38,11 @@ class BoardOutputTests < MiniTest::Unit::TestCase
       "       +---+---+"]
   end
   
+  def test_board_with_4_rows_each_cell_is_wider_because_the_numbers_become_two_digits
+    io = MyIO.new
+    board = Board.new 4
+	  BoardOutput.new(io).print(board)
+    assert_equal io.output[0], BoardOutput::LEFT_MARGIN + "+----+----+----+----+"
+  end
+  
 end

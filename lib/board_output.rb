@@ -47,10 +47,16 @@ class BoardOutput
     cell.is_available? ? (index + 1).to_s : cell.player
   end
   
+  INTERSECTION_CHARACTER = "+"
+  CELL_LINE_CHARACTER = "-"
+  
   def print_board_border
-    line = "+"
-    @board.rows_count.times { line += "---+" }
-    print_line line
+    print_line INTERSECTION_CHARACTER + (cell_placeholder + INTERSECTION_CHARACTER) * @board.columns_count
+  end
+  
+  def cell_placeholder
+    cell_separator = CELL_LINE_CHARACTER * @board.cells.length.to_s.length
+    CELL_LINE_CHARACTER + cell_separator + CELL_LINE_CHARACTER
   end
   
   def print_line(line)
