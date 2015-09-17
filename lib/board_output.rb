@@ -1,4 +1,4 @@
-require_relative "./external-deps/output"
+require_relative "external-deps/output"
 
 class BoardOutput
   

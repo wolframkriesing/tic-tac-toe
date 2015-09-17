@@ -1,5 +1,5 @@
-require_relative "./cell"
-require_relative "./winner"
+require_relative "cell"
+require_relative "winner"
 
 class Board
 	

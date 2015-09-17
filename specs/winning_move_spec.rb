@@ -1,6 +1,6 @@
 require_relative "../lib/winning_move"
 require_relative "../lib/cell"
-require_relative "./boards"
+require_relative "boards"
 require "minitest/autorun"
 
 class WinningMoveTest < MiniTest::Unit::TestCase

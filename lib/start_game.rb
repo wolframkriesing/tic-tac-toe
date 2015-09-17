@@ -1,7 +1,7 @@
 require 'getoptlong'
-require_relative "./game.rb"
-require_relative "./board.rb"
-require_relative "./opponents.rb"
+require_relative "game"
+require_relative "board"
+require_relative "opponents"
 
 player1_character, player2_character, game_type, difficulty, rows_count = [nil, nil, nil, nil, nil]
 

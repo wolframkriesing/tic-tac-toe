@@ -1,4 +1,4 @@
-require_relative "./winning_move"
+require_relative "winning_move"
 
 class ComputerMoveCore
   

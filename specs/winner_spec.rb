@@ -1,4 +1,4 @@
-require_relative "./boards"
+require_relative "boards"
 require_relative "../lib/winner"
 require_relative "../lib/player"
 require_relative "../lib/game_play"

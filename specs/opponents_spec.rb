@@ -1,5 +1,5 @@
-require_relative "../lib/opponents.rb"
-require_relative "../lib/player.rb"
+require_relative "../lib/opponents"
+require_relative "../lib/player"
 require "minitest/autorun"
 
 PLAYER_1 = "A"

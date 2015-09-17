@@ -1,5 +1,5 @@
-require_relative "../lib/computer_move.rb"
-require_relative "./boards.rb"
+require_relative "../lib/computer_move"
+require_relative "boards"
 require "minitest/autorun"
 
 def string_to_board(str)

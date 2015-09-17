@@ -1,5 +1,5 @@
-require_relative "./game_play"
-require_relative "./game_screens"
+require_relative "game_play"
+require_relative "game_screens"
 
 class Game
   

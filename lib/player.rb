@@ -1,6 +1,6 @@
-require_relative "./external-deps/input"
-require_relative "./colorize"
-require_relative "./computer_move"
+require_relative "external-deps/input"
+require_relative "colorize"
+require_relative "computer_move"
 
 class Player
   

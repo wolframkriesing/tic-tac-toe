@@ -1,5 +1,5 @@
-require_relative "./board_output"
-require_relative "./external-deps/output"
+require_relative "board_output"
+require_relative "external-deps/output"
 
 class GameScreens
   
