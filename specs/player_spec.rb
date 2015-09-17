@@ -6,7 +6,11 @@ require "minitest/autorun"
 class MyInput
 	
   def initialize(moves)
-	  @moves = moves.split("")
+    if moves.class == Array
+      @moves = moves
+    else
+  	  @moves = moves.split("")
+    end
   end
 	
   def get_string

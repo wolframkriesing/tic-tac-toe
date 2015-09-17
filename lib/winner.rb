@@ -47,6 +47,9 @@ class Winner
     if @board.rows_count == 3
       return player_for_win_combo([0, 4, 8]) || player_for_win_combo([2, 4, 6])
     end
+    if @board.rows_count == 4
+      return player_for_win_combo([0, 5, 10, 15]) || player_for_win_combo([3, 6, 9, 12])
+    end
     player_for_win_combo([0, 3]) or player_for_win_combo([1, 2])
   end
   

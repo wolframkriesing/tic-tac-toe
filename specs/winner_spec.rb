@@ -63,7 +63,6 @@ class NoWinner < MiniTest::Unit::TestCase
 
 end
 
-
 class BoardWithTwoRows < MiniTest::Unit::TestCase
 
   def play(player1, player2)
@@ -92,6 +91,27 @@ class BoardWithTwoRows < MiniTest::Unit::TestCase
   def test_first_player_wins_with_filled_diagonal
     player1 = HumanPlayer.new("1", MyInput.new("14"))
     player2 = HumanPlayer.new("2", MyInput.new("2"))
+    
+    assert_equal play(player1, player2), player1
+  end
+  
+end
+
+
+class BoardWithFourRows < MiniTest::Unit::TestCase
+
+  def play(player1, player2)
+    game_play = GamePlay.new(player1, player2)
+    board = Board.new(4)
+    while game_play.keep_playing?(board)
+        game_play.next_move(board)
+    end
+    Winner.new(board).find
+  end
+  
+  def test_diagonal_wins
+    player1 = HumanPlayer.new("1", MyInput.new(["1", "6", "11", "16"]))
+    player2 = HumanPlayer.new("2", MyInput.new("234"))
     
     assert_equal play(player1, player2), player1
   end
