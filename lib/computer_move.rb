@@ -17,10 +17,10 @@ class CellPicker
   end
 
   def winning_move
-    xxx(@player1) || xxx(@player2)
+    winning_cell(@player1) || winning_cell(@player2)
   end
   
-  def xxx(player)
+  def winning_cell(player)
     available_cells_indexes = @board.all_available_cells_indexes
     cells_that_would_make_a_win = available_cells_indexes.select { |cell_index| 
       @board.make_move_to(cell_index, player).won? 
