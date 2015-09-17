@@ -24,3 +24,18 @@ class HumanVsHumanPlayer < MiniTest::Unit::TestCase
   end  
   
 end
+
+class HumanPlayerTests < MiniTest::Unit::TestCase
+
+  def test_numeric_input_is_returned_as_number_minus_one
+    player = HumanPlayer.new("1", MyInput.new(["19"]))
+    
+    assert_equal player.pick_cell(Board.empty), 18
+  end
+
+  def test_non_numeric_input_is_returned_as_is
+    player = HumanPlayer.new("1", MyInput.new(["A"]))
+    
+    assert_equal player.pick_cell(Board.empty), "A"
+  end
+end

@@ -28,12 +28,13 @@ end
 
 class HumanPlayer < Player
   
-  def pick_cell(board, opponent)
+  def pick_cell(board, opponent = nil)
     char = @input.get_string
-    if char.to_i.to_s == char
-      return char.to_i - 1
+    begin
+      return Integer(char) - 1
+    rescue
+      return char
     end
-    char
   end
   
 end
