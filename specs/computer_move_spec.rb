@@ -99,3 +99,22 @@ class UnbeatableComputer < MiniTest::Unit::TestCase
   end
 		
 end
+
+class WinningMoveTest < MiniTest::Unit::TestCase
+	
+  def test_for_an_empty_board_there_is_none
+	  cell = CellPicker.new(Boards.empty_board, Boards.player1, Boards.player2).winning_move
+	  assert_equal cell, nil
+  end
+  
+  def test_fill_cell_0_to_win_for_player_1
+	  cell = CellPicker.new(Boards.fill_cell_0_to_win(Boards.player1), Boards.player1, Boards.player2).winning_move
+	  assert_equal cell, 0
+  end
+  
+  def test_fill_cell_0_to_win_for_player_2
+	  cell = CellPicker.new(Boards.fill_cell_0_to_win(Boards.player2), Boards.player2, Boards.player1).winning_move
+	  assert_equal cell, 0
+  end
+  
+end

@@ -1,5 +1,3 @@
-require_relative "winning_move"
-
 class CellPicker
 
   def initialize(board, player1=nil, player2=nil)
@@ -19,9 +17,15 @@ class CellPicker
   end
 
   def winning_move
-    winning_move = WinningMove.new(@board)    
-    winning_move.pick_cell(@player1) ||
-    winning_move.pick_cell(@player2)
+    xxx(@player1) || xxx(@player2)
+  end
+  
+  def xxx(player)
+    available_cells_indexes = @board.all_available_cells_indexes
+    cells_that_would_make_a_win = available_cells_indexes.select { |cell_index| 
+      @board.make_move_to(cell_index, player).won? 
+    }
+    cells_that_would_make_a_win.first
   end
   
   def corner_cell
