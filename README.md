@@ -43,7 +43,13 @@ To either of the above you can pass the following parameters:
       0 = easy - the computer can easily be beaten
       1 = medium - means it can be beaten but only with a series of intelligent moves
       2 = hard - means the computer is unbeatable
+
+  --rowscount x=3, -r x:
+    The number of rows (and columns) the game shall have, default is 3.
 ```
+
+You want to have some fun watching the computer play against itself with a grid of 10x10?
+Try this: `./tic-tac-toe.sh --gametype=3 --difficulty=1 --rowscount=10`
 
 # Run the tests
 
