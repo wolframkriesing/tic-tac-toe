@@ -17,14 +17,16 @@ class Winner
   def player_for_row_win
     rows_count = @board.rows_count
     (0..rows_count-1)
-      .map {|row_index| player_for_winning_row(row_index, rows_count) }
+      .map {|row_index| player_for_winning_row(row_index) }
       .select {|player| player != nil}
       .first
   end
   
-  def player_for_winning_row(row_index, rows_count)
+  def player_for_winning_row(row_index)
+    rows_count = @board.rows_count
     offset = row_index * rows_count
-    player_for_win_combo([offset + 0, offset + 1, offset + 2])
+    cell_indexes = (0..rows_count-1).map {|index| offset + index}
+    player_for_win_combo(cell_indexes)
   end
   
   def player_for_column_win
@@ -36,12 +38,16 @@ class Winner
   end
   
   def player_for_winning_column(column_index)
-    player_for_win_combo([column_index + 0, column_index + 3, column_index + 6])
+    columns_count = @board.columns_count
+    cell_indexes = (0..columns_count-1).map {|index| column_index + index*columns_count}
+    player_for_win_combo(cell_indexes)
   end
   
   def player_for_diagonal_win
-    player_for_win_combo([0, 4, 8]) or
-    player_for_win_combo([2, 4, 6])
+    if @board.rows_count == 3
+      return player_for_win_combo([0, 4, 8]) || player_for_win_combo([2, 4, 6])
+    end
+    player_for_win_combo([0, 3]) or player_for_win_combo([1, 2])
   end
   
   def player_for_win_combo(cell_indexes)    

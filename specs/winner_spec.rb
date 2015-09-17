@@ -1,5 +1,7 @@
 require_relative "./boards"
 require_relative "../lib/winner"
+require_relative "../lib/player"
+require_relative "../lib/game_play"
 require "minitest/autorun"
 
 def find_winner_for(board)
@@ -59,4 +61,39 @@ class NoWinner < MiniTest::Unit::TestCase
     assert_equal winner, Boards.player1
   end
 
+end
+
+
+class BoardWithTwoRows < MiniTest::Unit::TestCase
+
+  def play(player1, player2)
+    game_play = GamePlay.new(player1, player2)
+    board = Board.new(2)
+    while game_play.keep_playing?(board)
+        game_play.next_move(board)
+    end
+    Winner.new(board).find
+  end
+  
+  def test_first_player_wins_with_filled_row
+    player1 = HumanPlayer.new("1", MyInput.new("12"))
+    player2 = HumanPlayer.new("2", MyInput.new("3"))
+    
+    assert_equal play(player1, player2), player1
+  end
+  
+  def test_first_player_wins_with_filled_column
+    player1 = HumanPlayer.new("1", MyInput.new("13"))
+    player2 = HumanPlayer.new("2", MyInput.new("2"))
+    
+    assert_equal play(player1, player2), player1
+  end
+  
+  def test_first_player_wins_with_filled_diagonal
+    player1 = HumanPlayer.new("1", MyInput.new("14"))
+    player2 = HumanPlayer.new("2", MyInput.new("2"))
+    
+    assert_equal play(player1, player2), player1
+  end
+  
 end
