@@ -70,7 +70,7 @@ class BoardWithTwoRows < MiniTest::Unit::TestCase
     game_play = GamePlay.new(player1, player2)
     board = Board.new(2)
 	  while !board.game_over?
-        game_play.next_move(board)
+        board = game_play.next_move(board)
     end
     board.find_winner
   end
@@ -105,7 +105,7 @@ class BoardWithFourRows < MiniTest::Unit::TestCase
     game_play = GamePlay.new(player1, player2)
     board = Board.new(4)
     while !board.game_over?
-        game_play.next_move(board)
+        board = game_play.next_move(board)
     end
     Winner.new(board).find
   end

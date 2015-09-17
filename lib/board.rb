@@ -29,8 +29,9 @@ class Board
   end
   
   def make_move_to(cell_index, player)
-    @cells[cell_index].occupy_by(player)
-    return self
+    cloned_cells = @cells.map { |cell| cell.clone }
+    cloned_cells[cell_index].occupy_by(player)
+    Board.new(@rows_count, cloned_cells)
   end
   
   def all_cells_occupied?

@@ -10,7 +10,7 @@ class HumanVsHumanPlayer < MiniTest::Unit::TestCase
     game_play = GamePlay.new(player1, player2)
     board = Board.empty
     while !board.game_over?
-        game_play.next_move(board)
+        board = game_play.next_move(board)
     end
     Winner.new(board).find
   end

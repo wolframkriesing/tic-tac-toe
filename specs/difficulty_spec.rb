@@ -10,7 +10,7 @@ class UnbeatableComputersPlayingEachOther < MiniTest::Unit::TestCase
 	game_play = GamePlay.new(opponents.player1(""), opponents.player2(""))
 	board = Board.empty
 	while !board.game_over?
-      game_play.next_move(board)
+      board = game_play.next_move(board)
 	end
 	board.tie?
   end
@@ -34,7 +34,7 @@ class MediumDifficultyComputerVsComputer < MiniTest::Unit::TestCase
 	game_play = GamePlay.new(opponents.player1(""), opponents.player2(""))
 	board = Board.empty
 	while !board.game_over?
-      game_play.next_move(board)
+      board = game_play.next_move(board)
 	end
 	board.tie?
   end
