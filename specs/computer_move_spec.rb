@@ -6,7 +6,7 @@ def string_to_board(str)
   Boards.to_board(str)
 end
 
-def core_computer_move(board)
+def easy_computer_move(board)
   move = ComputerMoveEasy.new(board, Boards.player1, Boards.player2)
   move.pick_cell
 end
@@ -21,16 +21,21 @@ def hard_computer_move(board)
   move.pick_cell
 end
 
-class ComputerMoveCoreTests < MiniTest::Unit::TestCase
+class ComputerMoveEasyTests < MiniTest::Unit::TestCase
+  
+  def test_pick_one_of_the_emtpy_cells
+    board = Board.empty
+    assert_equal (0..8) === easy_computer_move(board), true
+  end
 
   def test_can_only_occupy_available_spot
     board = Boards.one_cell_empty(4)
-    assert_equal core_computer_move(board), 4
+    assert_equal easy_computer_move(board), 4
   end
 
   def test_can_only_occupy_available_spot1
     board = Boards.one_cell_empty(0)
-    assert_equal core_computer_move(board), 0
+    assert_equal easy_computer_move(board), 0
   end
   
 end
