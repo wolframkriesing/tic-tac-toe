@@ -20,10 +20,10 @@ New Features
 [x] dont monkey patch string
 [x] decouple from puts
 [x] decouple from gets
-[] use rows instead of explicit accessing 0,1,2 in the Winner, to make it easy to make a 4x4 board
+[x] use rows instead of explicit accessing 0,1,2 in the Winner, to make it easy to make a 4x4 board
 [] fix bug, which crashes on wrong input
 [x] pass baord size as param
-[] more generic board
+[x] more generic board (allows any size now)
 [] provide menu (in addition to cmd line params)
 [x] tests for board output (UI)
 [] tests for game screens 
