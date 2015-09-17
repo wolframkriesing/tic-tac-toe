@@ -46,12 +46,13 @@ class Winner
   
   def player_for_win_combo(cell1, cell2, cell3)    
     first_cell = @board.cells[cell1]
-    first_cell.player if cells_owned_by_same_player?(first_cell, @board.cells[cell2], @board.cells[cell3])
+    first_cell.player if cells_owned_by_same_player?([first_cell, @board.cells[cell2], @board.cells[cell3]])
   end
   
-  def cells_owned_by_same_player?(cell1, cell2, cell3)
-    cell1.owned_by_same_player?(cell2) and 
-    cell2.owned_by_same_player?(cell3)
+  def cells_owned_by_same_player?(cells)
+    first_cell = cells[0]
+    cells_owned_by_same_player = cells.select {|cell| cell.owned_by_same_player?(first_cell)}
+    cells_owned_by_same_player.length == cells.length
   end
 	
 end
