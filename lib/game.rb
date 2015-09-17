@@ -6,21 +6,17 @@ class Game
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
+    @game_screens = GameScreens.new
   end
   
   def start_game(board)
-    @game_screens = GameScreens.new
-    board = play_board(board)
+    @game_screens.game_start(board)
+    board = game_loop(board)
     @game_screens.game_over(board)
   end
   
   private
     
-  def play_board(board)
-    @game_screens.game_start(board)
-    game_loop(board)
-  end
-  
   def game_loop(board)
     game_play = GamePlay.new(@player1, @player2)
     while !board.game_over?
