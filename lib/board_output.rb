@@ -44,8 +44,12 @@ class BoardOutput
   
   def print_cell(index)
     cell = @board.cells[index]
-    cell_character = cell.is_available? ? (index + 1).to_s : cell.player.name
-    padding_for_cell_character(cell_character) + cell_character
+    if cell.is_available?
+      cell_index_output = (index + 1).to_s
+      padding_for_cell_character(cell_index_output) + cell_index_output
+    else
+      padding_for_cell_character(cell.player.name) + cell.player.to_s
+    end
   end
   
   def padding_for_cell_character(cell_character)
