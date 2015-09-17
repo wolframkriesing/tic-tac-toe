@@ -19,7 +19,7 @@ class Game
   def game_play(board)
     @game_screens.game_start(board)
     game_play = GamePlay.new(@player1, @player2)
-    while game_play.keep_playing?(board)
+    while !board.game_over?
       until valid_move(board, game_play)
       end
       @game_screens.next_move_screen(board)

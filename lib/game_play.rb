@@ -9,10 +9,6 @@ class GamePlay
     flip_players_array
   end
   
-  def keep_playing?(board)
-    !board.game_over?  
-  end
-  
   private
   
   def flip_players_array
