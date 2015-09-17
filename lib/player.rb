@@ -1,7 +1,10 @@
+require_relative "./external-deps/input"
+
 class Player
 
-  def initialize(name)
+  def initialize(name, input = Input.new)
     @name = name
+    @input = input
   end
 
   def is?(other_player)
@@ -17,9 +20,9 @@ end
 class HumanPlayer < Player
   
   def pick_cell(board, opponent)
-    char = gets.chomp
+    char = @input.get_string
     if char.to_i.to_s == char
-      return char.to_i
+      return char.to_i - 1
     end
     char
   end
