@@ -2,6 +2,7 @@ require_relative "./boards"
 require_relative "../lib/winner"
 require_relative "../lib/player"
 require_relative "../lib/game_play"
+require_relative "input_double"
 require "minitest/autorun"
 
 def find_winner_for(board)
@@ -71,7 +72,7 @@ class BoardWithTwoRows < MiniTest::Unit::TestCase
     while game_play.keep_playing?(board)
         game_play.next_move(board)
     end
-    Winner.new(board).find
+    board.find_winner
   end
   
   def test_first_player_wins_with_filled_row

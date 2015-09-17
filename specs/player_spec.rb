@@ -1,22 +1,8 @@
 require_relative "../lib/player"
 require_relative "../lib/game_play"
 require_relative "../lib/winner"
+require_relative "input_double"
 require "minitest/autorun"
-
-class MyInput
-	
-  def initialize(moves)
-    if moves.class == Array
-      @moves = moves
-    else
-  	  @moves = moves.split("")
-    end
-  end
-	
-  def get_string
-    return @moves.pop
-  end
-end
 
 class HumanVsHumanPlayer < MiniTest::Unit::TestCase
 
