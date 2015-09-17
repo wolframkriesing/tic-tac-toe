@@ -1,10 +1,14 @@
 require_relative "./external-deps/input"
+require_relative "./colorize"
 
 class Player
+  
+  attr_reader :name
 
   def initialize(name, input = Input.new)
     @name = name
     @input = input
+    @color = nil
   end
 
   def is?(other_player)
@@ -12,7 +16,11 @@ class Player
   end
 
   def to_s
-    return @name
+    return @color ? Colorize.colorize(@name, @color) : @name
+  end
+  
+  def set_color(color)
+    @color = color
   end
 
 end
