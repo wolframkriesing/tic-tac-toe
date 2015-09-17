@@ -6,9 +6,8 @@ class Player
   
   attr_reader :name
 
-  def initialize(name, input = Input.new)
+  def initialize(name)
     @name = name
-    @input = input
     @color = nil
   end
 
@@ -28,6 +27,11 @@ end
 
 class HumanPlayer < Player
   
+  def initialize(name, input = Input.new)
+    super(name)
+    @input = input
+  end
+  
   def pick_cell(board, opponent = nil)
     char = @input.get_string
     begin
@@ -41,17 +45,13 @@ end
 
 class ComputerPlayer < Player
 
-  def set_move_class(klass)
-    @computer_move = klass
+  def initialize(name, klass = ComputerMoveMedium)
+    super(name)
+    @move_class = klass
   end
   
-  def move_class
-    @computer_move || ComputerMoveMedium
-  end
-
   def pick_cell(board, opponent)
-    computer_move = move_class.new(board, self, opponent)
-    computer_move.pick_cell
+    @move_class.new(board, self, opponent).pick_cell
   end
   
 end
