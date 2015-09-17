@@ -10,21 +10,29 @@ class Game
   
   def start_game(board)
     @game_screens = GameScreens.new
-    board = game_play(board)
+    board = play_board(board)
     @game_screens.game_over(board)
   end
   
   private
     
-  def game_play(board)
+  def play_board(board)
     @game_screens.game_start(board)
+    game_loop(board)
+  end
+  
+  def game_loop(board)
     game_play = GamePlay.new(@player1, @player2)
     while !board.game_over?
-      until new_board = board_after_valid_move(board, game_play); end
-      board = new_board
-      @game_screens.next_move_screen(board)
+      board = play_one_move(board, game_play)
     end
     board
+  end
+  
+  def play_one_move(board, game_play)
+    until new_board = board_after_valid_move(board, game_play); end
+    @game_screens.next_move_screen(new_board)
+    new_board
   end
   
   def board_after_valid_move(board, game_play)
