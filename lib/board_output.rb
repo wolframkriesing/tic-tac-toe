@@ -44,7 +44,13 @@ class BoardOutput
   
   def print_cell(index)
     cell = @board.cells[index]
-    cell.is_available? ? (index + 1).to_s : cell.player
+    cell_character = cell.is_available? ? index + 1 : cell.player
+    pad_cell_character(cell_character.to_s)
+  end
+  
+  def pad_cell_character(cell_character)
+    padding_width = characters_for_number_of_cell - cell_character.length
+    " " * padding_width + cell_character 
   end
   
   INTERSECTION_CHARACTER = "+"
@@ -55,8 +61,12 @@ class BoardOutput
   end
   
   def cell_placeholder
-    cell_separator = CELL_LINE_CHARACTER * @board.cells.length.to_s.length
-    CELL_LINE_CHARACTER + cell_separator + CELL_LINE_CHARACTER
+    cell_separators = CELL_LINE_CHARACTER * characters_for_number_of_cell
+    CELL_LINE_CHARACTER + cell_separators + CELL_LINE_CHARACTER
+  end
+  
+  def characters_for_number_of_cell
+    @board.cells.length.to_s.length
   end
   
   def print_line(line)
