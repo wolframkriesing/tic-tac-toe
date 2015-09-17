@@ -1,18 +1,12 @@
+require_relative "_helper"
 require_relative "../lib/player"
-require_relative "../lib/game_play"
-require_relative "../lib/winner"
 require_relative "input_double"
 require "minitest/autorun"
 
 class HumanVsHumanPlayer < MiniTest::Unit::TestCase
 
   def play(player1, player2)
-    game_play = GamePlay.new(player1, player2)
-    board = Board.empty
-    while !board.game_over?
-        board = game_play.next_move(board)
-    end
-    Winner.new(board).find
+    TestHelper.play_board_get_winner(Board.empty, player1, player2)
   end
 
   def test_first_human_wins

@@ -1,5 +1,5 @@
+require_relative "_helper"
 require_relative "../lib/opponents"
-require_relative "../lib/game_play"
 require_relative "../lib/board"
 require "minitest/autorun"
 
@@ -7,12 +7,7 @@ class UnbeatableComputersPlayingEachOther < MiniTest::Unit::TestCase
 
   def play
 	opponents = Opponents.new(Opponents::COMPUTER_VS_COMPUTER, Opponents::DIFFICULTY_HARD)
-	game_play = GamePlay.new(opponents.player1(""), opponents.player2(""))
-	board = Board.empty
-	while !board.game_over?
-      board = game_play.next_move(board)
-	end
-	board.tie?
+	TestHelper.play_board(Board.empty, opponents.player1(""), opponents.player2("")).tie?
   end
 	
   def test_two_computers_play_hard_no_win_possible
@@ -31,12 +26,7 @@ class MediumDifficultyComputerVsComputer < MiniTest::Unit::TestCase
 
   def play
 	opponents = Opponents.new(Opponents::COMPUTER_VS_COMPUTER, Opponents::DIFFICULTY_MEDIUM)
-	game_play = GamePlay.new(opponents.player1(""), opponents.player2(""))
-	board = Board.empty
-	while !board.game_over?
-      board = game_play.next_move(board)
-	end
-	board.tie?
+	TestHelper.play_board(Board.empty, opponents.player1(""), opponents.player2("")).tie?
   end
 	
   def test_two_computers_should_have_wins_and_ties
