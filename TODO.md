@@ -13,7 +13,8 @@ New Features
 [x] Allow user to choose which player goes first.
 [x] Allow the user to decide with what “marker” each player will mark their selections on the board (obviously, traditionally it’s “X” and “O”).
 
-[] use 1-9 instead of 0-8 for user input
+[x] output 1-9 instead of 0-8
+[] accept 1-9 instead of 0-8 for user input
 [] write out who's turn it is
 [] show the game type
 [x] dont monkey patch string

@@ -44,7 +44,7 @@ class BoardOutput
   
   def print_cell(index)
     cell = @board.cells[index]
-    cell.is_available? ? index.to_s : cell.player
+    cell.is_available? ? (index + 1).to_s : cell.player
   end
   
   def print_board_border
