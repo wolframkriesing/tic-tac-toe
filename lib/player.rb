@@ -1,5 +1,6 @@
 require_relative "./external-deps/input"
 require_relative "./colorize"
+require_relative "./computer_move"
 
 class Player
   
@@ -37,7 +38,6 @@ class HumanPlayer < Player
   
 end
 
-require_relative "./computer_move"
 class ComputerPlayer < Player
 
   def set_move_class(klass)
