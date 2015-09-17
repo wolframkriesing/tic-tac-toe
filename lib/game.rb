@@ -1,4 +1,3 @@
-require_relative "./board"
 require_relative "./game_play"
 require_relative "./game_screens"
 
@@ -9,9 +8,8 @@ class Game
     @player2 = player2
   end
   
-  def start_game
+  def start_game(board)
     @game_screens = GameScreens.new
-    board = Board.empty
     game_play(board)
     @game_screens.game_over(board)
   end

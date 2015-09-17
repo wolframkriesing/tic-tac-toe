@@ -1,8 +1,9 @@
 require 'getoptlong'
 require_relative "./game.rb"
+require_relative "./board.rb"
 require_relative "./opponents.rb"
 
-player1_character, player2_character, game_type, difficulty = [nil, nil, nil, nil]
+player1_character, player2_character, game_type, difficulty, rows_count = [nil, nil, nil, nil, nil]
 
 opts = GetoptLong.new(
   [ '--help', '-h', GetoptLong::NO_ARGUMENT ],
@@ -10,6 +11,7 @@ opts = GetoptLong.new(
   [ "--player2", "-o", GetoptLong::OPTIONAL_ARGUMENT ],
   [ "--gametype", "-g", GetoptLong::OPTIONAL_ARGUMENT ],
   [ "--difficulty", "-d", GetoptLong::OPTIONAL_ARGUMENT ],
+  [ "--rowscount", "-r", GetoptLong::OPTIONAL_ARGUMENT ],
 )  
 opts.each do |opt, arg|  
   case opt
@@ -39,6 +41,9 @@ tic tac toe [OPTION] ...
       1 = medium - means it can be beaten but only with a series of intelligent moves
       2 = hard - means the computer is unbeatable
 
+  --rowscount x=3, -r x:
+    The number of rows (and columns) the game shall have, default is 3.
+
       EOF
       exit
     when '--player1'
@@ -60,11 +65,14 @@ tic tac toe [OPTION] ...
         "2" => Opponents::DIFFICULTY_HARD,
       }
       difficulty = difficulties[arg]
+	  when '--rowscount'
+      rows_count = arg
   end
 end  
 
 player1_character = player1_character || "X"
 player2_character = player2_character || "O"
+rows_count = rows_count && rows_count.to_i || 3
 game_type = game_type || Opponents::HUMAN_VS_COMPUTER
 difficulty = difficulty || Opponents::DIFFICULTY_MEDIUM
 
@@ -72,4 +80,4 @@ opponents = Opponents.new(game_type, difficulty)
 player1 = opponents.player1(player1_character[0])
 player2 = opponents.player2(player2_character[0])
 game = Game.new(player1, player2)
-game.start_game
+game.start_game(Board.new(rows_count))
