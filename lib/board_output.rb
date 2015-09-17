@@ -44,13 +44,13 @@ class BoardOutput
   
   def print_cell(index)
     cell = @board.cells[index]
-    cell_character = cell.is_available? ? index + 1 : cell.player
-    pad_cell_character(cell_character.to_s)
+    cell_character = cell.is_available? ? (index + 1).to_s : cell.player.name
+    padding_for_cell_character(cell_character) + cell_character
   end
   
-  def pad_cell_character(cell_character)
+  def padding_for_cell_character(cell_character)
     padding_width = characters_for_number_of_cell - cell_character.length
-    " " * padding_width + cell_character 
+    " " * padding_width 
   end
   
   INTERSECTION_CHARACTER = "+"
