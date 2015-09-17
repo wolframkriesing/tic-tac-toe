@@ -19,12 +19,12 @@ class OpponentsCharacters < MiniTest::Unit::TestCase
 
   def test_passes_the_players_character_to_first_player
 	  player1 = default_game_players.first
-    assert_equal player1.to_s, PLAYER_1
+    assert_equal player1.name, PLAYER_1
   end
 
   def test_passes_the_players_character_to_second_player
 	  player = default_game_players[1]
-    assert_equal player.to_s, PLAYER_2
+    assert_equal player.name, PLAYER_2
   end
 	
 end

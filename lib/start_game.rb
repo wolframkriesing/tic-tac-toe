@@ -1,7 +1,6 @@
 require 'getoptlong'
 require_relative "./game.rb"
 require_relative "./opponents.rb"
-require_relative "./colorize"
 
 player1_character, player2_character, game_type, difficulty = [nil, nil, nil, nil]
 
@@ -70,7 +69,7 @@ game_type = game_type || Opponents::HUMAN_VS_COMPUTER
 difficulty = difficulty || Opponents::DIFFICULTY_MEDIUM
 
 opponents = Opponents.new(game_type, difficulty)
-player1 = opponents.player1(Colorize.green(player1_character[0]))
-player2 = opponents.player2(Colorize.red(player2_character[0]))
+player1 = opponents.player1(player1_character[0])
+player2 = opponents.player2(player2_character[0])
 game = Game.new(player1, player2)
 game.start_game

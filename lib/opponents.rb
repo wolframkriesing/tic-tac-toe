@@ -18,17 +18,21 @@ class Opponents
   end
 	
   def player1(character)
+    player = HumanPlayer.new(character)
     if player1_is_a_computer?
-      return computer_player(character)
+      player = computer_player(character)
     end
-    HumanPlayer.new(character)
+    player.set_color(Colorize::GREEN)
+    player
   end
   
   def player2(character)
+    player = HumanPlayer.new(character)
     if player2_is_a_computer?
-      return computer_player(character)
+      player = computer_player(character)
     end
-    HumanPlayer.new(character)
+    player.set_color(Colorize::RED)
+    player
   end
   
   private
