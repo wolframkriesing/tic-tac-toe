@@ -16,9 +16,10 @@ class Winner
   
   def player_for_row_win
     rows_count = @board.rows_count
-    player_for_winning_row(0, rows_count) or
-    player_for_winning_row(1, rows_count) or
-    player_for_winning_row(2, rows_count)
+    (0..rows_count-1)
+      .map {|row_index| player_for_winning_row(row_index, rows_count) }
+      .select {|player| player != nil}
+      .first
   end
   
   def player_for_winning_row(row_index, rows_count)
