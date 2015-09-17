@@ -131,24 +131,3 @@ class Boards < WinningBoards
   end
 
 end
-
-
-
-require "minitest/autorun"
-class BoardsTest < MiniTest::Unit::TestCase
-  # just for my ruby (in)sanity
-  
-  def test_player1_is_always_same
-    assert_equal Boards.player1, Boards.player1
-  end
-  
-  def test_player2_is_different
-    assert_equal Boards.player2 != Boards.player1, true
-  end
-  
-  def test_diagonal_from_left_top_won_by_player1
-    board = Boards.diagonal_from_left_top_won_by_player1
-    assert_equal board.cells[0].owned_by_same_player?(board.cells[4]), true
-  end
-  
-end
