@@ -1,4 +1,5 @@
 require_relative "./cell"
+require_relative "./winner"
 
 class Board
 	
@@ -49,6 +50,23 @@ class Board
     }
     indexes.select {|index| index != nil}
   end
+  
+  def find_winner
+    Winner.new(self).find
+  end
+  
+  def won?
+    find_winner != nil
+  end
+  
+  def game_over?
+    won? or tie?
+  end
+  
+  def tie?
+    !won? && all_cells_occupied?
+  end
+
   
   private
   
