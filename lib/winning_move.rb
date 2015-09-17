@@ -1,5 +1,3 @@
-require_relative "./game_rules"
-
 class WinningMove
   
   def initialize(board)
@@ -19,7 +17,7 @@ class WinningMove
   def would_win(cell_index, player)
     possible_board = @board.clone
     possible_board.make_move_to(cell_index, player)
-    GameRules.new(possible_board).won?
+    possible_board.won?
   end
 
 end

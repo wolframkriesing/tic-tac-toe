@@ -1,4 +1,3 @@
-require_relative "../lib/game_rules"
 class Winner
 	
   def initialize(board)

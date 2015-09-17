@@ -1,5 +1,3 @@
-require_relative "./game_rules"
-
 class GamePlay
   
   def initialize(player1, player2)
@@ -12,7 +10,7 @@ class GamePlay
   end
   
   def keep_playing?(board)
-    !GameRules.new(board).game_over?  
+    !board.game_over?  
   end
   
   private

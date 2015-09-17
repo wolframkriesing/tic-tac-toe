@@ -12,7 +12,7 @@ class UnbeatableComputersPlayingEachOther < MiniTest::Unit::TestCase
 	while game_play.keep_playing?(board)
       game_play.next_move(board)
 	end
-	GameRules.new(board).tie?
+	board.tie?
   end
 	
   def test_two_computers_play_hard_no_win_possible
@@ -36,7 +36,7 @@ class MediumDifficultyComputerVsComputer < MiniTest::Unit::TestCase
 	while game_play.keep_playing?(board)
       game_play.next_move(board)
 	end
-	GameRules.new(board).tie?
+	board.tie?
   end
 	
   def test_two_computers_should_have_wins_and_ties
