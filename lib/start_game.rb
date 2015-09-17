@@ -1,7 +1,7 @@
 require 'getoptlong'
 require_relative "game"
 require_relative "board"
-require_relative "opponents"
+require_relative "game_config"
 
 player1_character, player2_character, game_type, difficulty, rows_count = [nil, nil, nil, nil, nil]
 
@@ -52,17 +52,17 @@ tic tac toe [OPTION] ...
       player2_character = arg
 	  when '--gametype'
       game_types = {
-        "0" => Opponents::HUMAN_VS_COMPUTER,
-        "1" => Opponents::COMPUTER_VS_HUMAN,
-        "2" => Opponents::HUMAN_VS_HUMAN,
-        "3" => Opponents::COMPUTER_VS_COMPUTER
+        "0" => GameConfig::HUMAN_VS_COMPUTER,
+        "1" => GameConfig::COMPUTER_VS_HUMAN,
+        "2" => GameConfig::HUMAN_VS_HUMAN,
+        "3" => GameConfig::COMPUTER_VS_COMPUTER
       }
       game_type = game_types[arg]
 	  when '--difficulty'
       difficulties = {
-        "0" => Opponents::DIFFICULTY_EASY,
-        "1" => Opponents::DIFFICULTY_MEDIUM,
-        "2" => Opponents::DIFFICULTY_HARD,
+        "0" => GameConfig::DIFFICULTY_EASY,
+        "1" => GameConfig::DIFFICULTY_MEDIUM,
+        "2" => GameConfig::DIFFICULTY_HARD,
       }
       difficulty = difficulties[arg]
 	  when '--rowscount'
@@ -73,11 +73,11 @@ end
 player1_character = player1_character || "X"
 player2_character = player2_character || "O"
 rows_count = rows_count && rows_count.to_i || 3
-game_type = game_type || Opponents::HUMAN_VS_COMPUTER
-difficulty = difficulty || Opponents::DIFFICULTY_MEDIUM
+game_type = game_type || GameConfig::HUMAN_VS_COMPUTER
+difficulty = difficulty || GameConfig::DIFFICULTY_MEDIUM
 
-opponents = Opponents.new(game_type, difficulty)
-player1 = opponents.player1(player1_character[0])
-player2 = opponents.player2(player2_character[0])
+game_config = GameConfig.new(game_type, difficulty)
+player1 = game_config.player1(player1_character[0])
+player2 = game_config.player2(player2_character[0])
 game = Game.new(player1, player2)
 game.start_game(Board.new(rows_count))

@@ -2,7 +2,7 @@ require 'set'
 require_relative "player"
 require_relative "computer_move"
 
-class Opponents
+class GameConfig
 
   HUMAN_VS_COMPUTER = 0
   COMPUTER_VS_HUMAN = 1
