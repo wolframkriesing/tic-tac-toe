@@ -30,6 +30,7 @@ class Board
   
   def make_move_to(cell_index, player)
     @cells[cell_index].occupy_by(player)
+    return self
   end
   
   def all_cells_occupied?

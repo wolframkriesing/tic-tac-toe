@@ -5,8 +5,9 @@ class GamePlay
   end
   
   def next_move(board)
-    play_move(board, @players[0], @players[1])
+    new_board = play_move(board, @players[0], @players[1])
     flip_players_array
+    new_board
   end
   
   private

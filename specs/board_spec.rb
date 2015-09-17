@@ -69,11 +69,11 @@ class Tie < MiniTest::Unit::TestCase
   end
 
   def test_won_game_with_full_board_is_not_a_tie
-    board = Boards.tie_board
     player1 = Boards.player1
-    board.make_move_to(0, player1)
-    board.make_move_to(1, player1)
-    board.make_move_to(2, player1)
+    board = Boards.tie_board
+      .make_move_to(0, player1)
+      .make_move_to(1, player1)
+      .make_move_to(2, player1)
     assert_equal board.tie?, false
   end
 

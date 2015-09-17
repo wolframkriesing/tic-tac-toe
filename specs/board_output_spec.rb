@@ -60,8 +60,8 @@ class MultiDigitBoardOutputTests < MiniTest::Unit::TestCase
   def test_pad_the_players_character
     io = MyIO.new
     player = ComputerPlayer.new("C")
-    board = Board.new 4
-    board.make_move_to(0, player)
+    board = Board.new(4)
+      .make_move_to(0, player)
 	  BoardOutput.new(io).print(board)
     assert_equal io.output[1], BoardOutput::LEFT_MARGIN + "|  C |  2 |  3 |  4 |"
   end
@@ -70,8 +70,8 @@ class MultiDigitBoardOutputTests < MiniTest::Unit::TestCase
     io = MyIO.new
     player = ComputerPlayer.new("C")
     player.set_color(Colorize::RED)
-    board = Board.new 4
-    board.make_move_to(0, player)
+    board = Board.new(4)
+      .make_move_to(0, player)
 	  BoardOutput.new(io).print(board)
     assert_equal io.output[1], BoardOutput::LEFT_MARGIN + "|  #{player.to_s} |  2 |  3 |  4 |"
   end

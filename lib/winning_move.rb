@@ -15,9 +15,9 @@ class WinningMove
   private 
   
   def would_win(cell_index, player)
-    possible_board = @board.clone
-    possible_board.make_move_to(cell_index, player)
-    possible_board.won?
+    @board.clone
+      .make_move_to(cell_index, player)
+      .won?
   end
 
 end
