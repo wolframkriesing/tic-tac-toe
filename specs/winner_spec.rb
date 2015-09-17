@@ -1,7 +1,7 @@
 require_relative "boards"
 require_relative "_helper"
+require_relative "_input_double"
 require_relative "../lib/player"
-require_relative "input_double"
 require "minitest/autorun"
 
 class NoWinner < MiniTest::Unit::TestCase
