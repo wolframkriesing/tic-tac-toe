@@ -18,7 +18,7 @@ end
 class GameConfigCharacters < MiniTest::Unit::TestCase
 
   def test_passes_the_players_character_to_first_player
-	  player1 = default_game_players.first
+	  player1 = default_game_players[0]
     assert_equal player1.name, PLAYER_1
   end
 
@@ -32,7 +32,7 @@ end
 class GameTypeDefault < MiniTest::Unit::TestCase
 
   def test_first_player_is_human
-    player = default_game_players.first
+    player = default_game_players[0]
     assert_equal player.is_a?(HumanPlayer), true
   end
 
@@ -46,7 +46,7 @@ end
 class HumanVsComputer < MiniTest::Unit::TestCase
 
   def test_first_player_is_human
-    player = players_for_game_type(GameConfig::HUMAN_VS_COMPUTER).first
+    player = players_for_game_type(GameConfig::HUMAN_VS_COMPUTER)[0]
     assert_equal player.is_a?(HumanPlayer), true
   end
 	
@@ -60,7 +60,7 @@ end
 class ComputerVsHuman < MiniTest::Unit::TestCase
 
   def test_first_player_is_human
-    player = players_for_game_type(GameConfig::COMPUTER_VS_HUMAN).first
+    player = players_for_game_type(GameConfig::COMPUTER_VS_HUMAN)[0]
     assert_equal player.is_a?(ComputerPlayer), true
   end
 	
@@ -74,7 +74,7 @@ end
 class ComputerVsComputer < MiniTest::Unit::TestCase
 
   def test_first_player_is_human
-    player = players_for_game_type(GameConfig::COMPUTER_VS_COMPUTER).first
+    player = players_for_game_type(GameConfig::COMPUTER_VS_COMPUTER)[0]
     assert_equal player.is_a?(ComputerPlayer), true
   end
 	
@@ -88,7 +88,7 @@ end
 class HumanVsHuman < MiniTest::Unit::TestCase
 
   def test_first_player_is_human
-    player = players_for_game_type(GameConfig::HUMAN_VS_HUMAN).first
+    player = players_for_game_type(GameConfig::HUMAN_VS_HUMAN)[0]
     assert_equal player.is_a?(HumanPlayer), true
   end
 	
