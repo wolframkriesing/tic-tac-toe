@@ -15,9 +15,15 @@ class Winner
   private
   
   def player_for_row_win
-    player_for_win_combo(0, 1, 2) or
-    player_for_win_combo(3, 4, 5) or
-    player_for_win_combo(6, 7, 8)
+    rows_count = @board.rows_count
+    player_for_winning_row(0, rows_count) or
+    player_for_winning_row(1, rows_count) or
+    player_for_winning_row(2, rows_count)
+  end
+  
+  def player_for_winning_row(row_index, rows_count)
+    offset = row_index * rows_count
+    player_for_win_combo(offset + 0, offset + 1, offset + 2)
   end
   
   def player_for_column_win
