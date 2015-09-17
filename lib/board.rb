@@ -2,7 +2,7 @@ require_relative "./cell"
 
 class Board
 	
-  attr_reader :cells, :rows_count
+  attr_reader :cells, :rows_count, :columns_count
 
   def initialize(rows_count, cells = nil)
     @cells = cells
@@ -11,6 +11,7 @@ class Board
       empty_all_cells
     end
     @rows_count = rows_count
+    @columns_count = rows_count
   end
   
   def empty_all_cells
