@@ -28,9 +28,15 @@ class Winner
   end
   
   def player_for_column_win
-    player_for_win_combo(0, 3, 6) or
-    player_for_win_combo(1, 4, 7) or
-    player_for_win_combo(2, 5, 8)
+    columns_count = @board.columns_count
+    (0..columns_count-1)
+      .map {|column_index| player_for_winning_column(column_index) }
+      .select {|player| player != nil}
+      .first
+  end
+  
+  def player_for_winning_column(column_index)
+    player_for_win_combo(column_index + 0, column_index + 3, column_index + 6)
   end
   
   def player_for_diagonal_win
