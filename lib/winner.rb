@@ -44,13 +44,19 @@ class Winner
   end
   
   def player_for_diagonal_win
-    if @board.rows_count == 3
-      return player_for_win_combo([0, 4, 8]) || player_for_win_combo([2, 4, 6])
-    end
-    if @board.rows_count == 4
-      return player_for_win_combo([0, 5, 10, 15]) || player_for_win_combo([3, 6, 9, 12])
-    end
-    player_for_win_combo([0, 3]) or player_for_win_combo([1, 2])
+    return player_for_diagonal_left_top_to_right_bottom || player_for_diagonal_right_top_to_left_bottom
+  end
+  
+  def player_for_diagonal_left_top_to_right_bottom
+    rows_count = @board.rows_count
+    cell_indexes = (0..rows_count-1).map {|index| index + index*rows_count}
+    player_for_win_combo(cell_indexes)
+  end
+  
+  def player_for_diagonal_right_top_to_left_bottom
+    rows_count = @board.rows_count
+    cell_indexes = (1..rows_count).map {|index| index*rows_count - index}
+    player_for_win_combo(cell_indexes)
   end
   
   def player_for_win_combo(cell_indexes)    
