@@ -1,7 +1,6 @@
 require_relative "./board"
 require_relative "./game_play"
 require_relative "./game_screens"
-require_relative "./winner"
 
 class Game
   
@@ -14,7 +13,7 @@ class Game
     @game_screens = GameScreens.new
     board = Board.empty
     game_play(board)
-    @game_screens.game_over(board, find_winner(board))
+    @game_screens.game_over(board)
   end
   
   private
@@ -37,10 +36,6 @@ class Game
       @game_screens.invalid_cell(err.picked_cell_index) 
       return false
     end
-  end
-    
-  def find_winner(board)
-    Winner.new(board).find
   end
   
 end

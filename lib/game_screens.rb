@@ -1,5 +1,4 @@
 require_relative "./board_output"
-require_relative "./colorize"
 require_relative "./external-deps/output"
 
 class GameScreens
@@ -32,7 +31,8 @@ class GameScreens
     @output.print_string "Ooops, the cell #{Colorize.red(cell_index.to_s)} is not valid or available, please choose again."
   end
   
-  def game_over(board, winner)
+  def game_over(board)
+    winner = board.find_winner
     if winner
       game_won(board, winner)
     else
