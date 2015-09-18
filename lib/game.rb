@@ -15,8 +15,6 @@ class Game
     @game_screens.game_over(board)
   end
   
-  private
-    
   def game_loop(board)
     game_play = GamePlay.new(@player1, @player2)
     while !board.game_over?
@@ -25,6 +23,8 @@ class Game
     board
   end
   
+  private
+    
   def play_one_move(board, game_play)
     until new_board = board_after_valid_move(board, game_play); end
     @game_screens.next_move_screen(new_board)
