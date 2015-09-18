@@ -13,6 +13,7 @@ class CellPicker
   end
   
   def center_cell
+    return nil if @board.rows_count != 3 
     return 4 if @board.is_available_cell?(4)
   end
 
@@ -29,6 +30,7 @@ class CellPicker
   end
   
   def corner_cell
+    return nil if @board.rows_count != 3
     return 0 if @board.is_available_cell?(0)
     return 2 if @board.is_available_cell?(2)
     return 6 if @board.is_available_cell?(6)
