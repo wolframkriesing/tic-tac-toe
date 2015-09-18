@@ -58,7 +58,7 @@ end
 class BoardWithTwoRows < MiniTest::Unit::TestCase
 
   def play(player1, player2)
-    TestHelper.play_board_get_winner(Board.new(2), player1, player2)
+    TestHelper.winner_for_board(Board.new(2), player1, player2)
   end
   
   def test_first_player_wins_with_filled_row
@@ -88,7 +88,7 @@ end
 class BoardWithFourRows < MiniTest::Unit::TestCase
 
   def play(player1, player2)
-    TestHelper.play_board_get_winner(Board.new(4), player1, player2)
+    TestHelper.winner_for_board(Board.new(4), player1, player2)
   end
   
   def test_diagonal_wins

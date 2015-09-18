@@ -6,7 +6,7 @@ require "minitest/autorun"
 class HumanVsHumanPlayer < MiniTest::Unit::TestCase
 
   def play(player1, player2)
-    TestHelper.play_board_get_winner(Board.empty, player1, player2)
+    TestHelper.winner_for_board(Board.empty, player1, player2)
   end
 
   def test_first_human_wins
