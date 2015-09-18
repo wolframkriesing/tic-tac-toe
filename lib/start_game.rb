@@ -2,6 +2,7 @@ require 'getoptlong'
 require_relative "game"
 require_relative "board"
 require_relative "game_config"
+require_relative "game_screens"
 
 player1_character, player2_character, game_type, difficulty, rows_count = [nil, nil, nil, nil, nil]
 
@@ -79,5 +80,5 @@ difficulty = difficulty || GameConfig::DIFFICULTY_MEDIUM
 game_config = GameConfig.new(game_type, difficulty)
 player1 = game_config.player1(player1_character[0])
 player2 = game_config.player2(player2_character[0])
-game = Game.new(player1, player2)
+game = Game.new(player1, player2, GameScreens.new)
 game.start_game(Board.new(rows_count))

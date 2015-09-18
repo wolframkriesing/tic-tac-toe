@@ -3,10 +3,10 @@ require_relative "game_screens"
 
 class Game
   
-  def initialize(player1, player2)
+  def initialize(player1, player2, game_screens)
     @player1 = player1
     @player2 = player2
-    @game_screens = GameScreens.new
+    @game_screens = game_screens
   end
   
   def start_game(board)
