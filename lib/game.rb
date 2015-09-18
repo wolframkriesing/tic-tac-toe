@@ -36,6 +36,7 @@ class Game
       return game_play.next_move(board)
     rescue InvalidMoveError => err
       @game_screens.invalid_cell(err.picked_cell_index)
+      return nil
     end
   end
   

@@ -33,7 +33,7 @@ class GameTests < MiniTest::Unit::TestCase
   
   def test_renders_invalid_cell
     player1 = HumanPlayer.new("X", MyInput.new(["a", "1", "2"]))
-    player2 = HumanPlayer.new("O", MyInput.new("34"))
+    player2 = HumanPlayer.new("O", MyInput.new(["3", "4"]))
     game_screens = GameScreensDouble.new
     
     Game.new(player1, player2, game_screens).start_game(Board.new(2))
