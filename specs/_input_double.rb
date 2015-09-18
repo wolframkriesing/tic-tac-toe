@@ -9,6 +9,6 @@ class MyInput
   end
 	
   def get_string
-    return @moves.pop
+    return @moves.shift
   end
 end
